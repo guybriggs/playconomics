@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Button = ({ children }) => {
+const UnderlineLink = ({ children }) => {
     const buttonStyle = `
     border-2
     border-transparent
@@ -12,4 +12,4 @@ const Button = ({ children }) => {
     )
 }
 
-export default Button
+export default UnderlineLink

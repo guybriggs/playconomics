@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Skranji');
 
 html {
+  background-color: #53bdc8;
   font-family: 'Jost', sans-serif;
   font-size: 16px;
 }
@@ -18,26 +19,6 @@ button:hover {
     border-bottom-color: currentcolor;
 }
 
-.icon {
-    display: block;
-    background-color: rgba(255,255,255,0.9);
-    color: rgba(0,0,0,0.65);
-    font-size: 100px;
-    height: 200px;
-    width: 200px;
-    line-height: 200px;
-    text-align: center;
-    border-radius: 50%;
-    margin: 1rem auto;
-}
-
-.icon-sml {
-    font-size: 50px;
-    height: 150px;
-    width: 150px;
-    line-height: 150px;
-}
-
-.icon-left {
-    margin: 0;
+section:last-of-type {
+  min-height: 100vh;
 }
