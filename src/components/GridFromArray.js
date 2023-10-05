@@ -5,14 +5,12 @@ const GridFromArray = (props) => {
     const array = props.arrayProp;
 
     return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-16'>
         {array.map(item => (
-
-            <div className={`${item.colSpan} self-center`}>
+            <div className='self-center'>
                 {item.img ? (
                     <div>
-                        <img src={item.img} className='object-cover w-full h-full rounded'></img>
-                        <p className='text-center p-2'>{item.text}</p>
+                        <img src={item.img} alt={item.img} className='object-cover w-full h-full rounded'></img>
                     </div>
                 ) : (
                     <div>

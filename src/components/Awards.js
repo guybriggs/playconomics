@@ -40,24 +40,26 @@ const Awards = () => {
     ]
 
     return (
-    <div className='text-center'>
-        <h1 className='text-5xl pb-16'>Awards</h1>
-        <ul className='grid grid-cols-2 md:flex flex-row pb-8'>
-            {awardsData.map(link => (
-            <li className='flex-1'>
-                <p className='flex justify-center'><Award size={96}></Award></p>
-                <p className='p-2'>{link.name}</p>
-            </li>
-            ))}
-        </ul>
-        <ul className='grid'>
-            {otherAwards.map(link => (
-            <li>
-                <p className='p-2'><Bookmark className='inline-block'></Bookmark> {link.name}</p>
-            </li>
-            ))}
-        </ul>
-    </div>
+        <div className='text-center mb-16'>
+            <h1 className='text-5xl p-8'>Awards</h1>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <ul className='grid grid-cols-2 gap-4'>
+                    {awardsData.map(link => (
+                        <li>
+                            <p className='flex justify-center p-4'><Award size={96}></Award></p>
+                            <p>{link.name}</p>
+                        </li>
+                    ))}
+                </ul>
+                <ul className='grid grid-cols-1 self-center gap-4 text-left'>
+                    {otherAwards.map(link => (
+                    <li>
+                        <p><Bookmark className='inline-block'></Bookmark> {link.name}</p>
+                    </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
     )
 }
 

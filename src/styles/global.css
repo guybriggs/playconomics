@@ -5,20 +5,34 @@
 @import url('https://fonts.googleapis.com/css?family=Jost');
 @import url('https://fonts.googleapis.com/css?family=Skranji');
 
-html {
+body {
   background-color: #53bdc8;
   font-family: 'Jost', sans-serif;
-  font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6, button {
   font-family: 'Skranji', sans-serif;
 }
 
-button:hover {
-    border-bottom-color: currentcolor;
+.underlineLink {
+  text-transform: uppercase;
+  position: relative;
 }
 
-section:last-of-type {
-  min-height: 100vh;
+.underlineLink:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  background-color: currentColor;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.underlineLink:hover:after {
+  left: 0;
+  right: 0;
 }
