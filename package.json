@@ -15,12 +15,12 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "graphql": "^15.6.0",
     "autoprefixer": "^10.4.16",
     "decap-cms-app": "^3.0.8",
-    "gatsby": "^5.12.4",
+    "gatsby": "^5.12.6",
     "gatsby-plugin-netlify-cms": "^7.12.0",
     "gatsby-plugin-postcss": "^6.12.0",
+    "graphql": "^15.6.0",
     "netlify-identity-widget": "^1.9.2",
     "postcss": "^8.4.30",
     "react": "^16.8.4",
