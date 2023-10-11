@@ -19,22 +19,6 @@ import CMS from 'decap-cms-app'
 CMS.init()
 
 const IndexPage = () => {
-    
-    useEffect(() => {
-        // Check if the Netlify Identity widget is available
-        if (window.netlifyIdentity) {
-          // Attach an event listener for the "init" event
-          window.netlifyIdentity.on('init', (user) => {
-            if (!user) {
-              // Attach an event listener for the "login" event
-              window.netlifyIdentity.on('login', () => {
-                // Redirect the user to the /admin/ path
-                window.location.href = '/admin/';
-              });
-            }
-          });
-        }
-      }, []); // Empty dependency array ensures this effect runs once after the component mounts
 
     const iconSize = 96;
 

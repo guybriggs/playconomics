@@ -8,6 +8,6 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-postcss",
-    `gatsby-plugin-netlify-cms`
+    `gatsby-plugin-netlify-cms`,
   ]
 };
