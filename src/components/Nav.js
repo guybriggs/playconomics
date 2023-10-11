@@ -2,7 +2,6 @@ import React from 'react'
 import UnderlineLink from './UnderlineLink.js'
 import * as Scroll from 'react-scroll';
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-import { Link as PageLink  } from "gatsby"
 
 const Nav = () => {
     const navLinks = [
@@ -39,8 +38,8 @@ const Nav = () => {
         </ul>
         <h1 className='flex-1 text-4xl p-4 lg:order-first'>Playconomics</h1>
         <ul className='flex-1 flex flex-row-reverse w-full gap-8 p-4 whitespace-nowrap'>
-            <li><UnderlineLink><PageLink to="/register">Sign Up</PageLink></UnderlineLink></li>
-            <li><UnderlineLink><PageLink to="/login">Login</PageLink></UnderlineLink></li>
+            <li><UnderlineLink>Sign Up</UnderlineLink></li>
+            <li><UnderlineLink>Login</UnderlineLink></li>
         </ul>
     </nav>
     )
