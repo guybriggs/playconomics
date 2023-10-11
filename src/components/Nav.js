@@ -25,20 +25,20 @@ const Nav = () => {
     ]
 
     return (
-    <nav className='static bg-slate-900 text-white flex flex-col-reverse md:flex-row justify-between items-center align-bottom overflow-hidden'>
-        <ul className='flex-0 flex flex-row flex-wrap justify-center gap-8 p-4'>
+    <nav className='static bg-slate-900 text-white flex flex-col-reverse lg:flex-row justify-between items-center align-bottom overflow-hidden'>
+        <ul className='flex-0 grid grid-cols-2 text-center md:flex flex-row justify-center w-full gap-8 p-4'>
             {navLinks.map(item => (
-                <li>
-                    <Link activeClass="active" smooth spy to={item.link}>
+                <Link activeClass="active" smooth spy to={item.link}>
+                    <li>
                         <UnderlineLink>
                             {item.text}
                         </UnderlineLink>
-                    </Link>
-                </li>
+                    </li>
+                </Link>
             ))}
         </ul>
-        <h1 className='flex-1 text-4xl p-4 md:order-first'>Playconomics</h1>
-        <ul className='flex-1 flex flex-row-reverse w-full gap-8 p-4'>
+        <h1 className='flex-1 text-4xl p-4 lg:order-first'>Playconomics</h1>
+        <ul className='flex-1 flex flex-row-reverse w-full gap-8 p-4 whitespace-nowrap'>
             <li><UnderlineLink><PageLink to="/register">Sign Up</PageLink></UnderlineLink></li>
             <li><UnderlineLink><PageLink to="/login">Login</PageLink></UnderlineLink></li>
         </ul>

@@ -6,5 +6,6 @@ module.exports = {
     title: `Playconomics`,
     siteUrl: `https://www.yourdomain.tld`
   },
-  plugins: ["gatsby-plugin-postcss"]
+  plugins: ["gatsby-plugin-postcss"],
+  plugins: [`gatsby-plugin-netlify-cms`]
 };

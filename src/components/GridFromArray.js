@@ -7,7 +7,7 @@ const GridFromArray = (props) => {
     return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-16'>
         {array.map(item => (
-            <div className='self-center'>
+            <div>
                 {item.img ? (
                     <div>
                         <img src={item.img} alt={item.img} className='object-cover w-full h-full rounded'></img>
