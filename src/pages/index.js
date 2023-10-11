@@ -14,7 +14,7 @@ import { Users } from 'react-feather'
 import { Grid } from 'react-feather'
 import { Globe } from 'react-feather'
 import { MousePointer } from 'react-feather'
-import CMS from 'decap-cms-app';
+import CMS from 'decap-cms-app'
 
 CMS.init();
 
