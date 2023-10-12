@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.16",
-    "decap-cms-app": "^3.0.9",
     "gatsby": "^4.0.0",
     "gatsby-plugin-netlify": "^5.0.0",
     "gatsby-plugin-netlify-cms": "^6.0.0",
