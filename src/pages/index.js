@@ -1,4 +1,6 @@
 import * as React from "react"
+import { graphql } from "gatsby"
+
 import Layout from "../components/Layout"
 import Section from "../components/Section"
 import Awards from "../components/Awards"
@@ -15,13 +17,12 @@ import { Grid } from 'react-feather'
 import { Globe } from 'react-feather'
 import { MousePointer } from 'react-feather'
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
 
     const iconSize = 96;
 
-    const lorem = `
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras posuere nisi vitae eleifend auctor. Pellentesque efficitur arcu id porttitor ornare. Nam scelerisque lectus ut iaculis laoreet. Nullam quis ex ac purus commodo tempor vitae a dui. Mauris ut metus non erat pharetra luctus. Nunc hendrerit maximus porta. Aliquam feugiat nulla vitae ornare laoreet. Sed aliquam neque urna, at sagittis velit rhoncus ut. Aenean scelerisque consectetur tortor ut pretium. Vestibulum diam ipsum, tempus ut sapien ut, viverra sagittis nunc. Cras ultricies tincidunt mollis. Aliquam sagittis erat in massa maximus, eget mollis elit consequat. Nunc porttitor ut odio eu luctus.
-    `
+    const lorem = data.aboutData.frontmatter.title;
+    console.log(lorem);
 
     const aboutPage = [
         {
@@ -133,3 +134,25 @@ const IndexPage = () => {
 export default IndexPage
 
 export const Head = () => <title>Playconomics</title>
+
+export const pageQuery = graphql`
+  {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    aboutData: markdownRemark(frontmatter: { title: { eq: "About" } }) {
+      frontmatter {
+        title
+        mainColour
+        secondaryColour
+        textColour
+        intro {
+          title
+          body
+        }
+      }
+    }
+  }
+`;
