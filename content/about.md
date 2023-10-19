@@ -1,5 +1,5 @@
 ---
-title: About, this has been changed.
+title: About
 mainColour: "#007ACC"
 secondaryColour: "#EDEDED"
 textColour: "#333333"
