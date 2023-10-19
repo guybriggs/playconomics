@@ -1,6 +1,6 @@
 ---
 title: About
-mainColour: "#007ACC"
+mainColour: "#3a76e5"
 secondaryColour: "#EDEDED"
 textColour: "#333333"
 intro:
