@@ -1,14 +1,28 @@
 import React from 'react'
+import Section from "./Section"
+import Footer from "./Footer"
 import UnderlineLink from "./UnderlineLink"
 
-const Awards = () => {
+const Contact = ({ data }) => {
+    const { 
+        title,
+        main,
+        secondary,
+        text,
+        body
+    } = data.frontmatter;
+
     return (
-    <div className='text-center'>
-        <h1 className='text-5xl p-8'>Contact Us</h1>
-        <p className='pb-8'>From everyone here at Lionsheart, we'd love to hear from you! Please use our email below.</p>
-        <UnderlineLink>email@email.com</UnderlineLink>
-    </div>
+    <Section main={main} secondary={secondary} text={text}>
+        <div className='text-center'>
+            <h1 className='text-4xl'>{title}</h1>
+            <p>{body}</p>
+            <UnderlineLink>email@email.com</UnderlineLink>
+
+            <Footer />
+        </div>
+    </Section>
     )
 }
 
-export default Awards
+export default Contact

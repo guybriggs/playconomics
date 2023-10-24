@@ -3,9 +3,10 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
 import About from "../components/About"
+import Features from "../components/Features"
+import Contact from "../components/Contact"
 import Section from "../components/Section"
 import Awards from "../components/Awards"
-import Contact from "../components/Contact"
 import Footer from "../components/Footer"
 import Partners from "../components/Partners"
 import GridFromArray from "../components/GridFromArray"
@@ -19,7 +20,7 @@ import { Globe } from 'react-feather'
 import { MousePointer } from 'react-feather'
 
 const IndexPage = ({ data }) => {
-    const aboutData = data.aboutData;
+    const { aboutData, featuresData, contactData } = data;
 
     return (
     <Layout>
@@ -29,14 +30,12 @@ const IndexPage = ({ data }) => {
             </video>
         </div>
         <div id="about"></div>
-        <About data={aboutData}>
-
-        </About>
+        <About data={aboutData} />
         <div id="features"></div>
+        <Features data={featuresData} />
         <div id="universe"></div>
         <div id="contact"></div>
-        <Contact />
-        <Footer />
+        <Contact data={contactData} />
     </Layout>
     )
 }
@@ -55,13 +54,43 @@ export const pageQuery = graphql`
     aboutData: markdownRemark(frontmatter: { title: { eq: "About" } }) {
       frontmatter {
         title
-        mainColour
-        secondaryColour
-        textColour
+        main
+        secondary
+        text
         intro {
-          title
-          body
+            title
+            body
         }
+        fullsizevideo
+        partners {
+            partner
+        }
+      }
+    }
+    featuresData: markdownRemark(frontmatter: { title: { eq: "Features" } }) {
+      frontmatter {
+        title
+        main
+        secondary
+        text
+        awards {
+            award
+            year
+        }
+        fullsizevideo
+        details {
+            title
+            body
+        }
+      }
+    }
+    contactData: markdownRemark(frontmatter: { title: { eq: "Contact" } }) {
+      frontmatter {
+        title
+        main
+        secondary
+        text
+        body
       }
     }
   }

@@ -1,9 +1,8 @@
 import React from "react";
 import { Parallax } from 'react-scroll-parallax';
 
-const Section = ({ props }) => {
+const Section = ({ children, main, secondary, text }) => {
 
-    const { main, secondary, text } = props;
     const wave = "M0,288L80,282.7C160,277,320,267,480,250.7C640,235,800,213,960,208C1120,203,1280,213,1360,218.7L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z";
     const translateX = ['100px', '-200px'];
     const translateY = ['100px', '-200px'];
@@ -29,10 +28,7 @@ const Section = ({ props }) => {
     return (
         <section className="relative flex justify-center">
             <div className="w-full md:w-[1080px] p-8 mb-[50%] md:mb-[25%]" style={textStyle}>
-                <p>Body content goes here.</p>
-                <p>{secondary}</p>
-                <p>{text}</p>
-                <p>{main}</p>
+                {children}
             </div>
 
             <Parallax translateX={multiplyValues(translateX, 2)} translateY={defaultTranslateY} className="absolute top-[-50px] left-[-200px] right-[-200px] bottom-0 z-[-1]">
