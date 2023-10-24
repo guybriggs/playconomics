@@ -3,7 +3,7 @@ import Nav from "../components/Nav"
 import BackToTop from './BackToTop';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
     return (
     <ParallaxProvider>
         <div className='overflow-hidden'>

@@ -2,7 +2,7 @@ import React from 'react'
 import Section from './Section.js'
 import UnderlineLink from './UnderlineLink.js'
 
-const Footer = ({ data }) => {
+const About = ({ data }) => {
     const { 
         title,
         palette,
@@ -18,4 +18,4 @@ const Footer = ({ data }) => {
     )
 }
 
-export default Footer
+export default About
