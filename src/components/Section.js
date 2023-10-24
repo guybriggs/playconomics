@@ -1,7 +1,13 @@
 import React from "react";
 import { Parallax } from 'react-scroll-parallax';
 
-const Section = ({ index, children }) => {
+const Section = ({ props }) => {
+
+
+    const { main, secondary, text } = props;
+
+    const index = 0;
+
     const waveData = [
         {   //Ocean
             bg: "#53BDC8",
@@ -62,29 +68,32 @@ const Section = ({ index, children }) => {
 
     function multiplyValues(arr, num) {
         const doubledArr = [];
-      
+        
         for (const value of arr) {
-          // Extract the numeric part and convert it to an integer
-          const numericValue = parseInt(value);
-      
-          // Check if the numericValue is a valid number
-          if (!isNaN(numericValue)) {
+            // Extract the numeric part and convert it to an integer
+            const numericValue = parseInt(value);
+        
+            // Check if the numericValue is a valid number
+            if (!isNaN(numericValue)) {
             // Double the numeric value and append 'px'
             doubledArr.push((numericValue * num) + 'px');
-          } else {
+            } else {
             // If the value couldn't be parsed as a number, add it as is
             doubledArr.push(value);
-          }
+            }
         }
-      
+        
         return doubledArr;
-      }
+    }
 
     return (
         <section className="relative flex justify-center">
             <div className="w-full md:w-[1080px] p-8 mb-[50%] md:mb-[25%]" style={sectionTextStyle}>
-                {children}
+                children
             </div>
+            <p>{secondary}</p>
+            <p>{text}</p>
+            <p>{main}</p>
 
             <Parallax translateX={multiplyValues(item.translateX, 2)} translateY={['-100px', '400px']} className="absolute top-[-50px] left-[-200px] right-[-200px] bottom-0 z-[-1]">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="absolute top-0 left-0 right-0 translate-y-[-99%]">

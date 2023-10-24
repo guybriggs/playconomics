@@ -22,7 +22,6 @@ const IndexPage = ({ data }) => {
     const iconSize = 96;
 
     const lorem = data.aboutData.frontmatter.mainColour;
-    console.log(lorem);
 
     const aboutPage = [
         {
