@@ -25,10 +25,10 @@ collections:
             name: "translate"
             widget: "object"
             fields:
-              - { label: "StartX", name: "startx", widget: "string" }
-              - { label: "EndX", name: "endx", widget: "string" }
-              - { label: "StartY", name: "starty", widget: "string" }
-              - { label: "EndY", name: "endy", widget: "string" }
+              - { label: "StartX", name: "startx", widget: "number" }
+              - { label: "EndX", name: "endx", widget: "number" }
+              - { label: "StartY", name: "starty", widget: "number" }
+              - { label: "EndY", name: "endy", widget: "number" }
           - { label: "Wave", name: "wave", widget: "string" }
           - label: "Intro"
             name: "intro"
@@ -36,7 +36,6 @@ collections:
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Body", name: "body", widget: "markdown" }
-          - { label: "FullsizeVideo", name: "fullsizevideo", widget: "string" }
           - label: "Partners"
             name: "partners"
             widget: "list"
@@ -58,10 +57,10 @@ collections:
             name: "translate"
             widget: "object"
             fields:
-              - { label: "StartX", name: "startx", widget: "string" }
-              - { label: "EndX", name: "endx", widget: "string" }
-              - { label: "StartY", name: "starty", widget: "string" }
-              - { label: "EndY", name: "endy", widget: "string" }
+              - { label: "StartX", name: "startx", widget: "number" }
+              - { label: "EndX", name: "endx", widget: "number" }
+              - { label: "StartY", name: "starty", widget: "number" }
+              - { label: "EndY", name: "endy", widget: "number" }
           - { label: "Wave", name: "wave", widget: "string" }
           - label: "Awards"
             name: "awards"
@@ -69,7 +68,6 @@ collections:
             fields:
               - { label: "Award", name: "award", widget: "string" }
               - { label: "Year", name: "year", widget: "string" }
-          - { label: "FullsizeVideo", name: "fullsizevideo", widget: "string" }
           - label: "Details"
             name: "details"
             widget: "list"
@@ -92,9 +90,9 @@ collections:
             name: "translate"
             widget: "object"
             fields:
-              - { label: "StartX", name: "startx", widget: "string" }
-              - { label: "EndX", name: "endx", widget: "string" }
-              - { label: "StartY", name: "starty", widget: "string" }
-              - { label: "EndY", name: "endy", widget: "string" }
+              - { label: "StartX", name: "startx", widget: "number" }
+              - { label: "EndX", name: "endx", widget: "number" }
+              - { label: "StartY", name: "starty", widget: "number" }
+              - { label: "EndY", name: "endy", widget: "number" }
           - { label: "Wave", name: "wave", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
