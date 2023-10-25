@@ -14,22 +14,22 @@ collections:
         file: "content/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - label: "Palette",
-            name: "palette",
-            widget: "object",
+          - label: "Palette"
+            name: "palette"
+            widget: "object"
             fields:
-              - { label: "Main", name: "main", widget: "color" },
-              - { label: "Secondary", name: "secondary", widget: "color" },
-              - { label: "Text", name: "text", widget: "color" },
-          - label: "Translate",
-            name: "translate",
-            widget: "object",
+              - { label: "Main", name: "main", widget: "color" }
+              - { label: "Secondary", name: "secondary", widget: "color" }
+              - { label: "Text", name: "text", widget: "color" }
+          - label: "Translate"
+            name: "translate"
+            widget: "object"
             fields:
-              - { label: "StartX", name: "startx", widget: "string" },
-              - { label: "EndX", name: "endx", widget: "string" },
-              - { label: "StartY", name: "starty", widget: "string" },
-              - { label: "EndY", name: "endy", widget: "string" },
-          - { label: "Wave", name: "wave", widget: "string" },
+              - { label: "StartX", name: "startx", widget: "string" }
+              - { label: "EndX", name: "endx", widget: "string" }
+              - { label: "StartY", name: "starty", widget: "string" }
+              - { label: "EndY", name: "endy", widget: "string" }
+          - { label: "Wave", name: "wave", widget: "string" }
           - label: "Intro"
             name: "intro"
             widget: "list"
@@ -47,22 +47,22 @@ collections:
         file: "content/features.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - label: "Palette",
-            name: "palette",
-            widget: "object",
+          - label: "Palette"
+            name: "palette"
+            widget: "object"
             fields:
-              - { label: "Main", name: "main", widget: "color" },
-              - { label: "Secondary", name: "secondary", widget: "color" },
-              - { label: "Text", name: "text", widget: "color" },
-          - label: "Translate",
-            name: "translate",
-            widget: "object",
+              - { label: "Main", name: "main", widget: "color" }
+              - { label: "Secondary", name: "secondary", widget: "color" }
+              - { label: "Text", name: "text", widget: "color" }
+          - label: "Translate"
+            name: "translate"
+            widget: "object"
             fields:
-              - { label: "StartX", name: "startx", widget: "string" },
-              - { label: "EndX", name: "endx", widget: "string" },
-              - { label: "StartY", name: "starty", widget: "string" },
-              - { label: "EndY", name: "endy", widget: "string" },
-          - { label: "Wave", name: "wave", widget: "string" },
+              - { label: "StartX", name: "startx", widget: "string" }
+              - { label: "EndX", name: "endx", widget: "string" }
+              - { label: "StartY", name: "starty", widget: "string" }
+              - { label: "EndY", name: "endy", widget: "string" }
+          - { label: "Wave", name: "wave", widget: "string" }
           - label: "Awards"
             name: "awards"
             widget: "list"
@@ -81,20 +81,20 @@ collections:
         file: "content/contact.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - label: "Palette",
-            name: "palette",
-            widget: "object",
+          - label: "Palette"
+            name: "palette"
+            widget: "object"
             fields:
-              - { label: "Main", name: "main", widget: "color" },
-              - { label: "Secondary", name: "secondary", widget: "color" },
-              - { label: "Text", name: "text", widget: "color" },
-          - label: "Translate",
-            name: "translate",
-            widget: "object",
+              - { label: "Main", name: "main", widget: "color" }
+              - { label: "Secondary", name: "secondary", widget: "color" }
+              - { label: "Text", name: "text", widget: "color" }
+          - label: "Translate"
+            name: "translate"
+            widget: "object"
             fields:
-              - { label: "StartX", name: "startx", widget: "string" },
-              - { label: "EndX", name: "endx", widget: "string" },
-              - { label: "StartY", name: "starty", widget: "string" },
-              - { label: "EndY", name: "endy", widget: "string" },
-          - { label: "Wave", name: "wave", widget: "string" },
+              - { label: "StartX", name: "startx", widget: "string" }
+              - { label: "EndX", name: "endx", widget: "string" }
+              - { label: "StartY", name: "starty", widget: "string" }
+              - { label: "EndY", name: "endy", widget: "string" }
+          - { label: "Wave", name: "wave", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
