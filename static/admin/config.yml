@@ -18,9 +18,9 @@ collections:
             name: "palette"
             widget: "object"
             fields:
-              - { label: "Main", name: "main", widget: "color" }
-              - { label: "Secondary", name: "secondary", widget: "color" }
-              - { label: "Text", name: "text", widget: "color" }
+              - { label: "Main", name: "main", widget: "color", allowInput: true }
+              - { label: "Secondary", name: "secondary", widget: "color", allowInput: true }
+              - { label: "Text", name: "text", widget: "color", allowInput: true }
           - label: "Translate"
             name: "translate"
             widget: "object"
@@ -51,9 +51,9 @@ collections:
             name: "palette"
             widget: "object"
             fields:
-              - { label: "Main", name: "main", widget: "color" }
-              - { label: "Secondary", name: "secondary", widget: "color" }
-              - { label: "Text", name: "text", widget: "color" }
+              - { label: "Main", name: "main", widget: "color", allowInput: true }
+              - { label: "Secondary", name: "secondary", widget: "color", allowInput: true }
+              - { label: "Text", name: "text", widget: "color", allowInput: true }
           - label: "Translate"
             name: "translate"
             widget: "object"
@@ -85,9 +85,9 @@ collections:
             name: "palette"
             widget: "object"
             fields:
-              - { label: "Main", name: "main", widget: "color" }
-              - { label: "Secondary", name: "secondary", widget: "color" }
-              - { label: "Text", name: "text", widget: "color" }
+              - { label: "Main", name: "main", widget: "color", allowInput: true }
+              - { label: "Secondary", name: "secondary", widget: "color", allowInput: true }
+              - { label: "Text", name: "text", widget: "color", allowInput: true }
           - label: "Translate"
             name: "translate"
             widget: "object"
