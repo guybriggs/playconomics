@@ -33,7 +33,6 @@ const IndexPage = ({ data }) => {
         <About data={aboutData} />
         <div id="features"></div>
         <Features data={featuresData} />
-        <div id="universe"></div>
         <div id="contact"></div>
         <Contact data={contactData} />
     </Layout>

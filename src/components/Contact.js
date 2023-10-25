@@ -15,10 +15,9 @@ const Contact = ({ data }) => {
     return (
     <Section main={main} secondary={secondary} text={text}>
         <div className='text-center'>
-            <h1 className='text-4xl'>{title}</h1>
-            <p>{body}</p>
+            <h1 className='text-4xl p-4'>{title}</h1>
+            <p className='my-8'>{body}</p>
             <UnderlineLink>email@email.com</UnderlineLink>
-
             <Footer />
         </div>
     </Section>

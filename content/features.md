@@ -1,17 +1,29 @@
 ---
 title: Features
-main: "#0066ff"
-secondary: "#6666ff"
+main: "#339933"
+secondary: "#00cc99"
 text: "#f5f5f5"
 awards:
-  - award: The University of New South Wales
-    year: 20XX
-  - award: The University of Queensland Australia
-    year: 20XX
-  - award: The University of Adelaide
-    year: 20XX
-  - award: STEP UP
-    year: 20XX
+  - award: UNSW Business School Bill Birkett Award for Sustained Teaching Excellence
+    year: "2022"
+  - award: UNSW President Award for Building Collaborations
+    year: "2019"
+  - award: Wharton School Reimagine Education Social Sciences Gold Award
+    year: "2017"
+  - award: Australian Government Citation for Outstanding Contributions to Student Learning
+    year: "2016"
+  - award: UNSW Business School John Prescott Outstanding Innovation Award
+    year: "2016"
+  - award: UNSW Business School Student Choice Award
+    year: "2013-2015"
+  - award: University of New South Wales Heinz Harant Award for Teaching Innovation
+    year: ""
+  - award: UNSW Vice-Chancellor Award for Excellence in the Use of Learning & Teaching Technologies
+    year: "2013"
+  - award: Australian School of Business Outstanding Technology-Enabled Teaching Innovation Award
+    year: "2013"
+  - award: University of New South Wales Innovation Award (Finalist)
+    year: "2013"
 fullsizevideo: "../assets/mediterranean_winter_360rotate.mp4"
 details:
   - title: One
