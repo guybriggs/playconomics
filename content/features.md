@@ -1,13 +1,13 @@
 ---
 title: Features
 palette:
-  main: "#d75e5e"
-  secondary: "#790b0b"
-  text: "#1f0202"
+  main: "#ADD337"
+  secondary: "#A2C633"
+  text: "#465511"
 translate:
-  startx: 0
-  endx: 100
-  starty: 0
+  startx: -100
+  endx: 200
+  starty: -100
   endy: 200
 wave: M0,224L80,186.7C160,149,320,75,480,85.3C640,96,800,192,960,213.3C1120,235,1280,181,1360,154.7L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z
 awards:
