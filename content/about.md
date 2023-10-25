@@ -1,9 +1,9 @@
 ---
 title: AAA
 palette:
-  main: "#9b1616"
-  secondary: "#c98b8b"
-  text: "#260606"
+  main: "#3fe0e9"
+  secondary: "#6486d8"
+  text: "#ecf2f2"
 translate:
   startx: 1
   endx: 1
