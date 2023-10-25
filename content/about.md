@@ -3,6 +3,9 @@ title: About
 main: "#0066ff"
 secondary: "#6666ff"
 text: "#f5f5f5"
+translatex:
+  - start: 0
+    end: 100
 intro:
   - title: What is Playconomics?
     body: >-
