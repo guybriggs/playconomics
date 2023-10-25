@@ -14,6 +14,27 @@ h1, h2, h3, h4, h5, h6, button {
   font-family: 'Skranji', sans-serif;
 }
 
+.blockquoteInner:before,
+.blockquoteInner:after {
+  font-family: 'Skranji', sans-serif;
+  font-size: 10em;
+  position: absolute;
+  opacity: 0.15;
+}
+
+.blockquoteInner:before {
+  content: '”';
+  top: 50%;
+  left: -5%;
+}
+
+.blockquoteInner:after {
+  content: "“";
+  bottom: 50%;
+  right: -5%;
+  transform: scaleY(-1);
+}
+
 .underlineLink {
   text-transform: uppercase;
   position: relative;
