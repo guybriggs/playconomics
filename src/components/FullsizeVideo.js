@@ -4,7 +4,7 @@ const FullsizeVideo = ( props ) => {
     const { videoUrl } = props;
 
     return (
-    <video autoPlay muted loop className="w-full bg-slate-600 my-8 rounded">
+    <video autoPlay muted loop className="w-full bg-slate-600 my-8 rounded shadow">
         <source src={videoUrl} type="video/mp4"></source>
     </video>
     )

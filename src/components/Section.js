@@ -42,7 +42,7 @@ const Section = ({ children, props }) => {
 
     return (
         <section className="relative min-h-screen flex justify-center">
-            <div className="w-full md:w-[1080px] p-8 mb-[50%] md:mb-[25%]" style={textStyle}>
+            <div className="w-full md:w-[1080px] p-8 md:pt-16 mb-[50%] md:mb-[25%]" style={textStyle}>
                 {children}
             </div>
 

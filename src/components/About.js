@@ -28,7 +28,7 @@ const About = ({ data }) => {
         </div>
         <Blockquote><i>Any sufficiently advanced <b>education</b> is indistinguishable from <b>fun</b>.</i></Blockquote>
         <FullsizeVideo videoUrl={mediterraneanVideo} />
-        <div className='flex justify-between text-center my-16'>
+        <div className='grid grid-cols-2 md:flex justify-between text-center my-16'>
         {partners.map((item, i) => (
             <div key={i}>
                 <div className='flex justify-center p-4'>
