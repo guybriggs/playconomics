@@ -17,6 +17,18 @@ collections:
           - { label: "Main", name: "main", widget: "color" }
           - { label: "Secondary", name: "secondary", widget: "color" }
           - { label: "Text", name: "text", widget: "color" }
+          - {
+              label: "Translate",
+              name: "translate",
+              widget: "object",
+              fields:
+                [
+                  { label: "StartX", name: "startx", widget: "number" },
+                  { label: "EndX", name: "endx", widget: "number" },
+                  { label: "StartY", name: "starty", widget: "number" },
+                  { label: "EndY", name: "endy", widget: "number" },
+                ],
+            }
           - label: "Intro"
             name: "intro"
             widget: "list"

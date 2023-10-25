@@ -3,6 +3,11 @@ title: About
 main: "#0066ff"
 secondary: "#6666ff"
 text: "#f5f5f5"
+translate:
+  - startx: 0
+  - endx: 0
+  - starty: 0
+  - endy: 0
 intro:
   - title: What is Playconomics?
     body: >-
