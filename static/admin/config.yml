@@ -95,4 +95,4 @@ collections:
               - { label: "StartY", name: "starty", widget: "number" }
               - { label: "EndY", name: "endy", widget: "number" }
           - { label: "Wave", name: "wave", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Message", name: "message", widget: "markdown" }

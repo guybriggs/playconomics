@@ -103,7 +103,7 @@ export const pageQuery = graphql`
           endy
         }
         wave
-        body
+        message
       }
     }
   }

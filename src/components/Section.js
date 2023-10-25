@@ -7,19 +7,19 @@ const Section = ({ children, props }) => {
         main,
         secondary,
         text,
-    } = props.frontmatter.palette[0];
+    } = props.frontmatter.palette;
 
     const {
         startx,
         endx,
         starty,
         endy,
-    } = props.frontmatter.translate[0];
+    } = props.frontmatter.translate;
 
     const wave = props.frontmatter.wave;
 
-    const translateX = [startx, endx];
-    const translateY = [starty, endy];
+    const translateX = [startx+'px', endx+'px'];
+    const translateY = [starty+'px', endy+'px'];
 
     const defaultTranslateY = ['-100px', '300px'];
 
