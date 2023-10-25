@@ -1,12 +1,27 @@
 import React from "react";
 import { Parallax } from 'react-scroll-parallax';
 
-const Section = ({ children, main, secondary, text }) => {
+const Section = ({ children, props }) => {
 
-    const wave = "M0,288L80,282.7C160,277,320,267,480,250.7C640,235,800,213,960,208C1120,203,1280,213,1360,218.7L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z";
-    const translateX = ['100px', '-200px'];
-    const translateY = ['100px', '-200px'];
-    const defaultTranslateY = ['-100px', '400px'];
+    const {
+        main,
+        secondary,
+        text,
+    } = props.frontmatter.palette[0];
+
+    const {
+        startx,
+        endx,
+        starty,
+        endy,
+    } = props.frontmatter.translate[0];
+
+    const wave = props.frontmatter.wave;
+
+    const translateX = [startx, endx];
+    const translateY = [starty, endy];
+
+    const defaultTranslateY = ['-100px', '300px'];
 
     const mainStyle = {
         backgroundColor: main,
@@ -21,7 +36,7 @@ const Section = ({ children, main, secondary, text }) => {
     }
 
     const gradientStyle = {
-        background: main,
+        backgroundColor: main,
         background: 'linear-gradient(0deg, '+secondary+' 0%, rgba(0,0,0,0) 100%)',
     }
 
@@ -33,14 +48,14 @@ const Section = ({ children, main, secondary, text }) => {
 
             <Parallax translateX={multiplyValues(translateX, 2)} translateY={defaultTranslateY} className="absolute top-[-50px] left-[-200px] right-[-200px] bottom-0 z-[-1]">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="absolute top-0 left-0 right-0 translate-y-[-99%]">
-                    <path fill={secondary} fill-opacity="1" d={wave}></path>
+                    <path fill={secondary} fillOpacity="1" d={wave}></path>
                 </svg>
                 <div className="absolute top-0 left-0 right-0 bottom-0" style={secondaryStyle}></div>
             </Parallax>
 
             <Parallax translateX={translateX} translateY={translateY} className="absolute top-[50px] left-[-200px] right-[-200px] bottom-0 z-[-1]">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="absolute top-0 left-0 right-0 translate-y-[-99%]">
-                    <path fill={main} fill-opacity="1" d={wave}></path>
+                    <path fill={main} fillOpacity="1" d={wave}></path>
                 </svg>
                 <div className="absolute top-0 left-0 right-0 bottom-0" style={mainStyle}></div>
             </Parallax>

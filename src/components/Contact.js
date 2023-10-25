@@ -6,18 +6,17 @@ import UnderlineLink from "./UnderlineLink"
 const Contact = ({ data }) => {
     const { 
         title,
-        main,
-        secondary,
-        text,
         body
     } = data.frontmatter;
 
     return (
-    <Section main={main} secondary={secondary} text={text}>
+    <Section props={data}>
         <div className='text-center'>
             <h1 className='text-4xl p-4'>{title}</h1>
             <p className='my-8'>{body}</p>
-            <UnderlineLink>email@email.com</UnderlineLink>
+            <UnderlineLink>
+                <a href="mailto:playconomics@lionsheartstudios.com">playconomics@lionsheartstudios.com</a>
+            </UnderlineLink>
             <Footer />
         </div>
     </Section>

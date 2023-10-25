@@ -5,14 +5,8 @@ import Layout from "../components/Layout"
 import About from "../components/About"
 import Features from "../components/Features"
 import Contact from "../components/Contact"
-import squareImage from "../assets/placeholder.png"
-import desertVideo from "../assets/desert_360rotate.mp4"
-import mediterraneanVideo from "../assets/mediterranean_winter_360rotate.mp4"
-import coldVideo from "../assets/seasons_cold_temperate.mp4"
-import { Users } from 'react-feather'
-import { Grid } from 'react-feather'
-import { Globe } from 'react-feather'
-import { MousePointer } from 'react-feather'
+
+import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
 
 const IndexPage = ({ data }) => {
     const { aboutData, featuresData, contactData } = data;
@@ -48,14 +42,22 @@ export const pageQuery = graphql`
     aboutData: markdownRemark(frontmatter: { title: { eq: "About" } }) {
       frontmatter {
         title
-        main
-        secondary
-        text
+        palette {
+          main
+          secondary
+          text
+        }
+        translate {
+          startx
+          endx
+          starty
+          endy
+        }
+        wave
         intro {
             title
             body
         }
-        fullsizevideo
         partners {
             partner
         }
@@ -64,14 +66,22 @@ export const pageQuery = graphql`
     featuresData: markdownRemark(frontmatter: { title: { eq: "Features" } }) {
       frontmatter {
         title
-        main
-        secondary
-        text
+        palette {
+          main
+          secondary
+          text
+        }
+        translate {
+          startx
+          endx
+          starty
+          endy
+        }
+        wave
         awards {
             award
             year
         }
-        fullsizevideo
         details {
             title
             body
@@ -81,9 +91,18 @@ export const pageQuery = graphql`
     contactData: markdownRemark(frontmatter: { title: { eq: "Contact" } }) {
       frontmatter {
         title
-        main
-        secondary
-        text
+        palette {
+          main
+          secondary
+          text
+        }
+        translate {
+          startx
+          endx
+          starty
+          endy
+        }
+        wave
         body
       }
     }

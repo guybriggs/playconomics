@@ -1,8 +1,15 @@
 ---
 title: Features
-main: "#339933"
-secondary: "#00cc99"
-text: "#f5f5f5"
+palette:
+  - main: "#ADD337"
+    secondary: "#A2C633"
+    text: "#465511"
+translate:
+  - startx: 0
+    endx: 0
+    starty: 0
+    endy: 0
+wave: "M0,224L80,186.7C160,149,320,75,480,85.3C640,96,800,192,960,213.3C1120,235,1280,181,1360,154.7L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
 awards:
   - award: UNSW Business School Bill Birkett Award for Sustained Teaching Excellence
     year: "2022"
@@ -24,18 +31,11 @@ awards:
     year: "2013"
   - award: University of New South Wales Innovation Award (Finalist)
     year: "2013"
-fullsizevideo: "../assets/mediterranean_winter_360rotate.mp4"
 details:
-  - title: One
+  - title: Integration
     body: >-
-      Playconomics is an award-winning Ed-tech platform developed at UNSW that weaves the videogame metaverse with standard university material to create online courses that motivate, influence, and inspire learning as a fun, engaging and rewarding journey.
-  - title: Two
+      Playconomics has been developed alongside Academia, a custom Learning Management System where students can test their knowledge and view their marks, with an emphasis on seamless integration and authoring collaboration.
+  - title: Outcomes
     body: >-
-      When a student joins Playconomics, they’re faced with a vast, persistent world that’s full of potential. They have the opportunity to construct a society from the ground up.
-  - title: Three
-    body: >-
-      When a student joins Playconomics, they’re faced with a vast, persistent world that’s full of potential. They have the opportunity to construct a society from the ground up.
-  - title: Four
-    body: >-
-      Playconomics is an award-winning Ed-tech platform developed at UNSW that weaves the videogame metaverse with standard university material to create online courses that motivate, influence, and inspire learning as a fun, engaging and rewarding journey.
+      So far, 65,000+ students have successfully taken Playconomics courses at universities and high schools across Australia and abroad – and the results speak for themselves. Playconomics is designed to natively run Randomised-Controlled-Trials (RCTs), the gold standard for establishing causal evaluation research, and our experimental data is very positive. It shows remarkably higher academic performance across many different student demographics, as well as an exceptional decrease in course failing rates. Finally, student surveys place Playconomics courses among the highest ranked in terms of student satisfaction at every university that runs them.
 ---
