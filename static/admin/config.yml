@@ -23,10 +23,10 @@ collections:
               widget: "object",
               fields:
                 [
-                  { label: "StartX", name: "startx", widget: "number" },
-                  { label: "EndX", name: "endx", widget: "number" },
-                  { label: "StartY", name: "starty", widget: "number" },
-                  { label: "EndY", name: "endy", widget: "number" },
+                  { label: "StartX", name: "startx", widget: "string" },
+                  { label: "EndX", name: "endx", widget: "string" },
+                  { label: "StartY", name: "starty", widget: "string" },
+                  { label: "EndY", name: "endy", widget: "string" },
                 ],
             }
           - label: "Intro"
