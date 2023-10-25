@@ -1,7 +1,6 @@
 import React from 'react'
 import { ArrowUp } from 'react-feather'
-import * as Scroll from 'react-scroll';
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { Link } from 'react-scroll'
 import { useState, useEffect } from 'react';
 
 const BackToTop = () => {
