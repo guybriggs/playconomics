@@ -1,9 +1,9 @@
 ---
 title: About
 palette:
-  main: "#9b1616"
-  secondary: "#c98b8b"
-  text: "#260606"
+  - main: "#9b1616"
+    secondary: "#c98b8b"
+    text: "#260606"
 translate:
   - startx: 0
     endx: 0
