@@ -1,9 +1,5 @@
 ---
 title: Features
-palette:
-  - main: "#ADD337"
-    secondary: "#A2C633"
-    text: "#465511"
 translate:
   - startx: 0
     endx: 0
