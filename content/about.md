@@ -1,14 +1,5 @@
 ---
 title: About
-palette:
-  - main: "#9b1616"
-    secondary: "#c98b8b"
-    text: "#260606"
-translate:
-  - startx: 0
-    endx: 0
-    starty: 0
-    endy: 0
 wave: "M0,288L80,282.7C160,277,320,267,480,250.7C640,235,800,213,960,208C1120,203,1280,213,1360,218.7L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
 intro:
   - title: What is Playconomics?
