@@ -1,14 +1,14 @@
 ---
 title: Features
 palette:
-  - main: 
-    secondary: 
-    text: 
+  - main: "#fff"
+    secondary: "#fff"
+    text: "#000"
 translate:
-  - startx: 
-    endx: 
-    starty: 
-    endy: 
+  - startx: 0
+    endx: 0
+    starty: 0
+    endy: 0
 wave: "M0,224L80,186.7C160,149,320,75,480,85.3C640,96,800,192,960,213.3C1120,235,1280,181,1360,154.7L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
 awards:
   - award: UNSW Business School Bill Birkett Award for Sustained Teaching Excellence
