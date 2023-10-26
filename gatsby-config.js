@@ -47,6 +47,13 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-s3`,
+    {
+      resolve: 'gatsby-plugin-s3',
+      options: {
+        bucketName: process.env.S3_BUCKET_NAME,
+        region: null,
+        acl: null
+      }
+    }
   ]
 };
