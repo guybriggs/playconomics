@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
-  branch: master
+  name: bitbucket
+  repo: https://guybriggs@bitbucket.org/lionsheartstudios/playconomics-site.git
+  branch: default
+  auth_type: implicit
+  app_id: Uj2D9AxyZLvqdSh29D
 
 media_folder: static/img
 public_folder: /img
