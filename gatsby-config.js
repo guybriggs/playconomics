@@ -49,7 +49,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-s3',
       options: {
-        bucketName: process.env.S3_BUCKET_NAME,
+        bucketName: 'lionsheartstudios-website',
         region: null,
         acl: null
       }
