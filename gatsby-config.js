@@ -50,7 +50,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-s3',
       options: {
-        bucketName: 'lionsheartstudios-website',
+        bucketName: 'stg.lionsheartstudios.com',
         region: null,
         acl: null
       }
