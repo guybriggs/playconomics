@@ -1,6 +1,6 @@
 backend:
   name: bitbucket
-  repo: https://guybriggs@bitbucket.org/lionsheartstudios/playconomics-site.git
+  repo: https://bitbucket.org/lionsheartstudios/playconomics-site.git
   branch: default
   auth_type: implicit
   app_id: Uj2D9AxyZLvqdSh29D
