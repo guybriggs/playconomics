@@ -4,11 +4,23 @@ import { Link } from 'react-scroll'
 
 const Nav = () => {
 
-    const domain = window.location.host;
-    let appBaseUrl = `https://app.${domain}/`;
+    let registerUrl = '';
+    let loginUrl = '';
 
-    // Local dev
-    if (domain === "localhost:8001") appBaseUrl = 'http://localhost:8000/';
+    const isSSR = typeof window === "undefined";
+
+    if (!isSSR) {
+        // Only render on the client
+
+        const domain = window.location.host;
+        let appBaseUrl = `https://app.${domain}/`;
+
+        // Local dev
+        if (domain === "localhost:8001") appBaseUrl = 'http://localhost:8000/';
+
+        registerUrl = appBaseUrl + "accounts/register/";
+        loginUrl = appBaseUrl + "accounts/login/";
+    }
 
     const navLinks = [
         {
@@ -23,7 +35,7 @@ const Nav = () => {
             text: "Contact",
             link: "contact",
         },
-    ]
+    ];
 
     return (
     <nav className='bg-slate-900 text-white flex flex-col md:flex-row justify-between items-center static top-0 left-0 right-0 md:fixed z-10 shadow'>
@@ -40,11 +52,11 @@ const Nav = () => {
             ))}
         </ul>
         <ul className='basis-1/4 w-full flex flex-row-reverse gap-8 p-4 whitespace-nowrap order-first md:order-last'>
-            <li><UnderlineLink><a href={appBaseUrl + "accounts/register/"}>Sign Up</a></UnderlineLink></li>
-            <li><UnderlineLink><a href={appBaseUrl + "accounts/login/"}>Login</a></UnderlineLink></li>
+            <li><UnderlineLink><a href={registerUrl}>Sign Up</a></UnderlineLink></li>
+            <li><UnderlineLink><a href={loginUrl}>Login</a></UnderlineLink></li>
         </ul>
     </nav>
     )
-}
+};
 
 export default Nav
