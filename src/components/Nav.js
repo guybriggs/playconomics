@@ -3,6 +3,13 @@ import UnderlineLink from './UnderlineLink.js'
 import { Link } from 'react-scroll'
 
 const Nav = () => {
+
+    const domain = window.location.host;
+    let appBaseUrl = `https://app.${domain}/`;
+
+    // Local dev
+    if (domain === "localhost:8001") appBaseUrl = 'http://localhost:8000/';
+
     const navLinks = [
         {
             text: "About",
@@ -33,8 +40,8 @@ const Nav = () => {
             ))}
         </ul>
         <ul className='basis-1/4 w-full flex flex-row-reverse gap-8 p-4 whitespace-nowrap order-first md:order-last'>
-            <li><UnderlineLink>Sign Up</UnderlineLink></li>
-            <li><UnderlineLink>Login</UnderlineLink></li>
+            <li><UnderlineLink><a href={appBaseUrl + "accounts/register/"}>Sign Up</a></UnderlineLink></li>
+            <li><UnderlineLink><a href={appBaseUrl + "accounts/login/"}>Login</a></UnderlineLink></li>
         </ul>
     </nav>
     )
