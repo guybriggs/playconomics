@@ -1,7 +1,7 @@
 backend:
   name: bitbucket
   repo: lionsheartstudios/playconomics-site
-  branch: default
+  branch: staging
   auth_type: implicit
   app_id: Uj2D9AxyZLvqdSh29D
 
