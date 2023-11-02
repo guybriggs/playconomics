@@ -13,7 +13,7 @@ const Nav = () => {
         // Only render on the client
 
         const domain = window.location.host;
-        let appBaseUrl = `https://app.${domain}/`;
+        let appBaseUrl = `https://my.${domain}/`;
 
         // Local dev
         if (domain === "localhost:8001") appBaseUrl = 'http://localhost:8000/';
