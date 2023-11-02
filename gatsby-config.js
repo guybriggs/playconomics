@@ -4,11 +4,11 @@
 module.exports = {
   siteMetadata: {
     title: `Playconomics`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://playconomics.com`
   },
   plugins: [
     "gatsby-plugin-postcss",
-    `gatsby-plugin-netlify-cms`,
+    // `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-static-cms`,
     `gatsby-plugin-image`,
     {
