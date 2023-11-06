@@ -4,23 +4,9 @@ import { Link } from 'react-scroll'
 
 const Nav = () => {
 
-    let registerUrl = '';
-    let loginUrl = '';
-
-    const isSSR = typeof window === "undefined";
-
-    if (!isSSR) {
-        // Only render on the client
-
-        const domain = window.location.host;
-        let appBaseUrl = `https://my.${domain}/`;
-
-        // Local dev
-        if (domain === "localhost:8001") appBaseUrl = 'http://localhost:8000/';
-
-        registerUrl = appBaseUrl + "accounts/register/";
-        loginUrl = appBaseUrl + "accounts/login/";
-    }
+    const appBaseUrl = process.env.MY_PLAYCONOMICS_BASE_URL || 'http://localhost:8000/';
+    const registerUrl = appBaseUrl + "accounts/register/";
+    const loginUrl = appBaseUrl + "accounts/login/";
 
     const navLinks = [
         {
