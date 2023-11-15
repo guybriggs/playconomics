@@ -23,9 +23,9 @@ awards:
   - award: UNSW Business School John Prescott Outstanding Innovation Award
     year: "2016"
   - award: UNSW Business School Student Choice Award
-    year: 2013-2015
+    year: "2013-2015"
   - award: University of New South Wales Heinz Harant Award for Teaching Innovation
-    year: 20XX
+    year: "2013"
   - award: UNSW Vice-Chancellor Award for Excellence in the Use of Learning &
       Teaching Technologies
     year: "2013"
