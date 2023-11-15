@@ -1,9 +1,12 @@
 backend:
   name: bitbucket
-  repo: https://bitbucket.org/lionsheartstudios/playconomics-site.git
-  branch: default
+  repo: lionsheartstudios/playconomics-site
+  branch: staging
   auth_type: implicit
   app_id: Uj2D9AxyZLvqdSh29D
+
+# NOTE: uncomment the below for local development
+# local_backend: true
 
 media_folder: static/img
 public_folder: /img

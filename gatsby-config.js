@@ -4,10 +4,11 @@
 module.exports = {
   siteMetadata: {
     title: `Playconomics`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://playconomics.com`
   },
   plugins: [
     "gatsby-plugin-postcss",
+    // `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-static-cms`,
     `gatsby-plugin-image`,
     {
@@ -49,7 +50,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-s3',
       options: {
-        bucketName: 'lionsheartstudios-website',
+        bucketName: 'stg.lionsheartstudios.com',
         region: null,
         acl: null
       }
