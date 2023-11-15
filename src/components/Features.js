@@ -5,6 +5,10 @@ import FullsizeVideo from './FullsizeVideo.js'
 import { Award } from 'react-feather'
 
 import desertVideo from '/src/assets/desert_360rotate.mp4';
+import award1 from '/src/assets/award1.png';
+import award2 from '/src/assets/award2.png';
+import award3 from '/src/assets/award3.png';
+import award4 from '/src/assets/award4.png';
 
 const Features = ({ data }) => {
     const { 
@@ -12,6 +16,14 @@ const Features = ({ data }) => {
         awards,
         details
     } = data.frontmatter;
+
+    //Hardcodes
+    const awardsArray = [
+        award1,
+        award2,
+        award3,
+        award4,
+    ]
 
     return (
     <Section props={data}>
@@ -21,7 +33,7 @@ const Features = ({ data }) => {
             {awards.slice(0, 4).map((item, i) => (
                 <div key={i}>
                     <div className='flex justify-center p-4'>
-                        <Award size={96} />
+                        <img src={awardsArray[i]} alt={item.award}></img>
                     </div>
                     <h1>{item.award}</h1>
                     <p>{item.year}</p>

@@ -6,6 +6,10 @@ import FullsizeVideo from './FullsizeVideo.js'
 import { Users } from 'react-feather'
 
 import mediterraneanVideo from '/src/assets/mediterranean_winter_360rotate.mp4';
+import UNSWlogo from '/src/assets/UNSW.png';
+import UOQlogo from '/src/assets/UOQ.png';
+import UOAlogo from '/src/assets/UOA.png';
+import STEPUPlogo from '/src/assets/STEP-UP.png';
 
 const About = ({ data }) => {
 
@@ -19,19 +23,19 @@ const About = ({ data }) => {
     const logosArray = [
         {
             string: "The University of New South Wales",
-            url: "/src/assets/UNSW.png"
+            url: UNSWlogo,
         },
         {
             string: "The University of Queensland Australia",
-            url: "/src/assets/UOQ.png"
+            url: UOQlogo,
         },
         {
             string: "The University of Adelaide",
-            url: "/src/assets/UOA.png"
+            url: UOAlogo,
         },
         {
             string: "STEP UP",
-            url: "/src/assets/STEP-UP.png"
+            url: STEPUPlogo,
         },
     ];
 
@@ -57,15 +61,10 @@ const About = ({ data }) => {
         </div>
         <Blockquote><i>Any sufficiently advanced <b>education</b> is indistinguishable from <b>fun</b>.</i></Blockquote>
         <FullsizeVideo videoUrl={mediterraneanVideo} />
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyjcoKbQ30vh8t4aQgTIPlIuO0KDOOdZJkqPnvM-5jZrg9kub_7kssV78QQNWBr5394A&usqp=CAU'></img>
-        <img src='/src/assets/UNSW.png'></img>
-        <div className='grid grid-cols-2 md:flex justify-between text-center my-16'>
+        <div className='grid grid-cols-2 md:flex justify-between items-end gap-8 my-16'>
         {partners.map((item, i) => (
-            <div key={i}>
-                <div className='flex justify-center p-4'>
-                    <img src={returnUrlFromString(item.partner)}></img> 
-                </div>
-                <h1>{item.partner}</h1>
+            <div key={i} className='flex-1 align-baseline'>
+                <img src={returnUrlFromString(item.partner)} alt={item.partner}></img>
             </div>
         ))}
         </div>
