@@ -3,8 +3,6 @@ import Section from './Section.js'
 import Blockquote from './Blockquote.js'
 import FullsizeVideo from './FullsizeVideo.js'
 
-import { Users } from 'react-feather'
-
 import mediterraneanVideo from '/src/assets/mediterranean_winter_360rotate.mp4';
 import UNSWlogo from '/src/assets/UNSW.png';
 import UOQlogo from '/src/assets/UOQ.png';

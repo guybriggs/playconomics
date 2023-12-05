@@ -5,6 +5,16 @@
 @import url('https://fonts.googleapis.com/css?family=Jost');
 @import url('https://fonts.googleapis.com/css?family=Skranji');
 
+/*@font-face {
+  font-family: 'Gill Sans Condensed Regular';
+  src: local('Gill Sans Condensed Regular'), url('../assets/fonts/Gill\ Sans\ Condensed\ Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gill Sans Bold';
+  src: local('Gill Sans Bold'), url('../assets/fonts/Gill\ Sans\ Bold.otf') format('opentype');
+}*/
+
 body {
   background-color: #0f172a;
   font-family: 'Jost', sans-serif;
