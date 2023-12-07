@@ -1,11 +1,10 @@
 import * as React from "react"
-import Header from "../components/Header"
+import Layout from "../components/Layout"
 import Bodytext from "../components/Bodytext"
 
 const TermsOfUsePage = () => {
     return (
-        <div>
-            <Header />
+        <Layout>
             <Bodytext>
             <h2><strong>LIONSHEART STUDIOS PTY LTD</strong></h2>
             <h3><strong>TERMS AND CONDITIONS OF USE</strong></h3>
@@ -211,7 +210,7 @@ const TermsOfUsePage = () => {
             <p><strong>Effective December 2014</strong></p>
             <p><span></span></p>
             </Bodytext>
-        </div>
+        </Layout>
     )
 }
 

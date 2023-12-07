@@ -2,26 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css?family=Jost');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Skranji');
 
 /*@font-face {
   font-family: 'Gill Sans Condensed Regular';
   src: local('Gill Sans Condensed Regular'), url('../assets/fonts/Gill\ Sans\ Condensed\ Regular.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Gill Sans Bold';
-  src: local('Gill Sans Bold'), url('../assets/fonts/Gill\ Sans\ Bold.otf') format('opentype');
 }*/
 
+@font-face {
+  font-family: 'Gill Sans Condensed Bold';
+  src: local('Gill Sans Condensed Bold'), url('../assets/fonts/Gill\ Sans\ Condensed\ Bold.otf') format('opentype');
+}
+
 body {
-  background-color: #0f172a;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, button {
-  font-family: 'Skranji', sans-serif;
+  font-family: 'Gill Sans Condensed Bold', sans-serif;
 }
 
 .blockquoteInner:before,

@@ -1,11 +1,10 @@
 import * as React from "react"
-import Header from "../components/Header"
+import Layout from "../components/Layout"
 import Bodytext from "../components/Bodytext"
 
 const PrivacyPolicyPage = () => {
     return (
-    <div>
-        <Header />
+    <Layout>
         <Bodytext>
         <h2><strong>LIONSHEART STUDIOS PTY LTD</strong></h2>
         <h3><b>PRIVACY POLICY</b></h3>
@@ -143,7 +142,7 @@ const PrivacyPolicyPage = () => {
         <p> </p>
         <p><strong>Effective December 2014</strong></p>
         </Bodytext>
-    </div>
+    </Layout>
     )
 }
 

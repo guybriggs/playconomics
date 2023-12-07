@@ -15,6 +15,17 @@ collections:
   - label: "Sections"
     name: "sections"
     files:
+      - label: "Site"
+        name: "site"
+        file: "content/site.md"
+        fields:
+          - { label: "Pagename", name: "pagename", widget: "string" }
+          - label: "Content"
+            name: "content"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "markdown" }
       - label: "About"
         name: "about"
         file: "content/about.md"

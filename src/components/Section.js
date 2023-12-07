@@ -1,7 +1,7 @@
 import React from "react";
 import { Parallax } from 'react-scroll-parallax';
 
-const Section = ({ children, props }) => {
+const SimpleSection = ({ children, props }) => {
 
     const {
         main,
@@ -85,4 +85,4 @@ const Section = ({ children, props }) => {
     }
 };
 
-export default Section;
+export default SimpleSection;
