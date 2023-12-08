@@ -3,59 +3,97 @@ import { Parallax } from 'react-scroll-parallax';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-const SimpleSection = ({ children, props, index }) => {
+const SimpleSection = ({ props, index, children }) => {
 
     //G: Images, colours, parallax all hard-coded due to time constraints
 
-    let hasImage = false;
-    let imageData = {};
-    if (props === undefined) {
-        props = {};
-    } else {
-        const imagesArray = props.nodes;
-        if (index % 3 == 0) {
-            hasImage = true;
-            imageData = imagesArray[Math.floor(index/imagesArray.length)].childImageSharp;
+    //Cleanup
+
+    if (index === undefined) index = 0;
+
+    //Images
+
+    let hasImage = false; //Leftover from previous changes, currently unused
+
+    const imageArray = [
+        'globe.png',
+        'houses.png',
+        'government.png',
+        'turbines.png',
+        'trees.png',
+        'graph.png',
+        'athena.png',
+        'mountain.png',
+    ];
+    
+    const imageIndex = index % imageArray.length;
+
+    function imageDataFromName(imageString) {
+        if (props === undefined) return null;
+        for (let i = 0; i < props.nodes.length; i++) {
+            if (props.nodes[i].relativePath === imageString) {
+                return props.nodes[i].childImageSharp;
+            }
         }
+        return null;
     }
+
+    //Colours
 
     const colourArray = [
         {
-            main: '#79E2C4',
-            secondary: '#6CD7B7',
-            text: '#1d5995',
+            main: '#4bb6cd',
+            secondary: '#31b0cc',
         },
         {
-            main: '#53bdc8',
-            secondary: '#65cabd',
-            text: '#ecf8f9',
+            main: '#58c1c5',
+            secondary: '#5cbbd0',
         },
         {
-            main: '#ADD337',
-            secondary: '#A2C633',
-            text: '#465511',
+            main: '#73c7cb',
+            secondary: '#6ac5c9',
         },
         {
-            main: '#f2f2bc',
-            secondary: '#e6e699',
-            text: '#d47045',
+            main: '#dadc9f',
+            secondary: '#e9eba7',
+        },
+        {
+            main: '#bbd962',
+            secondary: '#cbe873',
+        },
+        {
+            main: '#add337',
+            secondary: '#bee543',
+        },
+        {
+            main: '#a4c934',
+            secondary: '#b5dd3e',
+        },
+        {
+            main: '#a7b975',
+            secondary: '#b2c678',
+        },
+        {
+            main: '#adadad',
+            secondary: '#c1bebe',
         }
     ];
 
-    let main = '#fff';
-    let secondary = '#fff';
-    let text = '#000';
-
-    if (index === undefined) index = 1;
+    let main = '#FFF';
+    let secondary = '#FFF';
+    let text = '#FFF';
 
     const colourIndex = index % colourArray.length;
 
     main = colourArray[colourIndex].main;
     secondary = colourArray[colourIndex].secondary;
-    text = colourArray[colourIndex].text;
+
+    //Parallax translations
 
     const translateX = ['100px', '-100px'];
-    const translateY = ['-50px', '50px'];
+    const translateY = ['-100px', '100px'];
+
+    //Styles
 
     const mainStyle = {
         backgroundColor: main,
@@ -72,11 +110,12 @@ const SimpleSection = ({ children, props, index }) => {
     const gradientStyle = {
         backgroundColor: main,
         background: 'linear-gradient(0deg, '+secondary+' 0%, rgba(0,0,0,0) 100%)',
+        opacity: '0.25',
     }
 
     const overlayStyle = {
         backgroundColor: main,
-        opacity: 0.5,
+        opacity: '0.5',
     }
 
     let flipStyle = {
@@ -88,29 +127,48 @@ const SimpleSection = ({ children, props, index }) => {
         }
     }
 
+    let alignStyle = {
+        justifyContent: 'start',
+    }
+    if (index % 2 == 0) {
+        alignStyle = {
+            justifyContent: 'end',
+        }
+    }
+
+    let orderStyle = {
+        order: '-9999',
+    }
+    if (index % 2 == 0) {
+        orderStyle = {
+            order: '9999',
+        }
+    }
+
     return (
-        <section className="relative pt-32 pb-64 flex justify-center items-center text-center">
+        <section className="relative min-h-screen pb-64 flex flex-col md:flex-row items-center">
 
-            <div className="w-full md:w-[800px] p-8" style={textStyle}>
-
+            <div className="w-full p-4 pb-32 md:pb-0 md:px-32 text-center" style={textStyle}>
                 {children}
-
             </div>
 
-            <div className="absolute top-0 left-[-200px] right-[-200px] bottom-0 z-[-1]" style={flipStyle}>
+            <div className="w-full" style={orderStyle}>
+                {/*<Parallax translateY={multiplyValues(translateY, 1)}>
+                    <GatsbyImage image={getImage(imageData)} alt="image" />
+                </Parallax>*/}
+            </div>
 
+            <div className="absolute top-0 left-[-200px] right-[-200px] bottom-0 z-[-1]">
                 {/* Image, Absolute */}
-                {hasImage ? (
+                {hasImage && (
                     <Parallax translateY={translateY} className="absolute top-0 left-0 right-0 bottom-0">
-                        <GatsbyImage
-                            image={getImage(imageData)}
-                            alt="image"
-                            className="w-full h-full object-fit"
-                        />
-                        <div className="absolute top-0 left-0 right-0 bottom-0" style={overlayStyle}></div>
+                    {/*<GatsbyImage
+                        image={getImage(imageData)}
+                        alt="image"
+                        className="w-full h-full object-fit"
+                    />
+                    <div className="absolute top-0 left-0 right-0 bottom-0" style={overlayStyle}></div>*/}
                     </Parallax>
-                ) : (
-                    <div className="w-full h-full" style={mainStyle}></div>
                 )}
 
                 {/* Parallax, Absolute */}
@@ -156,7 +214,7 @@ const SimpleSection = ({ children, props, index }) => {
                 </Parallax>
 
                 {/* Parallax, Absolute */}
-                <Parallax translateX={translateX} translateY={translateY} className="absolute top-0 left-0 right-0 bottom-0">
+                <Parallax translateY={translateY} className="absolute top-0 left-0 right-0 bottom-0">
                     {/* Wave Fill Container, Absolute */}
                     {!hasImage && (
                         <div className="absolute top-0 left-0 right-0 translate-y-[-75%]">
@@ -196,14 +254,17 @@ const SimpleSection = ({ children, props, index }) => {
                         </svg>
                     </div>
                     {/* Coloured Background To Hide Second Wave, Absolute */}
-                    {!hasImage && (
-                        <div className="absolute top-0 left-0 right-0 bottom-0" style={mainStyle}></div>
-                    )}
+                    <div className="absolute top-0 left-0 right-0 bottom-0" style={mainStyle}>
+                        <div className="w-full h-full flex items-end p-0 md:px-[300px] md:pb-[100px]" style={alignStyle}>
+                            <div className="w-[600px]">
+                            <GatsbyImage image={getImage(imageDataFromName(imageArray[imageIndex]))} alt="image" />
+                            </div>
+                        </div>
+                    </div>
                 </Parallax>
 
                 {/* Gradient Overlay, Absolute */}
                 <div className="absolute top-0 left-0 right-0 bottom-0" style={gradientStyle}></div>
-
             </div>
 
         </section>

@@ -4,6 +4,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 import Layout from "../components/Layout"
 import SimpleSection from "../components/SimpleSection"
+import Partners from "../components/Partners"
 
 import About from "../components/About"
 import Features from "../components/Features"
@@ -11,6 +12,8 @@ import Contact from "../components/Contact"
 
 import Footer from "../components/Footer"
 import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
+import Website_Cover from "/src/assets/Website_Cover.png"
+import { Parallax } from "react-scroll-parallax";
 
 const IndexPage = ({ data }) => {
     const { aboutData, featuresData, contactData } = data;
@@ -20,19 +23,29 @@ const IndexPage = ({ data }) => {
 
     return (
     <Layout>
-        <div className="relative h-screen w-screen">
-            <video autoPlay muted loop className="absolute top-0 h-full w-full object-cover rounded z-[-1]">
-                <source src={coldVideo} type="video/mp4"></source>
-            </video>
-            {/*<h1 className="relative text-6xl md:text-9xl text-white text-center uppercase top-[40%] translate-y-[-50%]">Playconomics</h1>*/}
+        <div className="relative h-screen w-screen mb-[125px] flex justify-center items-center">
+            {/*<h1 className="largePagename text-[10rem] text-white drop-shadow-sm mb-10">PLAYCONOMICS</h1>*/}
+            <Parallax translateY={["-300px", "300px"]} className="absolute top-0 h-full w-full rounded z-[-1]">
+              <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-bottom mt-[-50px]" />
+            </Parallax>
         </div>
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.allFile}>
-            <h1 className="text-4xl md:text-6xl">{link.title}</h1>
-            <p className="py-16">{link.body}</p>
+            <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
+            <p className="text-xl md:text-2xl">{link.body}</p>
           </SimpleSection>
         ))}
         <SimpleSection>
+
+          <div className="absolute top-0 left-0 right-0">
+            <h1 className="text-3xl md:text-4xl uppercase">Our Collaborators</h1>
+            <div className="w-full flex justify-center">
+              <div className="w-full md:w-[1080px] m-4 p-4 md:p-16 bg-[rgba(255,255,255,0.25)] rounded">
+                <Partners />
+              </div>
+            </div>
+          </div>
+
           <Footer />
         </SimpleSection>
     </Layout>
@@ -50,7 +63,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allFile(filter: { relativePath: { in: ["closeup1.png", "collage1.png", "fishing1.png"] } }) {
+    allFile(filter: { relativePath: { in: ["globe.png", "houses.png", "government.png", "turbines.png", "trees.png", "graph.png", "athena.png", "mountain.png"] } }) {
       nodes {
         relativePath
         childImageSharp {
