@@ -110,7 +110,7 @@ const SimpleSection = ({ props, index, children }) => {
     const gradientStyle = {
         backgroundColor: main,
         background: 'linear-gradient(0deg, '+secondary+' 0%, rgba(0,0,0,0) 100%)',
-        opacity: '0.25',
+        opacity: '0.15',
     }
 
     const overlayStyle = {
@@ -135,6 +135,15 @@ const SimpleSection = ({ props, index, children }) => {
             justifyContent: 'end',
         }
     }
+    
+    let bumpUpStyle = {
+        marginBottom: '125px',
+    }
+    if (index % 2 == 0) {
+        bumpUpStyle = {
+            marginBottom: '175px',
+        }
+    }
 
     let orderStyle = {
         order: '-9999',
@@ -146,16 +155,18 @@ const SimpleSection = ({ props, index, children }) => {
     }
 
     return (
-        <section className="relative min-h-screen pb-64 flex flex-col md:flex-row items-center">
+        <section className="relative min-h-screen pb-64 flex justify-center">
 
-            <div className="w-full p-4 pb-32 md:pb-0 md:px-32 text-center" style={textStyle}>
-                {children}
-            </div>
+            <div className="w-3/4 md:w-[1280px] flex flex-col md:flex-row items-center">
+                <div className="w-full p-4 pb-32 md:pb-0 md:px-32 text-center" style={textStyle}>
+                    {children}
+                </div>
 
-            <div className="w-full" style={orderStyle}>
-                {/*<Parallax translateY={multiplyValues(translateY, 1)}>
-                    <GatsbyImage image={getImage(imageData)} alt="image" />
-                </Parallax>*/}
+                <div className="w-full" style={orderStyle}>
+                    {/*<Parallax translateY={multiplyValues(translateY, 1)}>
+                        <GatsbyImage image={getImage(imageData)} alt="image" />
+                    </Parallax>*/}
+                </div>
             </div>
 
             <div className="absolute top-0 left-[-200px] right-[-200px] bottom-0 z-[-1]">
@@ -255,9 +266,11 @@ const SimpleSection = ({ props, index, children }) => {
                     </div>
                     {/* Coloured Background To Hide Second Wave, Absolute */}
                     <div className="absolute top-0 left-0 right-0 bottom-0" style={mainStyle}>
-                        <div className="w-full h-full flex items-end p-0 md:px-[300px] md:pb-[100px]" style={alignStyle}>
-                            <div className="w-[600px]">
-                            <GatsbyImage image={getImage(imageDataFromName(imageArray[imageIndex]))} alt="image" />
+                        <div className="w-full h-full flex items-end p-0 md:px-[300px]" style={alignStyle}>
+                            <div className="w-1/2 md:w-[25vw]" style={bumpUpStyle}>
+                            <Parallax translateY={multiplyValues(translateY, 0.5)}>
+                                <GatsbyImage image={getImage(imageDataFromName(imageArray[imageIndex]))} alt="image" />
+                            </Parallax>
                             </div>
                         </div>
                     </div>
