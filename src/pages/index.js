@@ -13,6 +13,7 @@ import Contact from "../components/Contact"
 import Footer from "../components/Footer"
 import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
 import Website_Cover from "/src/assets/Website_Cover.png"
+import Playconomics_Text from "/src/assets/Playconomics_Text.png"
 import { Parallax } from "react-scroll-parallax";
 
 const IndexPage = ({ data }) => {
@@ -27,6 +28,9 @@ const IndexPage = ({ data }) => {
             {/*<h1 className="largePagename text-[10rem] text-white drop-shadow-sm mb-10">PLAYCONOMICS</h1>*/}
             <Parallax translateY={["-300px", "300px"]} className="absolute top-0 h-full w-full rounded z-[-1]">
               <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-center mt-[-50px]" />
+            </Parallax>
+            <Parallax translateY={["-200px", "500px"]} className="absolute top-0 rounded z-[-1]">
+             <img src={Playconomics_Text} alt="Playconomics" className="object-scale-down object-center" />
             </Parallax>
         </div>
         {content.map((link, index) => (
