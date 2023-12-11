@@ -29,9 +29,7 @@ const IndexPage = ({ data }) => {
             <Parallax translateY={["-300px", "300px"]} className="absolute top-0 h-full w-full rounded z-[-1]">
               <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-center mt-[-50px]" />
             </Parallax>
-            <Parallax translateY={["-200px", "500px"]} className="absolute top-0 rounded z-[-1]">
-             <img src={Playconomics_Text} alt="Playconomics" className="object-scale-down object-center" />
-            </Parallax>
+            <img src={Playconomics_Text} alt="Playconomics" className="object-scale-down object-center w-5/6" />
         </div>
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.allFile}>
