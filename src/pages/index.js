@@ -26,7 +26,7 @@ const IndexPage = ({ data }) => {
         <div className="relative h-screen w-screen mb-[125px] flex justify-center items-center">
             {/*<h1 className="largePagename text-[10rem] text-white drop-shadow-sm mb-10">PLAYCONOMICS</h1>*/}
             <Parallax translateY={["-300px", "300px"]} className="absolute top-0 h-full w-full rounded z-[-1]">
-              <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-left mt-[-50px]" />
+              <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-center mt-[-50px]" />
             </Parallax>
         </div>
         {content.map((link, index) => (

@@ -38,7 +38,7 @@ const Nav = () => {
             ))}
         </ul>*/}
         <div className='hidden md:block p-4'><UnderlineLink><a href="/">Home</a></UnderlineLink></div>
-        <h1 className='text-3xl p-4'>Playconomics</h1>
+        {/* <h1 className='text-3xl p-4'>Playconomics</h1> */}
         <ul className='flex flex-row-reverse gap-8 whitespace-nowrap p-4'>
             <li><UnderlineLink><a href={registerUrl}>Sign Up</a></UnderlineLink></li>
             <li><UnderlineLink><a href={loginUrl}>Login</a></UnderlineLink></li>
