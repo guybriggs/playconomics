@@ -12,6 +12,7 @@ import UOM from '/src/assets/UOM.png';
 import UOP from '/src/assets/UOP.png';
 import UOQ from '/src/assets/UOQ.png';
 import WUT from '/src/assets/WUT.png';
+import MU from '/src/assets/MU.png'
 
 const Partners = () => {
     const logosArray = [
@@ -27,6 +28,7 @@ const Partners = () => {
         UOP,
         UOQ,
         WUT,
+        MU
     ];
 
     return (
