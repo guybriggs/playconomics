@@ -141,6 +141,7 @@ const TermsOfUsePage = () => {
             <p>However, if, under the Australian Consumer Law, we are in breach of a consumer guarantee that we cannot exclude, our liability is limited to providing the service again or paying to have the service provided again.</p>
             <p>You expressly agree that your use of the Product is at your sole risk.</p>
             <p>We are not liable for any loss of profits, loss of data, loss of revenue, loss of business opportunity or other head of damage commonly described as being ‘direct’, ‘indirect’, ‘incidental’, ‘consequential’ or ‘punitive’ arising from the supply of the Product to you or its use.</p>
+            <p>If you are a Student, you confirm to us that your access and use of the Product will comply with any policies, rules and codes of conduct to which you are subject at your Education Organisation.</p>
             <p><strong> </strong></p>
             <p><strong>Intellectual property</strong></p>
             <p>We respect the intellectual property rights of others and require you to do so as well.</p>
