@@ -11,26 +11,57 @@ import Features from "../components/Features"
 import Contact from "../components/Contact"
 
 import Footer from "../components/Footer"
-import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
+// import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
+import trailerVideo from '/src/assets/play2024_trailer.mp4'
 import Website_Cover from "/src/assets/Website_Cover.png"
 import Playconomics_Text from "/src/assets/Playconomics_Text.png"
+import playBtn from '/src/assets/play.png'
 import { Parallax } from "react-scroll-parallax";
 
+const CoverImage = ({ onPlayClicked }) => {
+  const [playHover, setPlayHover] = React.useState(false);
+
+  return <div className="relative h-screen w-screen mb-[125px] flex justify-center items-center">
+    {/*<h1 className="largePagename text-[10rem] text-white drop-shadow-sm mb-10">PLAYCONOMICS</h1>*/}
+    <Parallax translateY={["-300px", "300px"]} className="absolute top-0 h-full w-full rounded z-[-1]">
+      <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-center mt-[-50px]" />
+    </Parallax>
+    <div className="object-center object-scale-down w-5/6 flex flex-col justify-evenly items-center cursor-pointer"
+        onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} >
+      <img src={Playconomics_Text} alt="Playconomics" className="" />
+      <img src={playBtn} alt="Play video" className={`object-center w-1/6 transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
+    </div>
+    {/* <div className="object-scale-down object-bottom w-1/8"></div> */}
+  </div>;
+};
+
+const CoverVideo = ({ onFinished }) => {
+  return <div className="relative h-screen md:h-[110vh] w-screen" onClick={onFinished} >
+    <video autoPlay className="absolute top-0 h-full w-full object-cover rounded z-[-1]">
+        <source src={trailerVideo} type="video/mp4"></source>
+    </video>
+  </div>;
+}
+
 const IndexPage = ({ data }) => {
+    const [playVideo, setPlayVideo] = React.useState(false);
     const { aboutData, featuresData, contactData } = data;
 
     const siteData = data.siteData;
     const content = siteData.frontmatter.content;
 
+    const onPlayClicked = () => {
+      setPlayVideo(true);
+    };
+
+    const onFinished = () => {
+      setPlayVideo(false);
+    };
+
     return (
     <Layout>
-        <div className="relative h-screen w-screen mb-[125px] flex justify-center items-center">
-            {/*<h1 className="largePagename text-[10rem] text-white drop-shadow-sm mb-10">PLAYCONOMICS</h1>*/}
-            <Parallax translateY={["-300px", "300px"]} className="absolute top-0 h-full w-full rounded z-[-1]">
-              <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-center mt-[-50px]" />
-            </Parallax>
-            <img src={Playconomics_Text} alt="Playconomics" className="object-scale-down object-center w-5/6" />
-        </div>
+        {!playVideo && <CoverImage onPlayClicked={onPlayClicked} />}
+        {playVideo && <CoverVideo onFinished={onFinished} />}
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.allFile}>
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
