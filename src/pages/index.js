@@ -24,7 +24,7 @@ const CoverImage = ({ onPlayClicked }) => {
   return <div className="relative h-screen w-screen mb-[125px] flex justify-center items-center">
     {/*<h1 className="largePagename text-[10rem] text-white drop-shadow-sm mb-10">PLAYCONOMICS</h1>*/}
     <Parallax translateY={["-300px", "300px"]} className="absolute top-0 h-full w-full rounded z-[-1]">
-      <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-center mt-[-50px]" />
+      <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-center" />
     </Parallax>
     <div className="object-center object-scale-down w-5/6 flex flex-col justify-evenly items-center cursor-pointer"
         onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} >
@@ -64,10 +64,10 @@ const IndexPage = ({ data }) => {
         {playVideo && <CoverVideo onFinished={onFinished} />}
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.allFile}>
-            <div className="w-full md:w-1/2 px-32 pt-32">
-              <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
-              <p className="text-xl md:text-2xl">{link.body}</p>
-            </div>
+              <div className="w-1/2">
+                <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
+                <p className="text-xl md:text-2xl">{link.body}</p>
+              </div>
           </SimpleSection>
         ))}
         <SimpleSection>
