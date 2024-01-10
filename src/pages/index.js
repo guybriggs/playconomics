@@ -64,21 +64,19 @@ const IndexPage = ({ data }) => {
         {playVideo && <CoverVideo onFinished={onFinished} />}
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.allFile}>
-            <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
-            <p className="text-xl md:text-2xl">{link.body}</p>
+            <div className="w-full md:w-1/2 px-32 pt-32">
+              <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
+              <p className="text-xl md:text-2xl">{link.body}</p>
+            </div>
           </SimpleSection>
         ))}
         <SimpleSection>
-
-          <div className="absolute top-0 left-0 right-0">
+          <div className="w-full">
             <h1 className="text-3xl md:text-4xl uppercase">Our Collaborators</h1>
-            <div className="w-full flex justify-center">
-              <div className="w-full md:w-[1080px] m-4 p-4 md:p-16 bg-[rgba(255,255,255,0.25)] rounded">
-                <Partners />
-              </div>
+            <div className="w-full my-8 p-8 bg-[rgba(255,255,255,0.25)] rounded">
+              <Partners />
             </div>
           </div>
-
           <Footer />
         </SimpleSection>
     </Layout>
@@ -96,7 +94,19 @@ export const pageQuery = graphql`
         title
       }
     }
-    allFile(filter: { relativePath: { in: ["globe.png", "houses.png", "government.png", "turbines.png", "trees.png", "graph.png", "athena.png", "mountain.png"] } }) {
+    allFile(filter: { relativePath: { in: [
+      "globe.png",
+      "houses.png",
+      "government.png",
+      "turbines.png",
+      "trees.png",
+      "graph.png",
+      "athena.png",
+      "mountain.png",
+      "forest_FG.png",
+      "forest_MG.png",
+      "forest_BG.png"
+    ] } }) {
       nodes {
         relativePath
         childImageSharp {

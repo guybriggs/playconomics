@@ -3,6 +3,9 @@ import { Parallax } from 'react-scroll-parallax';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
+import fireAnimGif from '/src/assets/fire_anim.gif'
+import forest_speechBubble from '/src/assets/forest_speechBubble.png'
+
 const SimpleSection = ({ props, index, children }) => {
 
     //G: Images, colours, parallax all hard-coded due to time constraints
@@ -16,15 +19,24 @@ const SimpleSection = ({ props, index, children }) => {
     let hasImage = false; //Leftover from previous changes, currently unused
 
     const imageArray = [
-        'globe.png',
-        'houses.png',
-        'government.png',
-        'turbines.png',
-        'trees.png',
-        'graph.png',
-        'athena.png',
-        'mountain.png',
+        [
+            { url: 'forest_BG.png' },
+            { url: 'forest_MG.png' },
+            { url: 'forest_FG.png' },
+            { url: 'fire_anim.gif', width: '50px', top: '300px', left: '400px' }
+        ]
     ];
+
+    /*
+    'globe.png',
+    'houses.png',
+    'government.png',
+    'turbines.png',
+    'trees.png',
+    'graph.png',
+    'athena.png',
+    'mountain.png',
+    */
     
     const imageIndex = index % imageArray.length;
 
@@ -58,7 +70,7 @@ const SimpleSection = ({ props, index, children }) => {
             secondary: '#e9eba7',
         },
         {
-            main: '#bbd962',
+            main: '#A5CA2F',
             secondary: '#cbe873',
         },
         {
@@ -66,7 +78,7 @@ const SimpleSection = ({ props, index, children }) => {
             secondary: '#bee543',
         },
         {
-            main: '#a4c934',
+            main: '#A5CA2F',
             secondary: '#b5dd3e',
         },
         {
@@ -146,45 +158,58 @@ const SimpleSection = ({ props, index, children }) => {
     }
 
     let orderStyle = {
-        order: '-9999',
+        flexDirection: 'row-reverse',
     }
     if (index % 2 == 0) {
         orderStyle = {
-            order: '9999',
+            flexDirection: 'row',
         }
     }
 
+    let absoluteStyle = {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    }
+
+    let imageAbsoluteStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: 0,
+        right: 0,
+        width: '100%',
+        height: 'auto',
+        transform: 'translateY(-50%)',
+        objectFit: 'cover',
+    }
+
+    const imagesToDraw = imageArray[imageIndex];
+
+    let onlyshowon = false;
+    if (index == 4) onlyshowon = true;
+
     return (
-        <section className="relative min-h-screen pb-64 flex justify-center">
+        <section className="relative h-[110vh] pb-64 w-full flex justify-center items-center">
 
-            <div className="w-3/4 md:w-[1280px] flex flex-col md:flex-row items-center">
-                <div className="w-full p-4 pb-32 md:pb-0 md:px-32 text-center" style={textStyle}>
+            {onlyshowon && (
+                <img src={fireAnimGif} className="w-[8%] absolute top-[45%] left-[76%] transition-all ease-in hover:w-[10%] hover:left-[75%] hover:top-[42%]"></img>
+            )}
+            {onlyshowon && (
+                <img src={forest_speechBubble} className="absolute w-[12%] top-[30%] left-[69%] opacity-0 pt-[50px] pb-0 transition-all ease-out hover:opacity-100 hover:pt-0 hover:pb-[50px]"></img>
+            )}
+
+            <div className="text-center" style={textStyle}>
+                <div className="w-full md:w-[1280px] flex" style={orderStyle}>
                     {children}
-                </div>
-
-                <div className="w-full" style={orderStyle}>
-                    {/*<Parallax translateY={multiplyValues(translateY, 1)}>
-                        <GatsbyImage image={getImage(imageData)} alt="image" />
-                    </Parallax>*/}
                 </div>
             </div>
 
             <div className="absolute top-0 left-[-200px] right-[-200px] bottom-0 z-[-1]">
-                {/* Image, Absolute */}
-                {hasImage && (
-                    <Parallax translateY={translateY} className="absolute top-0 left-0 right-0 bottom-0">
-                    {/*<GatsbyImage
-                        image={getImage(imageData)}
-                        alt="image"
-                        className="w-full h-full object-fit"
-                    />
-                    <div className="absolute top-0 left-0 right-0 bottom-0" style={overlayStyle}></div>*/}
-                    </Parallax>
-                )}
-
                 {/* Parallax, Absolute */}
                 <Parallax translateX={multiplyValues(translateX, 1.5)} translateY={multiplyValues(translateY, 1.5)} className="absolute top-0 left-0 right-0 bottom-0">
-                    {/* Wave Fill Container, Absolute */}                    
+                    {/* Wave Fill Container, Absolute */}
                     {/* Wave Fill */}
                     {!hasImage && (
                         <div className="absolute top-0 left-0 right-0 translate-y-[-75%]">
@@ -265,20 +290,20 @@ const SimpleSection = ({ props, index, children }) => {
                         </svg>
                     </div>
                     {/* Coloured Background To Hide Second Wave, Absolute */}
-                    <div className="absolute top-0 left-0 right-0 bottom-0" style={mainStyle}>
-                        <div className="w-full h-full flex items-end p-0 md:px-[300px]" style={alignStyle}>
-                            <div className="w-1/2 md:w-[25vw]" style={bumpUpStyle}>
-                            <Parallax translateY={multiplyValues(translateY, 0.5)}>
-                                <GatsbyImage image={getImage(imageDataFromName(imageArray[imageIndex]))} alt="image" />
-                            </Parallax>
-                            </div>
-                        </div>
-                    </div>
+                    <div className="absolute top-0 left-0 right-0 bottom-0" style={mainStyle}></div>
                 </Parallax>
 
                 {/* Gradient Overlay, Absolute */}
                 <div className="absolute top-0 left-0 right-0 bottom-0" style={gradientStyle}></div>
             </div>
+            {onlyshowon && (
+            <div className="z-[-1]" style={absoluteStyle}>
+
+            {imagesToDraw.map((link, index) => (
+                <GatsbyImage key={index} image={getImage(imageDataFromName(link.url))} alt="image" style={imageAbsoluteStyle}/>
+            ))}
+            </div>
+            )}
 
         </section>
     );
