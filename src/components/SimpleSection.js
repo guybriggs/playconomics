@@ -109,7 +109,7 @@ const SimpleSection = ({ props, index, children }) => {
     }
 
     return (
-        <section className="relative h-screen flex justify-center items-center text-center z-10" style={textStyle}>
+        <section className="relative h-screen flex justify-center items-center text-center pb-32 z-10" style={textStyle}>
 
             {/* Interactive */}
             {/*
@@ -134,13 +134,13 @@ const SimpleSection = ({ props, index, children }) => {
             <WaveBackground index={index} main={main} secondary={secondary} translateX={translateX} translateY={translateY} />
 
             {/* Images */}
-            <div className="absolute bottom-0 left-0 w-full z-[-1]">
+            {/*<div className="absolute bottom-0 left-0 w-full z-[-1]">
                 {imagesToDraw.map((link, ind) => (
                     <Parallax translateY={multiplyValues(translateY, (1/(ind+1)))}>
                         <GatsbyImage image={getImage(imageDataFromName(link.url))} class="absolute bottom-0 left-0 min-w-full min-h-full object-cover" />
                     </Parallax>
                 ))}
-            </div>
+            </div>*/}
         </section>
     );
 
