@@ -5,6 +5,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import fireAnimGif from '/src/assets/fire_anim.gif'
 import forest_speechBubble from '/src/assets/forest_speechBubble.png'
 import WaveBackground from "./WaveBackground";
+import InteractiveElement from "./InteractiveElement";
 
 const SimpleSection = ({ props, index, children }) => {
 
@@ -20,14 +21,23 @@ const SimpleSection = ({ props, index, children }) => {
         [
             { url: 'forest_BG.png' },
             { url: 'forest_MG.png' },
-            { url: 'forest_FG.png' },
-            { url: 'fire_anim.gif', width: '50px', top: '300px', left: '400px' }
+            { url: 'forest_FG.png' }
         ]
     ];
     
     const imageIndex = index % imageArray.length;
-
     const imagesToDraw = imageArray[imageIndex];
+
+    // Interactive Elements
+
+    const interactiveArray = [
+        [
+            { src: fireAnimGif, width: 150, x: 1460, y: 500, zLevel: 1 }
+        ]
+    ]
+
+    const interactiveIndex = index % interactiveArray.length;
+    const interactiveToDraw = interactiveArray[interactiveIndex];
 
     //Colours
 
@@ -90,16 +100,30 @@ const SimpleSection = ({ props, index, children }) => {
         color: text,
     }
 
-    let orderStyle = {
+    const orderStyle = {
         flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
     }
 
+    function doSpookyStuff() {
+        alert('boo!');
+    }
+
     return (
-        <section className="relative h-screen flex justify-center items-center text-center pb-64" style={textStyle}>
+        <section className="relative h-screen flex justify-center items-center text-center z-10" style={textStyle}>
 
             {/* Interactive */}
+            {/*
             <img src={fireAnimGif} className="w-[8%] absolute top-[45%] left-[76%] transition-all ease-in hover:w-[10%] hover:left-[75%] hover:top-[42%]"></img>
             <img src={forest_speechBubble} className="absolute w-[12%] top-[30%] left-[69%] opacity-0 pt-[50px] pb-0 transition-all ease-out hover:opacity-100 hover:pt-0 hover:pb-[50px]"></img>
+            */}
+
+            <div className="absolute bottom-0 left-0 w-full">
+                {interactiveToDraw.map((link, ind) => (
+                    <Parallax translateY={multiplyValues(translateY, (1/(link.zLevel+1)))}>
+                        <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} />
+                    </Parallax>
+                ))}
+            </div>
 
             {/* Content */}
             <div className="w-full md:w-[1280px] flex" style={orderStyle}>
@@ -110,17 +134,13 @@ const SimpleSection = ({ props, index, children }) => {
             <WaveBackground index={index} main={main} secondary={secondary} translateX={translateX} translateY={translateY} />
 
             {/* Images */}
-            <div className="absolute top-0 left-0 w-full h-full z-[-1]">
-                {imagesToDraw.map((link, index) => (
-                    <GatsbyImage
-                        key={index}
-                        image={getImage(imageDataFromName(link.url))}
-                        alt="image"
-                        class="absolute top-0 left-0 w-full"
-                    />
+            <div className="absolute bottom-0 left-0 w-full z-[-1]">
+                {imagesToDraw.map((link, ind) => (
+                    <Parallax translateY={multiplyValues(translateY, (1/(ind+1)))}>
+                        <GatsbyImage image={getImage(imageDataFromName(link.url))} class="absolute bottom-0 left-0 min-w-full min-h-full object-cover" />
+                    </Parallax>
                 ))}
             </div>
-
         </section>
     );
 
@@ -134,6 +154,24 @@ const SimpleSection = ({ props, index, children }) => {
             }
         }
         return null;
+    }
+
+    function multiplyValues(arr, num) {
+        const doubledArr = [];
+        for (const value of arr) {
+            // Extract the numeric part and convert it to an integer
+            const numericValue = parseInt(value);
+        
+            // Check if the numericValue is a valid number
+            if (!isNaN(numericValue)) {
+            // Double the numeric value and append 'px'
+            doubledArr.push((numericValue * num) + 'px');
+            } else {
+            // If the value couldn't be parsed as a number, add it as is
+            doubledArr.push(value);
+            }
+        }
+        return doubledArr;
     }
 };
 

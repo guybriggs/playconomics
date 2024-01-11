@@ -21,26 +21,26 @@ import { Parallax } from "react-scroll-parallax";
 const CoverImage = ({ onPlayClicked }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
-  return <div className="relative h-screen w-screen mb-[125px] flex justify-center items-center">
-    {/*<h1 className="largePagename text-[10rem] text-white drop-shadow-sm mb-10">PLAYCONOMICS</h1>*/}
-    <Parallax translateY={["-300px", "300px"]} className="absolute top-0 h-full w-full rounded z-[-1]">
-      <img src={Website_Cover} alt="island2" className="w-full h-full object-cover object-center" />
-    </Parallax>
-    <div className="object-center object-scale-down w-5/6 flex flex-col justify-evenly items-center cursor-pointer"
-        onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} >
-      <img src={Playconomics_Text} alt="Playconomics" className="" />
-      <img src={playBtn} alt="Play video" className={`object-center w-1/6 transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
+  return (
+    <div className="relative">
+      <img src={Website_Cover} alt="island2" className="w-full object-cover object-center" />
+      <div className="absolute top-0 left-0 w-full h-full object-center object-scale-down w-5/6 flex flex-col justify-center items-center cursor-pointer"
+          onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} >
+        <img src={Playconomics_Text} alt="Playconomics" className="" />
+        <img src={playBtn} alt="Play video" className={`object-center w-1/6 transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
+      </div>
     </div>
-    {/* <div className="object-scale-down object-bottom w-1/8"></div> */}
-  </div>;
+  );
 };
 
 const CoverVideo = ({ onFinished }) => {
-  return <div className="relative h-screen md:h-[110vh] w-screen" onClick={onFinished} >
-    <video autoPlay className="absolute top-0 h-full w-full object-cover rounded z-[-1]">
+  return (
+    <div className="relative" onClick={onFinished}>
+      <video autoPlay className="w-full object-cover">
         <source src={trailerVideo} type="video/mp4"></source>
-    </video>
-  </div>;
+      </video>
+    </div>
+  );
 }
 
 const IndexPage = ({ data }) => {
@@ -64,7 +64,7 @@ const IndexPage = ({ data }) => {
         {playVideo && <CoverVideo onFinished={onFinished} />}
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.allFile}>
-              <div className="w-1/2">
+              <div className="w-full md:w-1/2">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
               </div>
