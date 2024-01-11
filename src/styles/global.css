@@ -34,6 +34,11 @@ h1, h2, h3, h4, h5, h6, button {
   font-family: 'Gill Sans Bold', sans-serif;
 }
 
+svg * { 
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 .largePagename {
   font-family: 'Gill Sans Condensed Bold';
 }

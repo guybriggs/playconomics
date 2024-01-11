@@ -3,7 +3,6 @@ pagename: Playconomics
 content:
   - title: A Videogame Metaverse for Higher Education.
     body: An award-winning Ed-tech platform developed at UNSW that weaves the videogame metaverse with standard university material to create online courses that motivate, influence, and inspire learning as a fun, engaging and rewarding journey.
-    image: "../assets/award1.png"
   - title: Learn by creating new worlds and societies.
     body: Student-Players are faced with a vast, persistent world that is full of potential. They use this world canvas have the opportunity to construct a society from the ground up.
   - title: A massive multiplayer game that earns you University credits.
