@@ -111,17 +111,17 @@ const SimpleSection = ({ props, index, children }) => {
     }
 
     return (
-        <section className="relative h-screen flex justify-center items-center text-center pb-32 z-10" style={textStyle}>
+        <section className="relative h-screen flex justify-center items-center text-center z-10" style={textStyle}>
 
             {/* Interactive */}
             {/*
             <img src={fireAnimGif} className="w-[8%] absolute top-[45%] left-[76%] transition-all ease-in hover:w-[10%] hover:left-[75%] hover:top-[42%]"></img>
             <img src={forest_speechBubble} className="absolute w-[12%] top-[30%] left-[69%] opacity-0 pt-[50px] pb-0 transition-all ease-out hover:opacity-100 hover:pt-0 hover:pb-[50px]"></img>
-            */}
+            
 
             {interactiveToDraw.map((link, ind) => (
                 <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} />
-            ))}
+            ))}*/}
 
             {/* Content */}
             <div className="w-full md:w-[1280px] flex" style={orderStyle}>
@@ -133,7 +133,7 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <GatsbyImage image={getImage(imageDataFromName(link.url))} className="w-full h-auto absolute bottom-0 left-0 object-cover z-[-1]" />
+                <GatsbyImage image={getImage(imageDataFromName(link.url))} className="absolute bottom-0 left-0 w-full" />
             ))}
         </section>
     );
