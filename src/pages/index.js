@@ -5,6 +5,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import Layout from "../components/Layout"
 import SimpleSection from "../components/SimpleSection"
 import Partners from "../components/Partners"
+import Awards from "../components/Awards"
 
 import About from "../components/About"
 import Features from "../components/Features"
@@ -60,8 +61,10 @@ const IndexPage = ({ data }) => {
 
     return (
     <Layout>
+
         {!playVideo && <CoverImage onPlayClicked={onPlayClicked} />}
         {playVideo && <CoverVideo onFinished={onFinished} />}
+
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.allFile}>
               <div className="w-full md:w-1/2">
@@ -70,15 +73,33 @@ const IndexPage = ({ data }) => {
               </div>
           </SimpleSection>
         ))}
-        <SimpleSection>
+
+        <SimpleSection index={7}>
           <div className="w-full">
-            <h1 className="text-3xl md:text-4xl uppercase">Our Collaborators</h1>
-            <div className="w-full my-8 p-8 bg-[rgba(255,255,255,0.75)] rounded">
+            <h1 className="text-3xl md:text-4xl mb-8 uppercase">Gallery</h1>
+          </div>
+        </SimpleSection>
+
+        <SimpleSection index={8}>
+          <div className="w-full">
+            <h1 className="text-3xl md:text-4xl mb-8 uppercase">Our Collaborators</h1>
+            <div className="w-full my-8 p-8 bg-[rgba(255,255,255,0.5)] rounded">
               <Partners />
             </div>
           </div>
+        </SimpleSection>
+
+        <SimpleSection index={9}>
+          <div className="w-full">
+            <h1 className="text-3xl md:text-4xl mb-8 uppercase">Awards</h1>
+            <div className="w-full my-8 p-8 bg-[rgba(255,255,255,0.25)] rounded">
+              <Awards data={featuresData} />
+            </div>
+          </div>
+        
           <Footer />
         </SimpleSection>
+
     </Layout>
     )
 }

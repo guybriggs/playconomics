@@ -4,7 +4,12 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import forest_speechBubble from '/src/assets/forest_speechBubble.png'
 import WaveBackground from "./WaveBackground";
-import InteractiveElement from "./InteractiveElement";
+
+// Interactive
+
+import HoverSquashStretch from "./interactive/HoverSquashStretch";
+import HoverChangeImage from "./interactive/HoverChangeImage";
+import HoverSpeechBubble from "./interactive/HoverSpeechBubble";
 import Terraforming from "./interactive/Terraforming";
 
 // Images
@@ -75,7 +80,23 @@ const SimpleSection = ({ props, index, children }) => {
                 { url: 'forest_FG.png' },
             ],
             interactive: [
-                { src: forest_fireanim, width: 150, x: 1460, y: 500, zLevel: 1 },
+                {
+                    interactionType: 'SquashStretch',
+                    src: forest_fireanim,
+                    width: 150,
+                    x: 1460,
+                    y: 500,
+                    zLevel: 1,
+                },
+                {
+                    interactionType: 'SpeechBubble',
+                    src: forest_fireanim,
+                    width: 150,
+                    x: 1460,
+                    y: 500,
+                    zLevel: 1,
+                    alternateSrc: society_island1
+                }
             ]
         },
         {
@@ -116,7 +137,7 @@ const SimpleSection = ({ props, index, children }) => {
 
     let main = '#FFF';
     let secondary = '#FFF';
-    let text = '#000';
+    let text = '#FFF';
 
     const colourIndex = index % colourArray.length;
 
@@ -150,16 +171,26 @@ const SimpleSection = ({ props, index, children }) => {
             {/*
             <img src={fireAnimGif} className="w-[8%] absolute top-[45%] left-[76%] transition-all ease-in hover:w-[10%] hover:left-[75%] hover:top-[42%]"></img>
             <img src={forest_speechBubble} className="absolute w-[12%] top-[30%] left-[69%] opacity-0 pt-[50px] pb-0 transition-all ease-out hover:opacity-100 hover:pt-0 hover:pb-[50px]"></img>
-            */}
+            
 
             {interactiveToDraw.map((link, ind) => (
-                <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} className="absolute bottom-0 left-0 right-0" />
+                <InteractiveElement
+                    key={ind}
+                    src={link.src}
+                    width={link.width}
+                    x={link.x}
+                    y={link.y}
+                    interactionType={link.interactionType}
+                    alternateSrc={link.alternateSrc}
+                    className="absolute bottom-0 left-0 right-0"
+                />
             ))}
             {index == 2 && (
                 <div className="absolute bottom-0 left-0 right-0">
                     <Terraforming />
                 </div>
             )}
+            */}
 
             {/* Waves */}
             <WaveBackground index={index} main={main} secondary={secondary} translateX={translateX} translateY={translateY} />
@@ -167,8 +198,8 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <Parallax translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0 z-[-1]">
-                    <GatsbyImage image={getImage(imageDataFromName(link.url))} />
+                <Parallax key={ind} translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0 z-[-1]">
+                    <GatsbyImage image={getImage(imageDataFromName(link.url))} alt="" />
                 </Parallax>
             ))}
         </section>
