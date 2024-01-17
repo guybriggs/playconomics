@@ -93,7 +93,7 @@ const SimpleSection = ({ props, index, children }) => {
                     src: forest_speechBubble,
                     width: 200,
                     x: 1530,
-                    y: 520,
+                    y: 320,
                     zLevel: 1,
                 }
             ]
@@ -190,11 +190,16 @@ const SimpleSection = ({ props, index, children }) => {
             </div>
             
             {/* Interactive */}
-            {interactiveToDraw.map((link, index) => (
-                <div className="absolute bottom-0 left-0 right-0">
-                    {createInteractiveElement(link)}
-                </div>
-            ))}
+            <svg
+                width="100%"
+                viewBox="0 0 1920 1080"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute bottom-0 left-0"
+            >
+                {interactiveToDraw.map((link, index) => (
+                    createInteractiveElement(link)
+                ))}
+            </svg>
 
             {/*
             <img src={fireAnimGif} className="w-[8%] absolute top-[45%] left-[76%] transition-all ease-in hover:w-[10%] hover:left-[75%] hover:top-[42%]"></img>

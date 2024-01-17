@@ -17,34 +17,24 @@ const HoverSquashStretch = ({ src, width, x, y }) => {
   let timeout = null;
 
   const hoverStyle = isHovered ? {
-        opacity: 1,
-        paddingTop: '0px',
-        paddingBottom: '50px',
-    } : {
-        opacity: 0,
-        paddingTop: '50px',
-        paddingBottom: '0px',
-    };
+    opacity: 1,
+    transform: 'translateY(-50px)',
+  } : {
+    opacity: 0,
+    transform: 'translateY(0px)',
+  };
 
   return (
-    <svg
-      width="100%"
-      viewBox="0 0 1920 1080"
-      xmlns="http://www.w3.org/2000/svg"
-      className="absolute bottom-0 left-0 transition-all"
+    <image
+      x={x}
+      y={y}
+      width={width}
+      height={width}
+      href={src}
+      onMouseOver={handleMouseOver}
       style={hoverStyle}
-    >
-        <image
-            x={x}
-            y={y - width*2}
-            width={width}
-            height={width*3}
-            href={src}
-            onMouseOver={handleMouseOver}
-        >
-
-        </image>
-    </svg>
+      className="transition-all ease-out duration-300"
+    ></image>
   );
 
 }
