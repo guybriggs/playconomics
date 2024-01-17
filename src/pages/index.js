@@ -73,7 +73,7 @@ const IndexPage = ({ data }) => {
         <SimpleSection>
           <div className="w-full">
             <h1 className="text-3xl md:text-4xl uppercase">Our Collaborators</h1>
-            <div className="w-full my-8 p-8 bg-[rgba(255,255,255,0.25)] rounded">
+            <div className="w-full my-8 p-8 bg-[rgba(255,255,255,0.75)] rounded">
               <Partners />
             </div>
           </div>
@@ -103,9 +103,22 @@ export const pageQuery = graphql`
       "graph.png",
       "athena.png",
       "mountain.png",
+
       "forest_FG.png",
       "forest_MG.png",
-      "forest_BG.png"
+      "forest_BG.png",
+
+      "inside_FG.png",
+      "inside_MG.png",
+
+      "society_FG.png",
+      "society_MG.png",
+
+      "mmo_desert.png",
+      "mmo_temperate.png",
+      "mmo_temperate2.png",
+      "mmo_temperate3.png",
+      "mmo_tundra.png",
     ] } }) {
       nodes {
         relativePath

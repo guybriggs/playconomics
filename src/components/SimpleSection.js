@@ -2,85 +2,116 @@ import React from "react";
 import { Parallax } from 'react-scroll-parallax';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import fireAnimGif from '/src/assets/fire_anim.gif'
 import forest_speechBubble from '/src/assets/forest_speechBubble.png'
 import WaveBackground from "./WaveBackground";
 import InteractiveElement from "./InteractiveElement";
+import Terraforming from "./interactive/Terraforming";
+
+// Images
+
+import forest_fireanim from '/src/assets/fire_anim.gif';
+import society_island1 from '/src/assets/society_island1.png';
 
 const SimpleSection = ({ props, index, children }) => {
-
-    console.log(props);
-
-    //G: Images, colours, parallax all hard-coded due to time constraints
-
-    //Cleanup
-
-    if (index === undefined) index = 0;
-
-    //Images
-
-    const imageArray = [
-        [
-            { url: 'forest_BG.png' },
-            { url: 'forest_MG.png' },
-            { url: 'forest_FG.png' }
-        ]
-    ];
-    
-    const imageIndex = index % imageArray.length;
-    const imagesToDraw = imageArray[imageIndex];
-
-    // Interactive Elements
-
-    const interactiveArray = [
-        [
-            { src: fireAnimGif, width: 150, x: 1460, y: 500, zLevel: 1 }
-        ]
-    ]
-
-    const interactiveIndex = index % interactiveArray.length;
-    const interactiveToDraw = interactiveArray[interactiveIndex];
 
     //Colours
 
     const colourArray = [
         {
-            main: '#4bb6cd',
-            secondary: '#31b0cc',
+            main: '#a5ca2f',
+            secondary: '#60d0dd',
         },
         {
-            main: '#58c1c5',
-            secondary: '#5cbbd0',
+            main: '#2e2e2e',
+            secondary: '#d3f077',
         },
         {
-            main: '#73c7cb',
-            secondary: '#6ac5c9',
+            main: '#35b3c2',
+            secondary: '#65bcc0',
         },
         {
-            main: '#dadc9f',
-            secondary: '#e9eba7',
+            main: '#34aebe',
+            secondary: '#1faabc',
         },
         {
-            main: '#A5CA2F',
-            secondary: '#cbe873',
+            main: '#1c6e7a',
+            secondary: '#287580',
         },
         {
-            main: '#add337',
-            secondary: '#bee543',
+            main: '#1f5262',
+            secondary: '#235f72',
         },
         {
-            main: '#A5CA2F',
-            secondary: '#b5dd3e',
+            main: '#19414d',
+            secondary: '#1c4652',
         },
         {
-            main: '#a7b975',
-            secondary: '#b2c678',
+            main: '#152530',
+            secondary: '#152530',
         },
         {
-            main: '#adadad',
-            secondary: '#c1bebe',
+            main: '#171e27',
+            secondary: '#171e27',
+        },
+        {
+            main: '#13161a',
+            secondary: '#13161a',
         }
     ];
+
+    //G: Images, colours, parallax all hard-coded due to time constraints
+
+    //Cleanup
+
+    if (index === undefined) index = colourArray.length-1;
+
+    //Images
+
+    const imageArray = [
+        {
+            static: [
+                { url: 'forest_BG.png' },
+                { url: 'forest_MG.png' },
+                { url: 'forest_FG.png' },
+            ],
+            interactive: [
+                { src: forest_fireanim, width: 150, x: 1460, y: 500, zLevel: 1 },
+            ]
+        },
+        {
+            static: [
+                { url: 'inside_MG.png' },
+                { url: 'inside_FG.png' },
+            ],
+            interactive: [
+
+            ]
+        },
+        {
+            static: [
+                { url: 'society_MG.png' },
+                { url: 'society_FG.png' },
+            ],
+            interactive: [
+
+            ]
+        },
+        {
+            static: [
+                { url: 'mmo_desert.png' },
+                { url: 'mmo_temperate.png' },
+                { url: 'mmo_temperate2.png' },
+                { url: 'mmo_temperate3.png' },
+                { url: 'mmo_tundra.png' },
+            ],
+            interactive: [
+            ]
+        },
+    ];
+    
+    const imageIndex = index % imageArray.length;
+    const imagesToDraw = imageArray[imageIndex].static;
+    const interactiveToDraw = imageArray[imageIndex].interactive;
 
     let main = '#FFF';
     let secondary = '#FFF';
@@ -106,22 +137,25 @@ const SimpleSection = ({ props, index, children }) => {
         flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
     }
 
-    function doSpookyStuff() {
-        alert('boo!');
-    }
-
     return (
-        <section className="relative h-screen flex justify-center items-center text-center z-10" style={textStyle}>
+        <section className="relative h-[115vh] flex justify-center items-center pb-64 text-center z-10" style={textStyle}>
 
             {/* Interactive */}
             {/*
             <img src={fireAnimGif} className="w-[8%] absolute top-[45%] left-[76%] transition-all ease-in hover:w-[10%] hover:left-[75%] hover:top-[42%]"></img>
             <img src={forest_speechBubble} className="absolute w-[12%] top-[30%] left-[69%] opacity-0 pt-[50px] pb-0 transition-all ease-out hover:opacity-100 hover:pt-0 hover:pb-[50px]"></img>
-            
+            */}
 
-            {interactiveToDraw.map((link, ind) => (
-                <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} />
-            ))}*/}
+            <div className="absolute bottom-0 left-0 w-full">
+                {interactiveToDraw.map((link, ind) => (
+                    <Parallax translateY={multiplyValues(translateY, (1/(link.zLevel+1)))}>
+                        <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} />
+                    </Parallax>
+                ))}
+                {index == 2 && (
+                    <Terraforming />
+                )}
+            </div>
 
             {/* Content */}
             <div className="w-full md:w-[1280px] flex" style={orderStyle}>
@@ -132,9 +166,13 @@ const SimpleSection = ({ props, index, children }) => {
             <WaveBackground index={index} main={main} secondary={secondary} translateX={translateX} translateY={translateY} />
 
             {/* Images */}
-            {imagesToDraw.map((link, ind) => (
-                <GatsbyImage image={getImage(imageDataFromName(link.url))} className="absolute bottom-0 left-0 w-full" />
-            ))}
+            <div className="absolute bottom-0 left-0 w-full z-[-1]">
+                {imagesToDraw.map((link, ind) => (
+                    <Parallax translateY={multiplyValues(translateY, (1/(ind+1)))}>
+                        <GatsbyImage image={getImage(imageDataFromName(link.url))} class="absolute bottom-0 left-0 min-w-full min-h-full object-cover" />
+                    </Parallax>
+                ))}
+            </div>
         </section>
     );
 
