@@ -153,7 +153,7 @@ const SimpleSection = ({ props, index, children }) => {
             */}
 
             {interactiveToDraw.map((link, ind) => (
-                <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} class="absolute bottom-0 left-0 right-0" />
+                <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} className="absolute bottom-0 left-0 right-0" />
             ))}
             {index == 2 && (
                 <div className="absolute bottom-0 left-0 right-0">
@@ -167,7 +167,9 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <GatsbyImage image={getImage(imageDataFromName(link.url))} class="absolute bottom-0 left-0 right-0 z-[-1]" />
+                <div className="absolute bottom-0 left-0 right-0 z-[-1]">
+                    <GatsbyImage image={getImage(imageDataFromName(link.url))} />
+                </div>
             ))}
         </section>
     );
