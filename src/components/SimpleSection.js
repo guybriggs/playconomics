@@ -153,9 +153,7 @@ const SimpleSection = ({ props, index, children }) => {
             */}
 
             {interactiveToDraw.map((link, ind) => (
-                <Parallax translateY={multiplyValues(translateY, link.zLevel/2)} className="absolute bottom-0 left-0 right-0">
-                    <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} className="absolute bottom-0 left-0 w-full" />
-                </Parallax>
+                <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} className="absolute bottom-0 left-0 right-0" />
             ))}
             {index == 2 && (
                 <div className="absolute bottom-0 left-0 right-0">
@@ -170,7 +168,7 @@ const SimpleSection = ({ props, index, children }) => {
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
                 <Parallax translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0 z-[-1]">
-                    <GatsbyImage image={getImage(imageDataFromName(link.url))} className="absolute bottom-0 left-0 w-full" />
+                    <GatsbyImage image={getImage(imageDataFromName(link.url))} />
                 </Parallax>
             ))}
         </section>
