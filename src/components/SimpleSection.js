@@ -132,8 +132,13 @@ const SimpleSection = ({ props, index, children }) => {
     ];
     
     const imageIndex = index % imageArray.length;
-    const imagesToDraw = imageArray[imageIndex].static;
-    const interactiveToDraw = imageArray[imageIndex].interactive;
+    let imagesToDraw = imageArray[imageIndex].static;
+    let interactiveToDraw = imageArray[imageIndex].interactive;
+
+    if (index >= 4) {
+        imagesToDraw = [];
+        interactiveToDraw = [];
+    }
 
     let main = '#FFF';
     let secondary = '#FFF';
@@ -151,16 +156,17 @@ const SimpleSection = ({ props, index, children }) => {
 
     //Styles
 
-    const textStyle = {
-        color: text,
-    }
-
     const orderStyle = {
+        color: text,
         flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
+    }
+    
+    const fullHeightStyle = {
+        height: index >= 4 ? '90vh' : '110vh',
     }
 
     return (
-        <section className="relative h-[110vh] flex justify-center items-center pb-64 text-center z-10" style={textStyle}>
+        <section className="relative h-[110vh] flex justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
 
             {/* Content */}
             <div className="w-full md:w-[1280px] flex" style={orderStyle}>
