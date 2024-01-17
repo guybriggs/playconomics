@@ -105,6 +105,7 @@ const SimpleSection = ({ props, index, children }) => {
                 { url: 'mmo_tundra.png' },
             ],
             interactive: [
+
             ]
         },
     ];
@@ -115,7 +116,7 @@ const SimpleSection = ({ props, index, children }) => {
 
     let main = '#FFF';
     let secondary = '#FFF';
-    let text = '#FFF';
+    let text = '#000';
 
     const colourIndex = index % colourArray.length;
 
@@ -138,7 +139,12 @@ const SimpleSection = ({ props, index, children }) => {
     }
 
     return (
-        <section className="relative h-[115vh] flex justify-center items-center pb-64 text-center z-10" style={textStyle}>
+        <section className="relative h-[110vh] flex justify-center items-center pb-64 text-center z-10" style={textStyle}>
+
+            {/* Content */}
+            <div className="w-full md:w-[1280px] flex" style={orderStyle}>
+                {children}
+            </div>
 
             {/* Interactive */}
             {/*
@@ -146,33 +152,23 @@ const SimpleSection = ({ props, index, children }) => {
             <img src={forest_speechBubble} className="absolute w-[12%] top-[30%] left-[69%] opacity-0 pt-[50px] pb-0 transition-all ease-out hover:opacity-100 hover:pt-0 hover:pb-[50px]"></img>
             */}
 
-            <div className="absolute bottom-0 left-0 w-full">
-                {interactiveToDraw.map((link, ind) => (
-                    <Parallax translateY={multiplyValues(translateY, (1/(link.zLevel+1)))}>
-                        <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} />
-                    </Parallax>
-                ))}
-                {index == 2 && (
+            {interactiveToDraw.map((link, ind) => (
+                <InteractiveElement src={link.src} width={link.width} x={link.x} y={link.y} class="absolute bottom-0 left-0 right-0" />
+            ))}
+            {index == 2 && (
+                <div className="absolute bottom-0 left-0 right-0">
                     <Terraforming />
-                )}
-            </div>
-
-            {/* Content */}
-            <div className="w-full md:w-[1280px] flex" style={orderStyle}>
-                {children}
-            </div>
+                </div>
+            )}
 
             {/* Waves */}
             <WaveBackground index={index} main={main} secondary={secondary} translateX={translateX} translateY={translateY} />
+            
 
             {/* Images */}
-            <div className="absolute bottom-0 left-0 w-full z-[-1]">
-                {imagesToDraw.map((link, ind) => (
-                    <Parallax translateY={multiplyValues(translateY, (1/(ind+1)))}>
-                        <GatsbyImage image={getImage(imageDataFromName(link.url))} class="absolute bottom-0 left-0 min-w-full min-h-full object-cover" />
-                    </Parallax>
-                ))}
-            </div>
+            {imagesToDraw.map((link, ind) => (
+                <GatsbyImage image={getImage(imageDataFromName(link.url))} class="absolute bottom-0 left-0 right-0 z-[-1]" />
+            ))}
         </section>
     );
 
