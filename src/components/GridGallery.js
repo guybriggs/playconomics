@@ -34,40 +34,43 @@ const GridGallery = () => {
 
     const images = data.allFile.nodes;
 
-    /*const photos = images.map((image) => ({
+    const photos = images.map((image) => ({
         src: image.childImageSharp.gatsbyImageData.images.fallback.src,
         width: image.childImageSharp.gatsbyImageData.width, // Adjust width as needed
         height: image.childImageSharp.gatsbyImageData.height, // Adjust height as needed
         name: image.name,
     }));
 
-    const otherStyle = {
+    const myStyle = {
+        borderRadius: '0.375rem',
+        overflow: 'hidden',
     }
 
     return (
         <>
             <PhotoAlbum
-                photos={photos}
-                layout="rows"
-                targetRowHeight={150}
-                onClick={({ index }) => setIndex(index)}
-                renderPhoto={({ photo, wrapperStyle, renderDefaultPhoto }) => (
-                    <a href={photo.href} style={{...wrapperStyle, ...otherStyle}}>
-                        {renderDefaultPhoto({ wrapped: true })}
-                    </a>
-                )}
+            photos={photos}
+            layout="rows"
+            rowConstraints={{maxPhotos: 5}}
+            targetRowHeight={150}
+            onClick={({ index }) => setIndex(index)}
+            renderPhoto={({ photo, wrapperStyle, renderDefaultPhoto }) => (
+                <a href={photo.href} style={{...wrapperStyle, ...myStyle}}>
+                    {renderDefaultPhoto({ wrapped: true })}
+                </a>
+            )}
             />
-
+    
             <Lightbox
-                slides={photos}
-                open={index >= 0}
-                index={index}
-                close={() => setIndex(-1)}
-                // enable optional lightbox plugins
-                plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+            slides={photos}
+            open={index >= 0}
+            index={index}
+            close={() => setIndex(-1)}
+            // enable optional lightbox plugins
+            plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
             />
         </>
-      );*/
+      );
 
 
 
