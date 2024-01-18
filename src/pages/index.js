@@ -28,8 +28,8 @@ const CoverImage = ({ onPlayClicked }) => {
       <img src={Website_Cover} alt="island2" className="w-full object-cover object-center" />
       <div className="absolute top-0 left-0 w-full h-full object-center object-scale-down w-5/6 flex flex-col justify-center items-center cursor-pointer"
           onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} >
-        <img src={Playconomics_Text} alt="Playconomics" className="" />
-        <img src={playBtn} alt="Play video" className={`object-center w-1/6 transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
+        <img src={Playconomics_Text} alt="Playconomics" className="w-full md:w-3/4" />
+        <img src={playBtn} alt="Play video" className={`w-1/6 md:w-1/12 object-center transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
       </div>
     </div>
   );
