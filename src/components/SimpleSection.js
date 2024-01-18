@@ -15,7 +15,6 @@ import Terraforming from "./interactive/Terraforming";
 
 import forest_fireanim from '/src/assets/fire_anim.gif';
 import forest_speechBubble from '/src/assets/forest_speechBubble.png';
-import society_island1 from '/src/assets/society_island1.png';
 
 const SimpleSection = ({ props, index, children }) => {
 
@@ -76,7 +75,8 @@ const SimpleSection = ({ props, index, children }) => {
         {
             static: [
                 { url: 'forest_BG.png' },
-                { url: 'forest_MG.png' },
+                { url: 'forest_MG1.png' },
+                { url: 'forest_MG2.png' },
                 { url: 'forest_FG.png' },
             ],
             interactive: [
@@ -85,15 +85,15 @@ const SimpleSection = ({ props, index, children }) => {
                     src: forest_fireanim,
                     width: 150,
                     x: 1460,
-                    y: 500,
-                    zLevel: 1,
+                    y: 540,
+                    zLevel: 2,
                 },
                 {
                     interactionType: 'SpeechBubble',
                     src: forest_speechBubble,
                     width: 200,
                     x: 1530,
-                    y: 320,
+                    y: 360,
                     zLevel: 1,
                 }
             ]
@@ -163,19 +163,17 @@ const SimpleSection = ({ props, index, children }) => {
     }
     
     const fullHeightStyle = {
-        height: index >= 4 ? '90vh' : '110vh',
+        minHeight: index >= 4 ? '75vh' : '100vh',
     }
 
-    const createInteractiveElement = (link) => {
+    const createInteractiveElement = (link, index) => {
         switch (link.interactionType) {
             case 'SquashStretch':
-                return <HoverSquashStretch src={link.src} width={link.width} x={link.x} y={link.y} />;
+                return <HoverSquashStretch key={index} src={link.src} width={link.width} x={link.x} y={link.y} />;
             case 'ChangeImage':
-                return <HoverChangeImage src={link.src} width={link.width} x={link.x} y={link.y} altsrc={link.altsrc} />;
+                return <HoverChangeImage key={index} src={link.src} width={link.width} x={link.x} y={link.y} altsrc={link.altsrc} />;
             case 'SpeechBubble':
-                return <HoverSpeechBubble src={link.src} width={link.width} x={link.x} y={link.y} />;
-            case 'Terraforming':
-                return <Terraforming />
+                return <HoverSpeechBubble key={index} src={link.src} width={link.width} x={link.x} y={link.y} />;
             default:
                 return null;
         }
@@ -185,21 +183,28 @@ const SimpleSection = ({ props, index, children }) => {
         <section className="relative flex justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
 
             {/* Content */}
-            <div className="w-full md:w-[1280px] flex" style={orderStyle}>
+            <div className="w-full md:w-[1280px] flex p-8 md:p-0" style={orderStyle}>
                 {children}
             </div>
             
             {/* Interactive */}
-            <svg
-                width="100%"
-                viewBox="0 0 1920 1080"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute bottom-0 left-0"
-            >
-                {interactiveToDraw.map((link, index) => (
-                    createInteractiveElement(link)
-                ))}
-            </svg>
+            {interactiveToDraw.length > 0 && (
+                interactiveToDraw[0].interactionType === 'Terraforming' ? (
+                    <Terraforming />
+                ) : (
+                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel/2)} className="absolute bottom-0 left-0 right-0">
+                        <svg
+                            width="100%"
+                            viewBox="0 0 1920 1080"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            {interactiveToDraw.map((link, index) => (
+                                createInteractiveElement(link, index)
+                            ))}
+                        </svg>
+                    </Parallax>
+                )
+            )}
 
             {/*
             <img src={fireAnimGif} className="w-[8%] absolute top-[45%] left-[76%] transition-all ease-in hover:w-[10%] hover:left-[75%] hover:top-[42%]"></img>

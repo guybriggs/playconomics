@@ -1,15 +1,16 @@
 import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { StaticImage } from 'gatsby-plugin-image';
+//import { StaticImage } from 'gatsby-plugin-image';
 
 import Layout from "../components/Layout"
 import SimpleSection from "../components/SimpleSection"
 import Partners from "../components/Partners"
 import Awards from "../components/Awards"
+import GridGallery from "../components/GridGallery";
 
-import About from "../components/About"
-import Features from "../components/Features"
-import Contact from "../components/Contact"
+//import About from "../components/About"
+//import Features from "../components/Features"
+//import Contact from "../components/Contact"
 
 import Footer from "../components/Footer"
 // import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
@@ -17,7 +18,7 @@ import trailerVideo from '/src/assets/play2024_trailer.mp4'
 import Website_Cover from "/src/assets/Website_Cover.png"
 import Playconomics_Text from "/src/assets/Playconomics_Text.png"
 import playBtn from '/src/assets/play.png'
-import { Parallax } from "react-scroll-parallax";
+//import { Parallax } from "react-scroll-parallax";
 
 const CoverImage = ({ onPlayClicked }) => {
   const [playHover, setPlayHover] = React.useState(false);
@@ -67,7 +68,7 @@ const IndexPage = ({ data }) => {
 
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.allFile}>
-              <div className="w-full md:w-1/2">
+              <div className="w-full md:w-1/2 lg:w-1/3">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
               </div>
@@ -77,6 +78,7 @@ const IndexPage = ({ data }) => {
         <SimpleSection index={7}>
           <div className="w-full">
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">Gallery</h1>
+            <GridGallery />
           </div>
         </SimpleSection>
 
@@ -126,7 +128,8 @@ export const pageQuery = graphql`
       "mountain.png",
 
       "forest_FG.png",
-      "forest_MG.png",
+      "forest_MG1.png",
+      "forest_MG2.png",
       "forest_BG.png",
 
       "inside_FG.png",
@@ -147,6 +150,7 @@ export const pageQuery = graphql`
           gatsbyImageData(
             layout: FULL_WIDTH
             placeholder: BLURRED
+            quality: 90
           )
         }
       }

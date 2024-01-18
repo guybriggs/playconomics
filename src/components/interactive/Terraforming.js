@@ -6,19 +6,11 @@ import society_island3 from '/src/assets/society_island3.png';
 
 const ClickComponent = () => {
 
-
-
-
   const islandArray = [
     society_island1,
     society_island2,
     society_island3
   ];
-
-
-
-
-
 
   const [isHeld, setIsHeld] = useState(false);
   const [imageIndex, setImageIndex] = useState(1);
@@ -50,7 +42,7 @@ const ClickComponent = () => {
     <div
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-      className="cursor-pointer"
+      className="absolute bottom-0 left-0 w-screen cursor-pointer"
     >
       <img
         src={islandArray[imageIndex]} // Update the path to your actual image path

@@ -1,6 +1,6 @@
 import React from 'react'
 import UnderlineLink from './UnderlineLink.js'
-import { Link } from 'react-scroll'
+//import { Link } from 'react-scroll'
 
 const Nav = () => {
 
@@ -8,7 +8,7 @@ const Nav = () => {
     const registerUrl = appBaseUrl + "accounts/register/";
     const loginUrl = appBaseUrl + "accounts/login/";
 
-    const navLinks = [
+    /*const navLinks = [
         {
             text: "About",
             link: "about",
@@ -21,7 +21,7 @@ const Nav = () => {
             text: "Contact",
             link: "contact",
         },
-    ];
+    ];*/
 
     return (
     <nav className='bg-slate-900 text-white flex flex-col md:flex-row justify-between items-center static top-0 left-0 right-0 z-10 shadow'>
