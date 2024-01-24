@@ -194,7 +194,7 @@ const SimpleSection = ({ props, index, children }) => {
     }
 
     return (
-        <section className="relative flex justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
+        <section className="relative flex flex-col justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
 
             {/* Content */}
             <div className="w-full md:w-[1280px] flex p-8 md:p-0" style={orderStyle}>

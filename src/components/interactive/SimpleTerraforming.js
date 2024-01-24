@@ -225,7 +225,7 @@ const CounterComponent = ({ x, y, width, height }) => {
     }
 
     return (
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="md:absolute bottom-0 left-0 right-0 w-[200vh] translate-x-[-10%]">
             <svg
                 width="100%"
                 viewBox="0 0 1920 1080"
