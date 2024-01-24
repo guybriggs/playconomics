@@ -5,6 +5,10 @@ import HoverSquashStretch from "../interactive/HoverSquashStretch";
 import HoverChangeImage from "../interactive/HoverChangeImage";
 import HoverSpeechBubble from "../interactive/HoverSpeechBubble";
 
+import shark from "/src/assets/sections/new-worlds/shark.gif"
+import shark2 from "/src/assets/sections/new-worlds/shark2.gif"
+import shark3 from "/src/assets/sections/new-worlds/shark3.gif"
+
 const CounterComponent = ({ x, y, width, height }) => {
 
   const data = useStaticQuery(graphql`
@@ -19,7 +23,7 @@ const CounterComponent = ({ x, y, width, height }) => {
                     gatsbyImageData(
                         layout: FULL_WIDTH,
                         placeholder: BLURRED,
-                        quality: 10
+                        quality: 90
                     )
                 }
             }
@@ -34,7 +38,7 @@ const CounterComponent = ({ x, y, width, height }) => {
                     gatsbyImageData(
                         layout: FULL_WIDTH,
                         placeholder: BLURRED,
-                        quality: 10
+                        quality: 50
                     )
                 }
             }
@@ -42,16 +46,26 @@ const CounterComponent = ({ x, y, width, height }) => {
     }
     `);
 
+    const sortNodesBySuffix = (array) => {
+        array.sort((a, b) => {
+            const numA = parseInt(a.name.match(/\d+/)[0]);
+            const numB = parseInt(b.name.match(/\d+/)[0]);
+            return numA - numB;
+        });
+
+        return array;
+    }
+
     const totalLength = data.terraformFiles.nodes.length-1;
-    const [count, setCount] = useState(totalLength);
+    const [count, setCount] = useState(0);
     const [isHolding, setIsHolding] = useState(false);
 
   const increment = () => {
-    setCount(Math.max(0, count - 1));
+    setCount(Math.min(totalLength, count + 1));
   };
 
   const decrement = () => {
-    setCount(Math.min(totalLength, count + 1));
+    setCount(Math.max(0, count - 1));
   };
 
   const handleTouchStart = (e) => {
@@ -86,6 +100,9 @@ const CounterComponent = ({ x, y, width, height }) => {
     return () => clearTimeout(timeout);
   }, [isHolding]);
 
+    data.terraformFiles.nodes = sortNodesBySuffix(data.terraformFiles.nodes);
+    data.speechFiles.nodes = sortNodesBySuffix(data.speechFiles.nodes);
+
     const src = data.terraformFiles.nodes[count].childImageSharp.gatsbyImageData.images.fallback.src;
 
     function addOtherElements(index) {
@@ -94,26 +111,111 @@ const CounterComponent = ({ x, y, width, height }) => {
             return data.speechFiles.nodes[num].childImageSharp.gatsbyImageData.images.fallback.src;
         }
 
-        const bubbleWidth = 512;
-        const hitboxWidth = bubbleWidth/8;
+        const bubble = {
+            width: 512,
+            height: 512,
+        }
+
+        const hitbox = {
+            width: 30,
+            height: 60,
+        }
+
+        const ClickHitbox = ({ x, y }) => {
+            return (
+                <>
+                    <ellipse
+                        fill="rgba(0,255,0,0)"
+                        cx={x}
+                        cy={y}
+                        rx={100}
+                        ry={60}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
+                        onMouseDown={handleTouchStart} // Fallback for desktop
+                        onMouseUp={handleTouchEnd} // Fallback for desktop
+                        className="cursor-pointer"
+                    ></ellipse>
+                    <HoverSquashStretch src={shark} width={100} x={1050} y={420} />
+                    <HoverSquashStretch src={shark2} width={100} x={1350} y={450} />
+                    <HoverSquashStretch src={shark3} width={100} x={1300} y={600} />
+                </>
+            );
+        }
 
         switch (index) {
             case 0:
-                return <HoverSpeechBubble src={getSrcForSpeechBubble(index)} width={bubbleWidth} hitboxWidth={hitboxWidth} x={1000} y={250} />;
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={540} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={495} />
+                    </>
+                );
+            case 1:
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={540} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={495} />
+                    </>
+                );
+            case 2:
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={540} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={490} />
+                    </>
+                );
+            case 3:
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={540} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={480} />
+                    </>
+                );
+            case 4:
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={470} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={430} />
+                    </>
+                );
+            case 5:
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={410} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1240} y={370} />
+                    </>
+                );
+            case 6:
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={290} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1245} y={240} />
+                    </>
+                );
+            case 7:
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={260} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={210} />
+                    </>
+                );
+            case 8:
+                return (
+                    <>
+                        <ClickHitbox x={1255} y={260} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1175} y={215} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(9)} bubble={bubble} hitbox={hitbox} x={1295} y={240} />
+                    </>
+                );
             case 9:
                 return (
                     <>
-                        <HoverSpeechBubble src={getSrcForSpeechBubble(index)} width={bubbleWidth} hitboxWidth={hitboxWidth} x={0} y={0} />
-                        <HoverSpeechBubble src={getSrcForSpeechBubble(10)} width={bubbleWidth} hitboxWidth={hitboxWidth} x={0} y={0} />
-                    </>
-                );
-            case 10:
-                return (
-                    <>
-                        <HoverSpeechBubble src={getSrcForSpeechBubble(11)} width={bubbleWidth} hitboxWidth={hitboxWidth} x={0} y={0} />
-                        <HoverSpeechBubble src={getSrcForSpeechBubble(12)} width={bubbleWidth} hitboxWidth={hitboxWidth} x={0} y={0} />
-                        <HoverSpeechBubble src={getSrcForSpeechBubble(13)} width={bubbleWidth} hitboxWidth={hitboxWidth} x={0} y={0} />
-                        <HoverSpeechBubble src={getSrcForSpeechBubble(14)} width={bubbleWidth} hitboxWidth={hitboxWidth} x={0} y={0} />
+                        <ClickHitbox x={1255} y={260} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(10)} bubble={bubble} hitbox={hitbox} x={1170} y={210} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(11)} bubble={bubble} hitbox={hitbox} x={1200} y={245} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(12)} bubble={bubble} hitbox={hitbox} x={1300} y={240} />
+                        <HoverSpeechBubble src={getSrcForSpeechBubble(13)} bubble={bubble} hitbox={hitbox} x={1240} y={100} />
                     </>
                 );
             default:
@@ -135,14 +237,8 @@ const CounterComponent = ({ x, y, width, height }) => {
                     y={y}
                     width={width}
                     height={height}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                    onMouseDown={handleTouchStart} // Fallback for desktop
-                    onMouseUp={handleTouchEnd} // Fallback for desktop
                 ></image>
-                {/*
                 {addOtherElements(count)}
-                */}
             </svg>
         </div>
     );

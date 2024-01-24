@@ -91,7 +91,14 @@ const SimpleSection = ({ props, index, children }) => {
                 {
                     interactionType: 'SpeechBubble',
                     src: forest_speechBubble,
-                    width: 200,
+                    bubble: {
+                        width: 276,
+                        height: 174,
+                    },
+                    hitbox: {
+                        width: 50,
+                        height: 100,
+                    },
                     x: 1530,
                     y: 360,
                     zLevel: 1,
@@ -109,7 +116,8 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             static: [
-                { url: 'speed_build_left.mp4' },
+                { url: 'speed_build_left.png' },
+                { url: 'speed_build_right.png' },
             ],
             interactive: [
                 {
@@ -177,7 +185,7 @@ const SimpleSection = ({ props, index, children }) => {
             case 'ChangeImage':
                 return <HoverChangeImage key={index} src={link.src} width={link.width} x={link.x} y={link.y} altsrc={link.altsrc} />;
             case 'SpeechBubble':
-                return <HoverSpeechBubble key={index} src={link.src} width={link.width} hitboxWidth={link.width/2} x={link.x} y={link.y} />;
+                return <HoverSpeechBubble key={index} src={link.src} bubble={link.bubble} hitbox={link.hitbox} x={link.x} y={link.y} />;
             case 'SimpleTerraforming':
                 return <SimpleTerraforming key={index} width={link.width} height={link.height} x={link.x} y={link.y} />;
             default:

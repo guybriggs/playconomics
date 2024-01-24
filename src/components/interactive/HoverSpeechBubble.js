@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const HoverSquashStretch = ({ src, width, hitboxWidth, x, y }) => {
+const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
 
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseOver = () => {
@@ -18,39 +18,38 @@ const HoverSquashStretch = ({ src, width, hitboxWidth, x, y }) => {
 
   const hoverStyle = isHovered ? {
     opacity: 1,
-    transform: `translateY(-${hitboxWidth}px)`,
+    transform: `translateY(-${hitbox.height*1.5}px)`,
   } : {
-    opacity: 0.25,
-    transform: `translateY(${hitboxWidth}px)`,
+    opacity: 0,
+    transform: `translateY(0px)`,
   };
 
   return (
     <>
       <rect
-        fill="rgba(0,0,0,0.25)"
-        x={x}
-        y={y}
-        width={width}
-        height={width}
-        style={hoverStyle}
-        className="transition-all ease-out duration-300 pointer-events-none"
+        fill="rgba(0,0,0,0)"
+        x={x - bubble.width/2 + hitbox.width/2}
+        y={y - bubble.height/2 + hitbox.height/2}
+        width={bubble.width}
+        height={bubble.height}
+        className="pointer-events-none"
       >
       </rect>
       <image
-        x={x}
-        y={y}
-        width={width}
-        height={width}
+        x={x - bubble.width/2 + hitbox.width/2}
+        y={y - bubble.height/2 + hitbox.height/2}
+        width={bubble.width}
+        height={bubble.height}
         href={src}
         style={hoverStyle}
         className="transition-all ease-out duration-300 pointer-events-none"
       ></image>
       <rect
-        fill="rgba(0,0,0,0.25)"
-        x={x+width/2-hitboxWidth/2}
-        y={y+width/2-hitboxWidth}
-        width={hitboxWidth}
-        height={hitboxWidth*2}
+        fill="rgba(0,0,0,0)"
+        x={x}
+        y={y}
+        width={hitbox.width}
+        height={hitbox.height}
         onMouseOver={handleMouseOver}
       >
       </rect>
@@ -59,4 +58,4 @@ const HoverSquashStretch = ({ src, width, hitboxWidth, x, y }) => {
 
 }
 
-export default HoverSquashStretch;
+export default HoverSpeechBubble;
