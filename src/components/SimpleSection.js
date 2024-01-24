@@ -177,7 +177,7 @@ const SimpleSection = ({ props, index, children }) => {
             case 'ChangeImage':
                 return <HoverChangeImage key={index} src={link.src} width={link.width} x={link.x} y={link.y} altsrc={link.altsrc} />;
             case 'SpeechBubble':
-                return <HoverSpeechBubble key={index} src={link.src} width={link.width} x={link.x} y={link.y} />;
+                return <HoverSpeechBubble key={index} src={link.src} width={link.width} hitboxWidth={link.width/2} x={link.x} y={link.y} />;
             case 'SimpleTerraforming':
                 return <SimpleTerraforming key={index} width={link.width} height={link.height} x={link.x} y={link.y} />;
             default:
@@ -195,17 +195,21 @@ const SimpleSection = ({ props, index, children }) => {
             
             {/* Interactive */}
             {interactiveToDraw.length > 0 && (
-                <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel/2)} className="absolute bottom-0 left-0 right-0">
-                    <svg
-                        width="100%"
-                        viewBox="0 0 1920 1080"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        {interactiveToDraw.map((link, index) => (
-                            createInteractiveElement(link, index)
-                        ))}
-                    </svg>
-                </Parallax>
+                interactiveToDraw[0].interactionType === 'SimpleTerraforming' ? (
+                    <SimpleTerraforming />
+                ) : (
+                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel/2)} className="absolute bottom-0 left-0 right-0">
+                        <svg
+                            width="100%"
+                            viewBox="0 0 1920 1080"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            {interactiveToDraw.map((link, index) => (
+                                createInteractiveElement(link, index)
+                            ))}
+                        </svg>
+                    </Parallax>
+                )
             )}
 
             {/*

@@ -128,19 +128,7 @@ export const pageQuery = graphql`
           )
         }
       }
-    }
-    assetsFolder: allFile(filter: { sourceInstanceName: { eq: "assets" } }) {
-      nodes {
-        relativePath
-        childImageSharp {
-          gatsbyImageData(
-            layout: FULL_WIDTH
-            placeholder: BLURRED
-            quality: 100
-          )
-        }
-      }
-    }    
+    }   
     siteData: markdownRemark(frontmatter: { pagename: { eq: "Playconomics" } }) {
       frontmatter {
         pagename

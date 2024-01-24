@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const HoverSquashStretch = ({ src, width, x, y }) => {
+const HoverSquashStretch = ({ src, width, hitboxWidth, x, y }) => {
 
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseOver = () => {
@@ -18,23 +18,43 @@ const HoverSquashStretch = ({ src, width, x, y }) => {
 
   const hoverStyle = isHovered ? {
     opacity: 1,
-    transform: 'translateY(-50px)',
+    transform: `translateY(-${hitboxWidth}px)`,
   } : {
-    opacity: 0,
-    transform: 'translateY(0px)',
+    opacity: 0.25,
+    transform: `translateY(${hitboxWidth}px)`,
   };
 
   return (
-    <image
-      x={x}
-      y={y}
-      width={width}
-      height={width}
-      href={src}
-      onMouseOver={handleMouseOver}
-      style={hoverStyle}
-      className="transition-all ease-out duration-300"
-    ></image>
+    <>
+      <rect
+        fill="rgba(0,0,0,0.25)"
+        x={x}
+        y={y}
+        width={width}
+        height={width}
+        style={hoverStyle}
+        className="transition-all ease-out duration-300 pointer-events-none"
+      >
+      </rect>
+      <image
+        x={x}
+        y={y}
+        width={width}
+        height={width}
+        href={src}
+        style={hoverStyle}
+        className="transition-all ease-out duration-300 pointer-events-none"
+      ></image>
+      <rect
+        fill="rgba(0,0,0,0.25)"
+        x={x+width/2-hitboxWidth/2}
+        y={y+width/2-hitboxWidth}
+        width={hitboxWidth}
+        height={hitboxWidth*2}
+        onMouseOver={handleMouseOver}
+      >
+      </rect>
+    </>
   );
 
 }
