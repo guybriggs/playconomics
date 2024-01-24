@@ -9,7 +9,7 @@ import WaveBackground from "./WaveBackground";
 import HoverSquashStretch from "./interactive/HoverSquashStretch";
 import HoverChangeImage from "./interactive/HoverChangeImage";
 import HoverSpeechBubble from "./interactive/HoverSpeechBubble";
-import Terraforming from "./interactive/Terraforming";
+import SimpleTerraforming from "./interactive/SimpleTerraforming";
 
 // Images
 
@@ -109,12 +109,16 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             static: [
-                { url: 'society_MG.png' },
-                { url: 'society_FG.png' },
+                { url: 'speed_build_left.mp4' },
             ],
             interactive: [
                 {
-                    interactionType: 'Terraforming',
+                    interactionType: 'SimpleTerraforming',
+                    width: 1920,
+                    height: 1080,
+                    x: 0,
+                    y: 0,
+                    zLevel: 1,
                 }
             ]
         },
@@ -174,6 +178,8 @@ const SimpleSection = ({ props, index, children }) => {
                 return <HoverChangeImage key={index} src={link.src} width={link.width} x={link.x} y={link.y} altsrc={link.altsrc} />;
             case 'SpeechBubble':
                 return <HoverSpeechBubble key={index} src={link.src} width={link.width} x={link.x} y={link.y} />;
+            case 'SimpleTerraforming':
+                return <SimpleTerraforming key={index} width={link.width} height={link.height} x={link.x} y={link.y} />;
             default:
                 return null;
         }
@@ -189,21 +195,17 @@ const SimpleSection = ({ props, index, children }) => {
             
             {/* Interactive */}
             {interactiveToDraw.length > 0 && (
-                interactiveToDraw[0].interactionType === 'Terraforming' ? (
-                    <Terraforming />
-                ) : (
-                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel/2)} className="absolute bottom-0 left-0 right-0">
-                        <svg
-                            width="100%"
-                            viewBox="0 0 1920 1080"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            {interactiveToDraw.map((link, index) => (
-                                createInteractiveElement(link, index)
-                            ))}
-                        </svg>
-                    </Parallax>
-                )
+                <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel/2)} className="absolute bottom-0 left-0 right-0">
+                    <svg
+                        width="100%"
+                        viewBox="0 0 1920 1080"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        {interactiveToDraw.map((link, index) => (
+                            createInteractiveElement(link, index)
+                        ))}
+                    </svg>
+                </Parallax>
             )}
 
             {/*

@@ -67,7 +67,7 @@ const IndexPage = ({ data }) => {
         {playVideo && <CoverVideo onFinished={onFinished} />}
 
         {content.map((link, index) => (
-          <SimpleSection key={index} index={index} props={data.allFile}>
+          <SimpleSection key={index} index={index} props={data.assetsFolder}>
               <div className="w-full md:w-1/2 lg:w-1/3">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
@@ -117,44 +117,30 @@ export const pageQuery = graphql`
         title
       }
     }
-    allFile(filter: { relativePath: { in: [
-      "globe.png",
-      "houses.png",
-      "government.png",
-      "turbines.png",
-      "trees.png",
-      "graph.png",
-      "athena.png",
-      "mountain.png",
-
-      "forest_FG.png",
-      "forest_MG1.png",
-      "forest_MG2.png",
-      "forest_BG.png",
-
-      "inside_FG.png",
-      "inside_MG.png",
-
-      "society_FG.png",
-      "society_MG.png",
-
-      "mmo_desert.png",
-      "mmo_temperate.png",
-      "mmo_temperate2.png",
-      "mmo_temperate3.png",
-      "mmo_tundra.png",
-    ] } }) {
+    assetsFolder: allFile(filter: { sourceInstanceName: { eq: "assets" } }) {
       nodes {
         relativePath
         childImageSharp {
           gatsbyImageData(
             layout: FULL_WIDTH
             placeholder: BLURRED
-            quality: 90
+            quality: 100
           )
         }
       }
     }
+    assetsFolder: allFile(filter: { sourceInstanceName: { eq: "assets" } }) {
+      nodes {
+        relativePath
+        childImageSharp {
+          gatsbyImageData(
+            layout: FULL_WIDTH
+            placeholder: BLURRED
+            quality: 100
+          )
+        }
+      }
+    }    
     siteData: markdownRemark(frontmatter: { pagename: { eq: "Playconomics" } }) {
       frontmatter {
         pagename
