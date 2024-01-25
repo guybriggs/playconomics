@@ -85,7 +85,7 @@ const IndexPage = ({ data }) => {
         <SimpleSection index={8}>
           <div className="w-full">
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">Our Collaborators</h1>
-            <div className="w-full my-8 p-8 bg-[rgba(255,255,255,0.5)] rounded">
+            <div className="w-full my-8 p-8] rounded">
               <Partners />
             </div>
           </div>
@@ -94,7 +94,7 @@ const IndexPage = ({ data }) => {
         <SimpleSection index={9}>
           <div className="w-full">
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">Awards</h1>
-            <div className="w-full my-8 p-8 bg-[rgba(255,255,255,0.25)] rounded">
+            <div className="w-full my-8 p-8">
               <Awards data={featuresData} />
             </div>
           </div>
