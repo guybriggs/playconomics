@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql } from "gatsby"
 //import { StaticImage } from 'gatsby-plugin-image';
 
 import Layout from "../components/Layout"
@@ -48,7 +48,8 @@ const CoverVideo = ({ onFinished }) => {
 
 const IndexPage = ({ data }) => {
     const [playVideo, setPlayVideo] = React.useState(false);
-    const { aboutData, featuresData, contactData } = data;
+    // const { aboutData, featuresData, contactData } = data;
+    const { featuresData } = data;
 
     const siteData = data.siteData;
     const content = siteData.frontmatter.content;

@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import HoverSquashStretch from "../interactive/HoverSquashStretch";
-import HoverChangeImage from "../interactive/HoverChangeImage";
 import HoverSpeechBubble from "../interactive/HoverSpeechBubble";
 
 import shark from "/src/assets/sections/new-worlds/shark.gif"

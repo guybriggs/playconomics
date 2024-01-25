@@ -36,6 +36,33 @@ h1, h2, h3, h4, h5, h6, button {
   font-family: 'Gill Sans Bold', sans-serif;
 }
 
+label {
+  font-family: 'Gill Sans Condensed Bold';
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+label input[type="checkbox"] {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  appearance: none;
+}
+
+label input[type="checkbox"]:before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 50%;
+}
+
+label input[type="checkbox"]:checked:before {
+  background-color: #fff;
+}
+
 svg * { 
   transform-box: fill-box;
   transform-origin: center;

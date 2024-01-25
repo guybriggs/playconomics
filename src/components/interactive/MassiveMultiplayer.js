@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
+import planets from "/src/assets/sections/massive-multiplayer/planets.png"
+
 const MassiveMultiplayer = ({ x, y, width, height }) => {
 
     const data = useStaticQuery(graphql`
@@ -24,11 +26,11 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
     `);
 
     const [imageVisibility, setImageVisibility] = useState({
-        legend_weather: false,
-        legend_agents: false,
-        legend_latitudeLongitude: false,
-        legend_students: false,
-        legend_trade: false,
+        students: false,
+        agents: false,
+        weather: false,
+        trade: true,
+        coordinates: false,
     });
 
     const imageVisibleArray = Object.keys(imageVisibility);
@@ -40,8 +42,6 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
         }));
     };
 
-    console.log(data.legendFiles.nodes);
-
     return (
         <div className="absolute bottom-0 left-0 right-0">
             <svg
@@ -49,8 +49,16 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                 viewBox="0 0 1920 1080"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                {data.legendFiles.nodes.map(file => (
+                <image
+                    href={planets}
+                    x="0"
+                    y="0"
+                    width="1920"
+                    height="1080"
+                ></image>
+                {data.legendFiles.nodes.map((file, i) => (
                     <image
+                        key={i}
                         href={file.childImageSharp.gatsbyImageData.images.fallback.src}
                         x={x}
                         y={y}
@@ -60,9 +68,9 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                     ></image>
                 ))}
             </svg>
-            <div className="absolute top-1/2 left-0 p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md">
+            <div className="absolute bottom-1/4 left-0 text-lg p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md">
                 {imageVisibleArray.map(imageStringId => (
-                    <label key={imageStringId}>
+                    <label key={imageStringId} className="cursor-pointer">
                         <input
                             type="checkbox"
                             checked={imageVisibility[imageStringId]}

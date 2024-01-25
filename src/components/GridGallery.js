@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";

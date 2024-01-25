@@ -15,9 +15,11 @@ import MassiveMultiplayer from "./interactive/MassiveMultiplayer";
 
 // Images
 
-import fire_anim from '/src/assets/fire_anim.gif';
-import forest_speechBubble from '/src/assets/forest_speechBubble.png';
-
+import fire_anim from '/src/assets/fire_anim.gif'
+import forest_speechBubble from '/src/assets/forest_speechBubble.png'
+import trees_BG from '/src/assets/sections/presence/trees_BG.gif'
+import trees_MG from '/src/assets/sections/presence/trees_MG.gif'
+import trees_FG from '/src/assets/sections/presence/trees_FG.gif'
 
 import furnace from '/src/assets/sections/many-subjects/furnace.gif'
 import worker_whistling from '/src/assets/sections/many-subjects/worker_whistling.gif'
@@ -90,10 +92,8 @@ const SimpleSection = ({ props, index, children }) => {
     const imageArray = [
         {
             static: [
-                { url: 'forest_BG.png' },
-                { url: 'forest_MG1.png' },
+                { url: 'sections/presence/tree_shadows.png' },
                 { url: 'forest_MG2.png' },
-                { url: 'forest_FG.png' },
             ],
             interactive: [
                 {
@@ -118,7 +118,34 @@ const SimpleSection = ({ props, index, children }) => {
                     x: 1570,
                     y: 450,
                     zLevel: 1,
-                }
+                },
+                {
+                    interactionType: 'StaticImage',
+                    src: trees_BG,
+                    width: 1920,
+                    height: 1080,
+                    x: 0,
+                    y: 0,
+                    zLevel: 0,
+                },
+                {
+                    interactionType: 'StaticImage',
+                    src: trees_MG,
+                    width: 1920,
+                    height: 1080,
+                    x: 0,
+                    y: 0,
+                    zLevel: 0,
+                },
+                {
+                    interactionType: 'StaticImage',
+                    src: trees_FG,
+                    width: 1920,
+                    height: 1080,
+                    x: 0,
+                    y: 0,
+                    zLevel: 0,
+                },
             ]
         },
         {
@@ -185,14 +212,14 @@ const SimpleSection = ({ props, index, children }) => {
                     x: 1920-514,
                     y: 1080-447,
                 },
-                /*{
+                {
                     interactionType: "StaticImage",
                     src: Smog,
                     width: 1920,
                     height: 1080,
                     x: 0,
                     y: 0,
-                }*/
+                }
             ]
         },
         {
@@ -214,7 +241,6 @@ const SimpleSection = ({ props, index, children }) => {
         {
             static: [
                 { url: 'sections/massive-multiplayer/planet_BG.png' },
-                { url: 'sections/massive-multiplayer/planets.png' },
             ],
             interactive: [
                 {
@@ -223,7 +249,7 @@ const SimpleSection = ({ props, index, children }) => {
                     height: 1080,
                     x: 0,
                     y: 0,
-                    zLevel: 1,
+                    zLevel: 0,
                 }
             ]
         },
