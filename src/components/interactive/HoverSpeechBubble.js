@@ -28,7 +28,7 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
 
   let hoverStyle = isHovered ? activeStyle : inactiveStyle;
 
-  if (window.innerWidth <= 768) hoverStyle = activeStyle; // Always-on speech bubble when window is small (mobile)
+  //if (window.innerWidth <= 768) hoverStyle = activeStyle; // Always-on speech bubble when window is small (mobile)
 
   // TODO remove this obnoxious hack
   // There's nothing more permanent than a working temporary solution
