@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import HoverSquashStretch from "../interactive/HoverSquashStretch";
@@ -8,6 +8,8 @@ import HoverSpeechBubble from "../interactive/HoverSpeechBubble";
 import shark from "/src/assets/sections/new-worlds/shark.gif"
 import shark2 from "/src/assets/sections/new-worlds/shark2.gif"
 import shark3 from "/src/assets/sections/new-worlds/shark3.gif"
+
+import splash from "/src/assets/sections/new-worlds/splash.gif"
 
 const CounterComponent = ({ x, y, width, height }) => {
 
@@ -60,43 +62,43 @@ const CounterComponent = ({ x, y, width, height }) => {
     const [count, setCount] = useState(0);
     const [isHolding, setIsHolding] = useState(false);
 
-  const increment = () => {
-    setCount(Math.min(totalLength, count + 1));
-  };
-
-  const decrement = () => {
-    setCount(Math.max(0, count - 1));
-  };
-
-  const handleTouchStart = (e) => {
-    setIsHolding(true);
-  };
-
-  const handleTouchEnd = (e) => {
-    if (isHolding) {
-      increment();
-    }
-    setIsHolding(false);
-  };
-
-  useEffect(() => {
-    let timeout;
-
-    const handleHold = () => {
-      timeout = setTimeout(() => {
-        decrement();
-        setIsHolding(false); // Reset holding state after decrementing
-      }, 1000); // Decrease after 1 second
-
-      return () => clearTimeout(timeout);
+    const increment = () => {
+        setCount(Math.min(totalLength, count + 1));
     };
 
-    if (isHolding) {
-      handleHold();
-    }
+    const decrement = () => {
+        setCount(Math.max(0, count - 1));
+    };
 
-    return () => clearTimeout(timeout);
-  }, [isHolding]);
+    const handleTouchStart = (e) => {
+        setIsHolding(true);
+      };
+
+    const handleTouchEnd = (e) => {
+        if (isHolding) {
+            increment();
+        }
+        setIsHolding(false);
+    };
+
+    useEffect(() => {
+        let timeout;
+
+        const handleHold = () => {
+        timeout = setTimeout(() => {
+            decrement();
+            setIsHolding(false); // Reset holding state after decrementing
+        }, 1000); // Decrease after 1 second
+
+        return () => clearTimeout(timeout);
+        };
+
+        if (isHolding) {
+        handleHold();
+        }
+
+        return () => clearTimeout(timeout);
+    }, [isHolding]);
 
     data.terraformFiles.nodes = sortNodesBySuffix(data.terraformFiles.nodes);
     data.speechFiles.nodes = sortNodesBySuffix(data.speechFiles.nodes);
@@ -122,6 +124,23 @@ const CounterComponent = ({ x, y, width, height }) => {
         const ClickHitbox = ({ x, y }) => {
             return (
                 <>
+                    {isHolding && (
+                        <>
+                            <mask id="maskCircle" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+                                <rect width="1" height="1" fill="white" />
+                                <circle cx="0.5" cy="0.5" r="0.4" fill="black" />
+                            </mask>
+
+                            <ellipse
+                                mask="url(#maskCircle)"
+                                cx={x}
+                                cy={y}
+                                rx="100"
+                                ry="60"
+                                fill="rgba(255,255,255,0.25)"
+                            ></ellipse>
+                        </>
+                    )}
                     <ellipse
                         fill="rgba(0,255,0,0)"
                         cx={x}
@@ -141,10 +160,35 @@ const CounterComponent = ({ x, y, width, height }) => {
             );
         }
 
+        const SplashGif = () => {
+            const [isVisible, setIsVisible] = useState(true);
+        
+            useEffect(() => {
+                // Hide the splash after 1000ms
+                const timeoutId = setTimeout(() => {
+                    setIsVisible(false);
+                }, 500);
+        
+                // Clear the timeout when the component is unmounted
+                return () => clearTimeout(timeoutId);
+            }, []); // Empty dependency array ensures that the effect runs only once on mount
+        
+            // Render the image only if isVisible is true
+            return isVisible ? (
+                <image
+                    href={splash}
+                    x={1000}
+                    y={300}
+                    width={512}
+                ></image>
+            ) : null;
+        }
+
         switch (index) {
             case 0:
                 return (
                     <>
+                        <SplashGif />
                         <ClickHitbox x={1255} y={540} />
                         <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={495} />
                     </>
@@ -152,6 +196,7 @@ const CounterComponent = ({ x, y, width, height }) => {
             case 1:
                 return (
                     <>
+                        <SplashGif />
                         <ClickHitbox x={1255} y={540} />
                         <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={495} />
                     </>
@@ -223,7 +268,7 @@ const CounterComponent = ({ x, y, width, height }) => {
     }
 
     return (
-        <div onContextMenu={(e) => { e.preventDefault(); }} className="md:absolute bottom-0 left-0 right-0 w-[200vh] translate-x-[-10%]">
+        <div onContextMenu={(e) => { e.preventDefault(); }} className="w-[200vh] translate-x-[-10%] md:w-auto md:translate-x-0 md:absolute bottom-0 left-0 right-0">
             <svg
                 width="100%"
                 viewBox="0 0 1920 1080"

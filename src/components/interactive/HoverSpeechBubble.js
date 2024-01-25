@@ -16,13 +16,20 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
 
   let timeout = null;
 
-  const hoverStyle = isHovered ? {
+  let hoverStyle = isHovered ? {
     opacity: 1,
-    transform: `translateY(-${hitbox.height*1.5}px)`,
+    transform: `translateY(-100px)`,
   } : {
     opacity: 0,
     transform: `translateY(0px)`,
   };
+
+  if (window.innerWidth <= 768) {
+    hoverStyle = {
+      opacity: 1,
+      transform: `translateY(-100px)`,
+    }
+  }
 
   return (
     <>

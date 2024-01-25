@@ -96,11 +96,11 @@ const SimpleSection = ({ props, index, children }) => {
                         height: 174,
                     },
                     hitbox: {
-                        width: 50,
-                        height: 100,
+                        width: 100,
+                        height: 200,
                     },
-                    x: 1530,
-                    y: 360,
+                    x: 1570,
+                    y: 450,
                     zLevel: 1,
                 }
             ]
