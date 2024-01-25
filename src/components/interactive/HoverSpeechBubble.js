@@ -16,20 +16,23 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
 
   let timeout = null;
 
-  let hoverStyle = isHovered ? {
+  const activeStyle = {
     opacity: 1,
     transform: `translateY(-100px)`,
-  } : {
+  }
+
+  const inactiveStyle = {
     opacity: 0,
     transform: `translateY(0px)`,
-  };
-
-  if (window.innerWidth <= 768) {
-    hoverStyle = {
-      opacity: 1,
-      transform: `translateY(-100px)`,
-    }
   }
+
+  let hoverStyle = isHovered ? activeStyle : inactiveStyle;
+
+  if (window.innerWidth <= 768) hoverStyle = activeStyle; // Always-on speech bubble when window is small (mobile)
+
+  // TODO remove this obnoxious hack
+  // There's nothing more permanent than a working temporary solution
+  if (src.slice(src.length-21, src.length) === 'terraform_speech1.png') hoverStyle = activeStyle;
 
   return (
     <>

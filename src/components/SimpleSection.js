@@ -6,15 +6,29 @@ import WaveBackground from "./WaveBackground";
 
 // Interactive
 
+import StaticImage from "./interactive/StaticImage";
 import HoverSquashStretch from "./interactive/HoverSquashStretch";
 import HoverChangeImage from "./interactive/HoverChangeImage";
 import HoverSpeechBubble from "./interactive/HoverSpeechBubble";
 import SimpleTerraforming from "./interactive/SimpleTerraforming";
+import MassiveMultiplayer from "./interactive/MassiveMultiplayer";
 
 // Images
 
-import forest_fireanim from '/src/assets/fire_anim.gif';
+import fire_anim from '/src/assets/fire_anim.gif';
 import forest_speechBubble from '/src/assets/forest_speechBubble.png';
+
+
+import furnace from '/src/assets/sections/many-subjects/furnace.gif'
+import worker_whistling from '/src/assets/sections/many-subjects/worker_whistling.gif'
+import barrel1 from '/src/assets/sections/many-subjects/barrel1.gif'
+import barrel2 from '/src/assets/sections/many-subjects/barrel2.gif'
+import doctor_idle from '/src/assets/sections/many-subjects/doctor_idle.gif'
+import doctor_needle from '/src/assets/sections/many-subjects/doctor_needle.gif'
+import worker_sick_idle from '/src/assets/sections/many-subjects/worker_sick_idle.gif'
+import worker_sick_cough from '/src/assets/sections/many-subjects/worker_sick_cough.gif'
+import barrel_FG from '/src/assets/sections/many-subjects/barrel_FG.gif'
+import Smog from '/src/assets/sections/many-subjects/Smog.gif'
 
 const SimpleSection = ({ props, index, children }) => {
 
@@ -34,8 +48,8 @@ const SimpleSection = ({ props, index, children }) => {
             secondary: '#65bcc0',
         },
         {
-            main: '#34aebe',
-            secondary: '#1faabc',
+            main: '#3d5356',
+            secondary: '#4b686c',
         },
         {
             main: '#1c6e7a',
@@ -69,6 +83,8 @@ const SimpleSection = ({ props, index, children }) => {
 
     if (index === undefined) index = colourArray.length-1;
 
+    //if (props !== undefined) console.log(props.nodes);
+
     //Images
 
     const imageArray = [
@@ -82,7 +98,7 @@ const SimpleSection = ({ props, index, children }) => {
             interactive: [
                 {
                     interactionType: 'SquashStretch',
-                    src: forest_fireanim,
+                    src: fire_anim,
                     width: 150,
                     x: 1460,
                     y: 540,
@@ -107,11 +123,76 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             static: [
-                { url: 'inside_MG.png' },
-                { url: 'inside_FG.png' },
+                { url: "sections/many-subjects/BG.png" },
             ],
             interactive: [
-
+                {
+                    interactionType: "StaticImage",
+                    src: furnace,
+                    width: 351,
+                    height: 500,
+                    x: 0,
+                    y: 0,
+                    zLevel: 0,
+                },
+                {
+                    interactionType: "StaticImage",
+                    src: worker_whistling,
+                    width: 421,
+                    height: 421,
+                    x: 300,
+                    y: 50,
+                },
+                {
+                    interactionType: "StaticImage",
+                    src: barrel1,
+                    width: 230,
+                    height: 230,
+                    x: 700,
+                    y: 275,
+                },
+                {
+                    interactionType: "StaticImage",
+                    src: barrel2,
+                    width: 207,
+                    height: 207,
+                    x: 800,
+                    y: 325,
+                },
+                {
+                    interactionType: "ChangeImage",
+                    src: doctor_idle,
+                    altsrc: doctor_needle,
+                    width: 348,
+                    height: 348,
+                    x: 200,
+                    y: 450,
+                },
+                {
+                    interactionType: "ChangeImage",
+                    src: worker_sick_idle,
+                    altsrc: worker_sick_cough,
+                    width: 356,
+                    height: 356,
+                    x: 450,
+                    y: 400,
+                },
+                {
+                    interactionType: "StaticImage",
+                    src: barrel_FG,
+                    width: 514,
+                    height: 447,
+                    x: 1920-514,
+                    y: 1080-447,
+                },
+                /*{
+                    interactionType: "StaticImage",
+                    src: Smog,
+                    width: 1920,
+                    height: 1080,
+                    x: 0,
+                    y: 0,
+                }*/
             ]
         },
         {
@@ -132,14 +213,18 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             static: [
-                { url: 'mmo_desert.png' },
-                { url: 'mmo_temperate.png' },
-                { url: 'mmo_temperate2.png' },
-                { url: 'mmo_temperate3.png' },
-                { url: 'mmo_tundra.png' },
+                { url: 'sections/massive-multiplayer/planet_BG.png' },
+                { url: 'sections/massive-multiplayer/planets.png' },
             ],
             interactive: [
-
+                {
+                    interactionType: 'MassiveMultiplayer',
+                    width: 1920,
+                    height: 1080,
+                    x: 0,
+                    y: 0,
+                    zLevel: 1,
+                }
             ]
         },
     ];
@@ -180,6 +265,8 @@ const SimpleSection = ({ props, index, children }) => {
 
     const createInteractiveElement = (link, index) => {
         switch (link.interactionType) {
+            case 'StaticImage':
+                return <StaticImage key={index} src={link.src} width={link.width} height={link.height} x={link.x} y={link.y} />;
             case 'SquashStretch':
                 return <HoverSquashStretch key={index} src={link.src} width={link.width} x={link.x} y={link.y} />;
             case 'ChangeImage':
@@ -188,6 +275,8 @@ const SimpleSection = ({ props, index, children }) => {
                 return <HoverSpeechBubble key={index} src={link.src} bubble={link.bubble} hitbox={link.hitbox} x={link.x} y={link.y} />;
             case 'SimpleTerraforming':
                 return <SimpleTerraforming key={index} width={link.width} height={link.height} x={link.x} y={link.y} />;
+            case 'MassiveMultiplayer':
+                return <MassiveMultiplayer key={index} width={link.width} height={link.height} x={link.x} y={link.y} />;
             default:
                 return null;
         }
@@ -202,11 +291,13 @@ const SimpleSection = ({ props, index, children }) => {
             </div>
             
             {/* Interactive */}
-            {interactiveToDraw.length > 0 && (
+            {interactiveToDraw.length > 0 ? (
                 interactiveToDraw[0].interactionType === 'SimpleTerraforming' ? (
                     <SimpleTerraforming />
+                ) : interactiveToDraw[0].interactionType === 'MassiveMultiplayer' ? (
+                    <MassiveMultiplayer />
                 ) : (
-                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel/2)} className="absolute bottom-0 left-0 right-0">
+                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel / 2)} className="absolute bottom-0 left-0 right-0">
                         <svg
                             width="100%"
                             viewBox="0 0 1920 1080"
@@ -218,7 +309,7 @@ const SimpleSection = ({ props, index, children }) => {
                         </svg>
                     </Parallax>
                 )
-            )}
+            ) : null}
 
             {/*
             <img src={fireAnimGif} className="w-[8%] absolute top-[45%] left-[76%] transition-all ease-in hover:w-[10%] hover:left-[75%] hover:top-[42%]"></img>

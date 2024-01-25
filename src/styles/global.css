@@ -28,6 +28,8 @@
 
 body {
   font-family: 'Gill Sans Regular', sans-serif;
+  background-color: #35b3c2;
+  color: white;
 }
 
 h1, h2, h3, h4, h5, h6, button {
@@ -41,6 +43,10 @@ svg * {
 
 .largePagename {
   font-family: 'Gill Sans Condensed Bold';
+  text-shadow:  1px 1px 0 #aaa,
+                -1px 1px 0 #aaa,
+                1px -1px 0 #aaa,
+                -1px -1px 0 #aaa;
 }
 
 .blockquoteInner:before,

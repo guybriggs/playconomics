@@ -124,6 +124,7 @@ const CounterComponent = ({ x, y, width, height }) => {
         const ClickHitbox = ({ x, y }) => {
             return (
                 <>
+                    <SplashGif />
                     {isHolding && (
                         <>
                             <mask id="maskCircle" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
@@ -188,7 +189,6 @@ const CounterComponent = ({ x, y, width, height }) => {
             case 0:
                 return (
                     <>
-                        <SplashGif />
                         <ClickHitbox x={1255} y={540} />
                         <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={495} />
                     </>
@@ -196,7 +196,6 @@ const CounterComponent = ({ x, y, width, height }) => {
             case 1:
                 return (
                     <>
-                        <SplashGif />
                         <ClickHitbox x={1255} y={540} />
                         <HoverSpeechBubble src={getSrcForSpeechBubble(index)} bubble={bubble} hitbox={hitbox} x={1235} y={495} />
                     </>

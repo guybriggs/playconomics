@@ -25,11 +25,12 @@ const CoverImage = ({ onPlayClicked }) => {
 
   return (
     <div className="relative">
-      <img src={Website_Cover} alt="island2" className="w-full object-cover object-center" />
-      <div className="absolute top-0 left-0 w-full h-full object-center object-scale-down w-5/6 flex flex-col justify-center items-center cursor-pointer"
+      <img src={Website_Cover} alt="island2" className="w-full max-h-screen mb-8 md:mb-16 lg:mb-32 object-cover object-center" />
+      <div className="absolute top-0 left-0 w-full h-full object-center object-scale-down w-5/6 flex gap-0 md:gap-8 flex-col justify-center items-center cursor-pointer"
           onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} >
-        <img src={Playconomics_Text} alt="Playconomics" className="w-full md:w-3/4" />
-        <img src={playBtn} alt="Play video" className={`w-1/6 md:w-1/12 object-center transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
+        <img src={Playconomics_Text} alt="Playconomics" className="w-full md:w-1/2" />
+        <div className="largePagename hidden md:block text-3xl text-white font-black drop-shadow-lg">"An intimate massive multiplayer online world...<br></br>...where you can build your own aspirations.</div>
+        <img src={playBtn} alt="Play video" className={`w-1/6 md:w-[100px] object-center transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
       </div>
     </div>
   );
@@ -38,7 +39,7 @@ const CoverImage = ({ onPlayClicked }) => {
 const CoverVideo = ({ onFinished }) => {
   return (
     <div className="relative" onClick={onFinished}>
-      <video autoPlay className="w-full object-cover">
+      <video autoPlay className="w-full max-h-screen mb-8 md:mb-16 lg:mb-32 object-cover">
         <source src={trailerVideo} type="video/mp4"></source>
       </video>
     </div>

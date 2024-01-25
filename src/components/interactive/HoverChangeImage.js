@@ -7,9 +7,9 @@ const HoverChangeImage = ({ src, width, x, y, altsrc }) => {
   const handleMouseOut = () => { setIsHovered(false); };
 
   if (isHovered) {
-    return <image x={x} y={y} width={width} height={width} href={src} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}></image>;
-  } else {
     return <image x={x} y={y} width={width} height={width} href={altsrc} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}></image>;
+  } else {
+    return <image x={x} y={y} width={width} height={width} href={src} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}></image>;
   }
 
 }
