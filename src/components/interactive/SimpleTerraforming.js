@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import HoverSquashStretch from "../interactive/HoverSquashStretch";
@@ -9,6 +9,7 @@ import shark2 from "/src/assets/sections/new-worlds/shark2.gif"
 import shark3 from "/src/assets/sections/new-worlds/shark3.gif"
 
 import splash from "/src/assets/sections/new-worlds/splash.gif"
+import mouse_shovel_wobble from "/src/assets/sections/new-worlds/mouse_shovel_wobble.gif"
 
 const CounterComponent = ({ x, y, width, height }) => {
 
@@ -265,8 +266,68 @@ const CounterComponent = ({ x, y, width, height }) => {
         
     }
 
+    //////// //////// //////// //////// //////// //////// //////// //////// 
+    // Cutscene start
+    //////// //////// //////// //////// //////// //////// //////// //////// 
+
+    const [hasCutscenePlayed, setCutscenePlayed] = useState(false);
+
+    function playCutscene() {
+        let currentCount = count;
+
+        function incrementEmbedded() {
+            // No protections for lower than zero values.
+            setCount(Math.min(totalLength, currentCount + 1));
+            currentCount++;
+        }
+
+        setTimeout(() => { incrementEmbedded(); }, 800);
+        setTimeout(() => { incrementEmbedded(); }, 1600);
+        setTimeout(() => { incrementEmbedded(); }, 1800);
+        setTimeout(() => { setCutscenePlayed(true); }, 2800);
+    }
+
+    const targetRef = useRef(null);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Element is in the viewport
+            // Perform the desired effect here
+            console.log('Starting SimpleTerraforming cutscene!');
+            
+            if (!hasCutscenePlayed) {
+                playCutscene();
+            }
+            
+            // You can also remove the observer if you only want the effect to occur once
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.5 }); // Adjust the threshold as needed
+  
+      // Start observing the target element
+      if (targetRef.current) {
+        observer.observe(targetRef.current);
+      }
+  
+      // Cleanup the observer when the component unmounts
+      return () => {
+        observer.disconnect();
+      };
+    }, []); // Empty dependency array ensures the effect runs only once on mount
+
+
+
+    //////// //////// //////// //////// //////// //////// //////// //////// 
+    // Cutscene end
+    //////// //////// //////// //////// //////// //////// //////// //////// 
+
+
+
     return (
-        <div onContextMenu={(e) => { e.preventDefault(); }} className="w-[200vh] translate-x-[-10%] md:w-auto md:translate-x-0 md:absolute bottom-0 left-0 right-0">
+        <div ref={targetRef} onContextMenu={(e) => { e.preventDefault(); }} className="w-[200vh] translate-x-[-10%] md:w-auto md:translate-x-0 md:absolute bottom-0 left-0 right-0">
             <svg
                 width="100%"
                 viewBox="0 0 1920 1080"
@@ -279,6 +340,14 @@ const CounterComponent = ({ x, y, width, height }) => {
                     width={width}
                     height={height}
                 ></image>
+                {!hasCutscenePlayed && (
+                    <image
+                        href={mouse_shovel_wobble}
+                        x={1250}
+                        y={550}
+                        width={64}
+                    ></image>
+                )}
                 {addOtherElements(count)}
             </svg>
         </div>

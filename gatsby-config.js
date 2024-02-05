@@ -7,6 +7,12 @@ module.exports = {
     siteUrl: `https://playconomics.com`
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/assets/favicon/icon.png',
+      },
+    },
     "gatsby-plugin-postcss",
     // `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-static-cms`,

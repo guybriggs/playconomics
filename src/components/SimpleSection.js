@@ -67,15 +67,15 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             main: '#152530',
-            secondary: '#152530',
+            secondary: '#1f3747',
         },
         {
             main: '#171e27',
-            secondary: '#171e27',
+            secondary: '#1c2530',
         },
         {
             main: '#13161a',
-            secondary: '#13161a',
+            secondary: '#1f262d',
         }
     ];
 
@@ -92,8 +92,10 @@ const SimpleSection = ({ props, index, children }) => {
     const imageArray = [
         {
             static: [
-                { url: 'sections/presence/tree_shadows.png' },
+                /*{ url: 'sections/presence/tree_shadows.png' },*/
                 { url: 'forest_MG2.png' },
+                { url: 'sections/presence/forest_BG_static.png' },
+                { url: 'sections/presence/forest_MG_static.png' },
             ],
             interactive: [
                 {
@@ -119,7 +121,7 @@ const SimpleSection = ({ props, index, children }) => {
                     y: 450,
                     zLevel: 1,
                 },
-                {
+                /*{
                     interactionType: 'StaticImage',
                     src: trees_BG,
                     width: 1920,
@@ -136,7 +138,7 @@ const SimpleSection = ({ props, index, children }) => {
                     x: 0,
                     y: 0,
                     zLevel: 0,
-                },
+                },*/
                 {
                     interactionType: 'StaticImage',
                     src: trees_FG,
@@ -212,14 +214,14 @@ const SimpleSection = ({ props, index, children }) => {
                     x: 1920-514,
                     y: 1080-447,
                 },
-                {
+                /*{
                     interactionType: "StaticImage",
                     src: Smog,
                     width: 1920,
                     height: 1080,
                     x: 0,
                     y: 0,
-                }
+                }*/
             ]
         },
         {

@@ -5,7 +5,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 
 const Layout = ({ children }) => {
     return (
-    <ParallaxProvider style={{ cursor: 'url(/src/assets/mmo_mouse.png),auto' }}>
+    <ParallaxProvider>
         <div className='overflow-hidden'>
             <div id="home"></div>
             <Nav />

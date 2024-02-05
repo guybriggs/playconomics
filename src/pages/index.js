@@ -62,15 +62,28 @@ const IndexPage = ({ data }) => {
       setPlayVideo(false);
     };
 
+    console.log(content);
+    console.log(content.slice(0, 4));
+    console.log(content.slice(4));
+
     return (
     <Layout>
 
         {!playVideo && <CoverImage onPlayClicked={onPlayClicked} />}
         {playVideo && <CoverVideo onFinished={onFinished} />}
 
-        {content.map((link, index) => (
+        {content.slice(0, content.length-2).map((link, index) => (
           <SimpleSection key={index} index={index} props={data.assetsFolder}>
               <div className="w-full md:w-1/2 lg:w-1/3">
+                <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
+                <p className="text-xl md:text-2xl">{link.body}</p>
+              </div>
+          </SimpleSection>
+        ))}
+
+        {content.slice(content.length-2).map((link, index) => (
+          <SimpleSection key={index} index={4 + index} props={data.assetsFolder}>
+              <div className="w-full md:px-32 lg:px-64">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
               </div>
@@ -87,7 +100,7 @@ const IndexPage = ({ data }) => {
         <SimpleSection index={8}>
           <div className="w-full">
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">Our Collaborators</h1>
-            <div className="w-full my-8 p-8] rounded">
+            <div className="w-full my-8 p-8 rounded-lg bg-[rgba(255,255,255,0.85)]">
               <Partners />
             </div>
           </div>
