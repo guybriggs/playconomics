@@ -11,6 +11,7 @@ import ScrollVideo from "../components/ScrollVideo"
 import play2024_trailer from "/src/assets/play2024_trailer.mp4"
 import Presence from '/src/assets/Presence.mp4'
 import OneGameManySubjectsAnimLQ from '/src/assets/OneGameManySubjectsAnimLQ.mp4'
+import ManySubjectsLonger from '/src/assets/ManySubjectsLonger.mp4'
 
 // Interactive
 
@@ -107,8 +108,18 @@ const SimpleSection = ({ props, index, children }) => {
                 { url: 'forest_MG2.png' },
                 { url: 'sections/presence/forest_BG_static.png' },
                 { url: 'sections/presence/forest_MG_static.png' },
+                { url: 'sections/presence/forest_FG_static.png' },
             ],
             interactive: [
+                {
+                    interactionType: 'StaticImage',
+                    src: trees_FG,
+                    width: 1920,
+                    height: 1080,
+                    x: 0,
+                    y: 0,
+                    zLevel: 0,
+                },
                 {
                     interactionType: 'SquashStretch',
                     src: fire_anim,
@@ -150,15 +161,6 @@ const SimpleSection = ({ props, index, children }) => {
                     y: 0,
                     zLevel: 0,
                 },*/
-                {
-                    interactionType: 'StaticImage',
-                    src: trees_FG,
-                    width: 1920,
-                    height: 1080,
-                    x: 0,
-                    y: 0,
-                    zLevel: 0,
-                },
             ]
         },
         {
@@ -166,9 +168,50 @@ const SimpleSection = ({ props, index, children }) => {
                 src: {OneGameManySubjectsAnimLQ}
             },
             static: [
-
+                { url: 'sections/many-subjects/BG.png' },
             ],
             interactive: [
+                {
+                    interactionType: "StaticImage",
+                    src: furnace,
+                    width: 351,
+                    height: 500,
+                    x: 0,
+                    y: 0,
+                    zLevel: 0,
+                },
+                {
+                    interactionType: "StaticImage",
+                    src: worker_whistling,
+                    width: 421,
+                    height: 421,
+                    x: 300,
+                    y: 50,
+                },
+                {
+                    interactionType: "StaticImage",
+                    src: barrel1,
+                    width: 230,
+                    height: 230,
+                    x: 700,
+                    y: 275,
+                },
+                {
+                    interactionType: "StaticImage",
+                    src: barrel2,
+                    width: 207,
+                    height: 207,
+                    x: 800,
+                    y: 325,
+                },
+                {
+                    interactionType: "StaticImage",
+                    src: barrel_FG,
+                    width: 514,
+                    height: 447,
+                    x: 1920-514,
+                    y: 1080-447,
+                },
                 {
                     interactionType: "ChangeImage",
                     src: doctor_idle,
@@ -209,7 +252,7 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             static: [
-                { url: 'sections/massive-multiplayer/planet_BG.png' },
+                { url: 'sections/massive-multiplayer/stars.png' },
             ],
             interactive: [
                 {
@@ -337,17 +380,17 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <Parallax key={ind} translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0">
+                <Parallax key={ind} translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0 z-[-1]">
                     <GatsbyImage image={getImage(imageDataFromName(link.url))} alt="" />
                 </Parallax>
             ))}
 
-            {/* Video */}
+            {/* Video 
             {videoToDraw && (
                 <div className="absolute bottom-0 left-0 right-0 z-[-1]">
-                    <ScrollVideo videoSource={OneGameManySubjectsAnimLQ} />
+                    <ScrollVideo videoSource={videoToDraw} />
                 </div>
-            )}
+            )}*/}
         </section>
     );
 

@@ -45,10 +45,11 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
 
     const [imageVisibility, setImageVisibility] = useState({
         students: true,
-        agents: false,
-        weather: false,
-        trade: false,
         coordinates: false,
+        players: false,
+        spacetrade: false,
+        trade: false,
+        weather: false,
     });
 
     const imageVisibleArray = Object.keys(imageVisibility);
@@ -111,11 +112,13 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
     const [hasCutscenePlayed, setCutscenePlayed] = useState(false);
 
     function playCutscene() {
-        setTimeout(() => { handleCheckboxChange('agents'); }, 1000);
-        setTimeout(() => { handleCheckboxChange('weather'); }, 2000);
-        setTimeout(() => { handleCheckboxChange('trade'); }, 3000);
-        setTimeout(() => { handleCheckboxChange('coordinates'); }, 4000);
-        setTimeout(() => { setCutscenePlayed(true); }, 5000);
+        setTimeout(() => { handleCheckboxChange('coordinates'); }, 1000);
+        setTimeout(() => { handleCheckboxChange('players'); }, 2000);
+        setTimeout(() => { handleCheckboxChange('spacetrade'); }, 3000);
+        setTimeout(() => { handleCheckboxChange('trade'); }, 4000);
+        setTimeout(() => { handleCheckboxChange('weather'); }, 5000);
+        setTimeout(() => { handleCheckboxChange('students'); }, 6000);
+        setTimeout(() => { setCutscenePlayed(true); }, 6000);
     }
 
     const getSrcForSpeechBubble = (num) => {
@@ -147,19 +150,6 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                         style={{ display: imageVisibility[file.name] ? 'block' : 'none' }}
                     ></image>
                 ))}
-                <HoverSpeechBubble
-                    src={getSrcForSpeechBubble(0)}
-                    bubble={{
-                        width: 512,
-                        height: 512,
-                    }}
-                    hitbox={{
-                        width: 30,
-                        height: 60,
-                    }}
-                    x={1235}
-                    y={495}
-                />
                 {!hasCutscenePlayed && (
                     <image
                         href={mmo_mouse}
@@ -172,12 +162,64 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                             attributeType="XML"
                             type="translate"
                             values="0 0; 0 100;"
-                            dur="5s"
+                            dur="6000ms"
                             repeatCount="once"
                             fill="freeze"
                         />
                     </image>
                 )}
+                <HoverSpeechBubble
+                    src={getSrcForSpeechBubble(0)}
+                    bubble={{
+                        width: 256,
+                        height: 256,
+                    }}
+                    hitbox={{
+                        width: 256,
+                        height: 256,
+                    }}
+                    x={20}
+                    y={190}
+                />
+                <HoverSpeechBubble
+                    src={getSrcForSpeechBubble(1)}
+                    bubble={{
+                        width: 256,
+                        height: 256,
+                    }}
+                    hitbox={{
+                        width: 256,
+                        height: 256,
+                    }}
+                    x={380}
+                    y={520}
+                />
+                <HoverSpeechBubble
+                    src={getSrcForSpeechBubble(2)}
+                    bubble={{
+                        width: 256,
+                        height: 256,
+                    }}
+                    hitbox={{
+                        width: 256,
+                        height: 256,
+                    }}
+                    x={280}
+                    y={800}
+                />
+                <HoverSpeechBubble
+                    src={getSrcForSpeechBubble(3)}
+                    bubble={{
+                        width: 256,
+                        height: 256,
+                    }}
+                    hitbox={{
+                        width: 256,
+                        height: 256,
+                    }}
+                    x={950}
+                    y={750}
+                />
             </svg>
             <div className="absolute bottom-1/4 left-0 text-lg p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md">
                 {imageVisibleArray.map(imageStringId => (
