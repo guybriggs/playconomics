@@ -101,9 +101,6 @@ const SimpleSection = ({ props, index, children }) => {
 
     const imageArray = [
         {
-            video: {
-                src: {Presence}
-            },
             static: [
                 { url: 'sections/presence/forest_BG_static.png' },
                 { url: 'sections/presence/forest_MG_static.png' },
@@ -145,22 +142,12 @@ const SimpleSection = ({ props, index, children }) => {
             ]
         },
         {
-            video: {
-                src: {OneGameManySubjectsAnimLQ}
-            },
             static: [
-                { url: 'sections/many-subjects/BG.png' },
+                { url: 'sections/many-subjects/Window_static.png' },
+                { url: 'sections/many-subjects/inside_MG_static.png' },
+                { url: 'sections/many-subjects/Smog_static.png' },
             ],
             interactive: [
-                {
-                    interactionType: "StaticImage",
-                    src: furnace,
-                    width: 351,
-                    height: 500,
-                    x: 0,
-                    y: 0,
-                    zLevel: 0,
-                },
                 {
                     interactionType: "StaticImage",
                     src: worker_whistling,
@@ -168,30 +155,7 @@ const SimpleSection = ({ props, index, children }) => {
                     height: 421,
                     x: 300,
                     y: 50,
-                },
-                {
-                    interactionType: "StaticImage",
-                    src: barrel1,
-                    width: 230,
-                    height: 230,
-                    x: 700,
-                    y: 275,
-                },
-                {
-                    interactionType: "StaticImage",
-                    src: barrel2,
-                    width: 207,
-                    height: 207,
-                    x: 800,
-                    y: 325,
-                },
-                {
-                    interactionType: "StaticImage",
-                    src: barrel_FG,
-                    width: 514,
-                    height: 447,
-                    x: 1920-514,
-                    y: 1080-447,
+                    zLevel: 1,
                 },
                 {
                     interactionType: "ChangeImage",
@@ -199,9 +163,8 @@ const SimpleSection = ({ props, index, children }) => {
                     altsrc: doctor_needle,
                     width: 348,
                     height: 348,
-                    x: 150,
-                    y: 250,
-                    zLevel: 0,
+                    x: 200,
+                    y: 350,
                 },
                 {
                     interactionType: "ChangeImage",
@@ -209,9 +172,8 @@ const SimpleSection = ({ props, index, children }) => {
                     altsrc: worker_sick_cough,
                     width: 356,
                     height: 356,
-                    x: 450,
-                    y: 300,
-                    zLevel: 0,
+                    x: 500,
+                    y: 400,
                 }
             ]
         },
@@ -361,7 +323,12 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <Parallax key={ind} translateX={multiplyValues(translateY, ind-Math.floor(imagesToDraw.length/2))} translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0 z-[-1]">
+                <Parallax
+                    key={ind}
+                    translateX={multiplyValues(translateY, ind-Math.floor(imagesToDraw.length/2))}
+                    translateY={multiplyValues(translateY, ind / 2)}
+                    className="absolute bottom-0 left-0 right-0 z-[-1]"
+                >
                     <GatsbyImage image={getImage(imageDataFromName(link.url))} alt="" />
                 </Parallax>
             ))}

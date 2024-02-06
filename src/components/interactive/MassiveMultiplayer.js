@@ -117,7 +117,6 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
         setTimeout(() => { handleCheckboxChange('spacetrade'); }, 3000);
         setTimeout(() => { handleCheckboxChange('trade'); }, 4000);
         setTimeout(() => { handleCheckboxChange('weather'); }, 5000);
-        setTimeout(() => { handleCheckboxChange('students'); }, 6000);
         setTimeout(() => { setCutscenePlayed(true); }, 6000);
     }
 
