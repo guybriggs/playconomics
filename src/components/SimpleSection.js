@@ -24,6 +24,7 @@ import MassiveMultiplayer from "./interactive/MassiveMultiplayer"
 
 // Images
 
+import forest_MG_static_2 from '/src/assets/sections/presence/forest_MG_static_2.png'
 import fire_anim from '/src/assets/fire_anim.gif'
 import forest_speechBubble from '/src/assets/forest_speechBubble.png'
 import trees_BG from '/src/assets/sections/presence/trees_BG.gif'
@@ -104,8 +105,6 @@ const SimpleSection = ({ props, index, children }) => {
                 src: {Presence}
             },
             static: [
-                /*{ url: 'sections/presence/tree_shadows.png' },*/
-                { url: 'forest_MG2.png' },
                 { url: 'sections/presence/forest_BG_static.png' },
                 { url: 'sections/presence/forest_MG_static.png' },
                 { url: 'sections/presence/forest_FG_static.png' },
@@ -113,12 +112,12 @@ const SimpleSection = ({ props, index, children }) => {
             interactive: [
                 {
                     interactionType: 'StaticImage',
-                    src: trees_FG,
+                    src: forest_MG_static_2,
                     width: 1920,
                     height: 1080,
                     x: 0,
                     y: 0,
-                    zLevel: 0,
+                    zLevel: 2,
                 },
                 {
                     interactionType: 'SquashStretch',
@@ -143,24 +142,6 @@ const SimpleSection = ({ props, index, children }) => {
                     y: 450,
                     zLevel: 1,
                 },
-                /*{
-                    interactionType: 'StaticImage',
-                    src: trees_BG,
-                    width: 1920,
-                    height: 1080,
-                    x: 0,
-                    y: 0,
-                    zLevel: 0,
-                },
-                {
-                    interactionType: 'StaticImage',
-                    src: trees_MG,
-                    width: 1920,
-                    height: 1080,
-                    x: 0,
-                    y: 0,
-                    zLevel: 0,
-                },*/
             ]
         },
         {
@@ -380,7 +361,7 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <Parallax key={ind} translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0 z-[-1]">
+                <Parallax key={ind} translateX={multiplyValues(translateY, ind-Math.floor(imagesToDraw.length/2))} translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0 z-[-1]">
                     <GatsbyImage image={getImage(imageDataFromName(link.url))} alt="" />
                 </Parallax>
             ))}

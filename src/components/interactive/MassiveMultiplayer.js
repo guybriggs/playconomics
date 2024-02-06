@@ -44,7 +44,7 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
     `);
 
     const [imageVisibility, setImageVisibility] = useState({
-        students: true,
+        agents: true,
         coordinates: false,
         players: false,
         spacetrade: false,
