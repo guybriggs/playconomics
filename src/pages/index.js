@@ -62,10 +62,6 @@ const IndexPage = ({ data }) => {
       setPlayVideo(false);
     };
 
-    console.log(content);
-    console.log(content.slice(0, 4));
-    console.log(content.slice(4));
-
     return (
     <Layout>
 

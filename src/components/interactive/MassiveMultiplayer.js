@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
+import HoverSpeechBubble from "../interactive/HoverSpeechBubble"
+
 import planets from "/src/assets/sections/massive-multiplayer/planets.png"
+import mmo_mouse from "/src/assets/mmo_mouse.png"
 
 const MassiveMultiplayer = ({ x, y, width, height }) => {
 
@@ -22,14 +25,29 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                     }
                 }
             }
+            hoverFiles: allFile(
+                filter: { sourceInstanceName: { eq: "assets" }, relativeDirectory: { eq: "sections/massive-multiplayer/hover" } }
+            ) {
+                nodes {
+                    name
+                    relativePath
+                    childImageSharp {
+                        gatsbyImageData(
+                            layout: FULL_WIDTH,
+                            placeholder: BLURRED,
+                            quality: 90
+                        )
+                    }
+                }
+            }
         }
     `);
 
     const [imageVisibility, setImageVisibility] = useState({
-        students: false,
+        students: true,
         agents: false,
         weather: false,
-        trade: true,
+        trade: false,
         coordinates: false,
     });
 
@@ -93,11 +111,15 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
     const [hasCutscenePlayed, setCutscenePlayed] = useState(false);
 
     function playCutscene() {
-        setTimeout(() => { handleCheckboxChange('students'); }, 1000);
-        setTimeout(() => { handleCheckboxChange('agents'); }, 2000);
-        setTimeout(() => { handleCheckboxChange('weather'); }, 3000);
-        setTimeout(() => { handleCheckboxChange('trade'); }, 4000);
-        setTimeout(() => { handleCheckboxChange('coordinates'); }, 5000);
+        setTimeout(() => { handleCheckboxChange('agents'); }, 1000);
+        setTimeout(() => { handleCheckboxChange('weather'); }, 2000);
+        setTimeout(() => { handleCheckboxChange('trade'); }, 3000);
+        setTimeout(() => { handleCheckboxChange('coordinates'); }, 4000);
+        setTimeout(() => { setCutscenePlayed(true); }, 5000);
+    }
+
+    const getSrcForSpeechBubble = (num) => {
+        return data.hoverFiles.nodes[num].childImageSharp.gatsbyImageData.images.fallback.src;
     }
 
     return (
@@ -125,6 +147,37 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                         style={{ display: imageVisibility[file.name] ? 'block' : 'none' }}
                     ></image>
                 ))}
+                <HoverSpeechBubble
+                    src={getSrcForSpeechBubble(0)}
+                    bubble={{
+                        width: 512,
+                        height: 512,
+                    }}
+                    hitbox={{
+                        width: 30,
+                        height: 60,
+                    }}
+                    x={1235}
+                    y={495}
+                />
+                {!hasCutscenePlayed && (
+                    <image
+                        href={mmo_mouse}
+                        x={250}
+                        y={600}
+                        width={64}
+                    >
+                        <animateTransform
+                            attributeName="transform"
+                            attributeType="XML"
+                            type="translate"
+                            values="0 0; 0 100;"
+                            dur="5s"
+                            repeatCount="once"
+                            fill="freeze"
+                        />
+                    </image>
+                )}
             </svg>
             <div className="absolute bottom-1/4 left-0 text-lg p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md">
                 {imageVisibleArray.map(imageStringId => (

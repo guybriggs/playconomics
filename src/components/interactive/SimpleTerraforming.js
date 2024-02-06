@@ -9,6 +9,7 @@ import shark2 from "/src/assets/sections/new-worlds/shark2.gif"
 import shark3 from "/src/assets/sections/new-worlds/shark3.gif"
 
 import splash from "/src/assets/sections/new-worlds/splash.gif"
+import splash_once from "/src/assets/sections/new-worlds/splash_once.gif"
 import mouse_shovel_wobble from "/src/assets/sections/new-worlds/mouse_shovel_wobble.gif"
 
 const CounterComponent = ({ x, y, width, height }) => {
@@ -77,6 +78,7 @@ const CounterComponent = ({ x, y, width, height }) => {
     const handleTouchEnd = (e) => {
         if (isHolding) {
             increment();
+            handleClick();
         }
         setIsHolding(false);
     };
@@ -85,16 +87,17 @@ const CounterComponent = ({ x, y, width, height }) => {
         let timeout;
 
         const handleHold = () => {
-        timeout = setTimeout(() => {
-            decrement();
-            setIsHolding(false); // Reset holding state after decrementing
-        }, 1000); // Decrease after 1 second
+            timeout = setTimeout(() => {
+                decrement();
+                handleClick();
+                setIsHolding(false); // Reset holding state after decrementing
+            }, 1000); // Decrease after 1 second
 
-        return () => clearTimeout(timeout);
+            return () => clearTimeout(timeout);
         };
 
         if (isHolding) {
-        handleHold();
+            handleHold();
         }
 
         return () => clearTimeout(timeout);
@@ -121,10 +124,9 @@ const CounterComponent = ({ x, y, width, height }) => {
             height: 60,
         }
 
-        const ClickHitbox = ({ x, y }) => {
+        const ClickHitbox = ({ index, x, y }) => {
             return (
                 <>
-                    <SplashGif />
                     {isHolding && (
                         <>
                             <mask id="maskCircle" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
@@ -159,30 +161,6 @@ const CounterComponent = ({ x, y, width, height }) => {
                     <HoverSquashStretch src={shark3} width={100} x={1300} y={600} />
                 </>
             );
-        }
-
-        const SplashGif = () => {
-            const [isVisible, setIsVisible] = useState(true);
-        
-            useEffect(() => {
-                // Hide the splash after 1000ms
-                const timeoutId = setTimeout(() => {
-                    setIsVisible(false);
-                }, 500);
-        
-                // Clear the timeout when the component is unmounted
-                return () => clearTimeout(timeoutId);
-            }, []); // Empty dependency array ensures that the effect runs only once on mount
-        
-            // Render the image only if isVisible is true
-            return isVisible ? (
-                <image
-                    href={splash}
-                    x={1000}
-                    y={300}
-                    width={512}
-                ></image>
-            ) : null;
         }
 
         switch (index) {
@@ -279,6 +257,7 @@ const CounterComponent = ({ x, y, width, height }) => {
             // No protections for lower than zero values.
             setCount(Math.min(totalLength, currentCount + 1));
             currentCount++;
+            handleClick(); // Play splash animation
         }
 
         setTimeout(() => { incrementEmbedded(); }, 800);
@@ -318,11 +297,35 @@ const CounterComponent = ({ x, y, width, height }) => {
       };
     }, []); // Empty dependency array ensures the effect runs only once on mount
 
-
-
     //////// //////// //////// //////// //////// //////// //////// //////// 
     // Cutscene end
     //////// //////// //////// //////// //////// //////// //////// //////// 
+
+
+
+
+    // Splash gif
+    const [showSplashGif, setShowSplashGif] = useState(false);
+
+    const handleClick = () => {
+      setShowSplashGif(true);
+  
+      setTimeout(() => {
+        setShowSplashGif(false);
+      }, 500);
+    };
+
+    const SplashGif = () => {
+        return (
+            <image
+                key={showSplashGif}
+                href={splash}
+                x={1000}
+                y={300}
+                width={512}
+            ></image>
+        );
+    };
 
 
 
@@ -348,6 +351,7 @@ const CounterComponent = ({ x, y, width, height }) => {
                         width={64}
                     ></image>
                 )}
+                {showSplashGif && <SplashGif />}
                 {addOtherElements(count)}
             </svg>
         </div>

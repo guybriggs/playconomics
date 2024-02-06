@@ -1,17 +1,25 @@
-import React from "react";
-import { Parallax } from 'react-scroll-parallax';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import React, { useState, useEffect } from "react"
+import { Parallax } from 'react-scroll-parallax'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-import WaveBackground from "./WaveBackground";
+import WaveBackground from "./WaveBackground"
+
+import ScrollVideo from "../components/ScrollVideo"
+
+// Video
+
+import play2024_trailer from "/src/assets/play2024_trailer.mp4"
+import Presence from '/src/assets/Presence.mp4'
+import OneGameManySubjectsAnimLQ from '/src/assets/OneGameManySubjectsAnimLQ.mp4'
 
 // Interactive
 
-import StaticImage from "./interactive/StaticImage";
-import HoverSquashStretch from "./interactive/HoverSquashStretch";
-import HoverChangeImage from "./interactive/HoverChangeImage";
-import HoverSpeechBubble from "./interactive/HoverSpeechBubble";
-import SimpleTerraforming from "./interactive/SimpleTerraforming";
-import MassiveMultiplayer from "./interactive/MassiveMultiplayer";
+import StaticImage from "./interactive/StaticImage"
+import HoverSquashStretch from "./interactive/HoverSquashStretch"
+import HoverChangeImage from "./interactive/HoverChangeImage"
+import HoverSpeechBubble from "./interactive/HoverSpeechBubble"
+import SimpleTerraforming from "./interactive/SimpleTerraforming"
+import MassiveMultiplayer from "./interactive/MassiveMultiplayer"
 
 // Images
 
@@ -91,6 +99,9 @@ const SimpleSection = ({ props, index, children }) => {
 
     const imageArray = [
         {
+            video: {
+                src: {Presence}
+            },
             static: [
                 /*{ url: 'sections/presence/tree_shadows.png' },*/
                 { url: 'forest_MG2.png' },
@@ -151,51 +162,22 @@ const SimpleSection = ({ props, index, children }) => {
             ]
         },
         {
+            video: {
+                src: {OneGameManySubjectsAnimLQ}
+            },
             static: [
-                { url: "sections/many-subjects/BG.png" },
+
             ],
             interactive: [
-                {
-                    interactionType: "StaticImage",
-                    src: furnace,
-                    width: 351,
-                    height: 500,
-                    x: 0,
-                    y: 0,
-                    zLevel: 0,
-                },
-                {
-                    interactionType: "StaticImage",
-                    src: worker_whistling,
-                    width: 421,
-                    height: 421,
-                    x: 300,
-                    y: 50,
-                },
-                {
-                    interactionType: "StaticImage",
-                    src: barrel1,
-                    width: 230,
-                    height: 230,
-                    x: 700,
-                    y: 275,
-                },
-                {
-                    interactionType: "StaticImage",
-                    src: barrel2,
-                    width: 207,
-                    height: 207,
-                    x: 800,
-                    y: 325,
-                },
                 {
                     interactionType: "ChangeImage",
                     src: doctor_idle,
                     altsrc: doctor_needle,
                     width: 348,
                     height: 348,
-                    x: 200,
-                    y: 450,
+                    x: 150,
+                    y: 250,
+                    zLevel: 0,
                 },
                 {
                     interactionType: "ChangeImage",
@@ -204,24 +186,9 @@ const SimpleSection = ({ props, index, children }) => {
                     width: 356,
                     height: 356,
                     x: 450,
-                    y: 400,
-                },
-                {
-                    interactionType: "StaticImage",
-                    src: barrel_FG,
-                    width: 514,
-                    height: 447,
-                    x: 1920-514,
-                    y: 1080-447,
-                },
-                /*{
-                    interactionType: "StaticImage",
-                    src: Smog,
-                    width: 1920,
-                    height: 1080,
-                    x: 0,
-                    y: 0,
-                }*/
+                    y: 300,
+                    zLevel: 0,
+                }
             ]
         },
         {
@@ -260,10 +227,12 @@ const SimpleSection = ({ props, index, children }) => {
     const imageIndex = index % imageArray.length;
     let imagesToDraw = imageArray[imageIndex].static;
     let interactiveToDraw = imageArray[imageIndex].interactive;
+    let videoToDraw = imageArray[imageIndex].video ? imageArray[imageIndex].video : null;
 
     if (index >= 4) {
         imagesToDraw = [];
         interactiveToDraw = [];
+        videoToDraw = null;
     }
 
     let main = '#FFF';
@@ -325,7 +294,7 @@ const SimpleSection = ({ props, index, children }) => {
                 ) : interactiveToDraw[0].interactionType === 'MassiveMultiplayer' ? (
                     <MassiveMultiplayer />
                 ) : (
-                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel / 2)} className="absolute bottom-0 left-0 right-0">
+                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel / 2)} className="absolute bottom-0 left-0 right-0 z-10">
                         <svg
                             width="100%"
                             viewBox="0 0 1920 1080"
@@ -365,14 +334,20 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Waves */}
             <WaveBackground index={index} main={main} secondary={secondary} translateX={translateX} translateY={translateY} />
-            
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <Parallax key={ind} translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0 z-[-1]">
+                <Parallax key={ind} translateY={multiplyValues(translateY, ind/2)} className="absolute bottom-0 left-0 right-0">
                     <GatsbyImage image={getImage(imageDataFromName(link.url))} alt="" />
                 </Parallax>
             ))}
+
+            {/* Video */}
+            {videoToDraw && (
+                <div className="absolute bottom-0 left-0 right-0 z-[-1]">
+                    <ScrollVideo videoSource={OneGameManySubjectsAnimLQ} />
+                </div>
+            )}
         </section>
     );
 

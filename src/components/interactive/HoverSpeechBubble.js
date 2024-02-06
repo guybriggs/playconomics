@@ -37,7 +37,7 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
   return (
     <>
       <rect
-        fill="rgba(0,0,0,0)"
+        fill="rgba(0,0,0,0.25)"
         x={x - bubble.width/2 + hitbox.width/2}
         y={y - bubble.height/2 + hitbox.height/2}
         width={bubble.width}
@@ -55,7 +55,7 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
         className="transition-all ease-out duration-300 pointer-events-none"
       ></image>
       <rect
-        fill="rgba(0,0,0,0)"
+        fill="rgba(0,0,0,0.25)"
         x={x}
         y={y}
         width={hitbox.width}
