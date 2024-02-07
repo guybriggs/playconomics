@@ -273,7 +273,7 @@ const SimpleSection = ({ props, index, children }) => {
         <section className="relative flex flex-col justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
 
             {/* Content */}
-            <div className="w-full md:max-w-[1280px] flex p-8 z-40" style={orderStyle}>
+            <div className="w-full md:max-w-[1280px] flex p-8 z-20" style={orderStyle}>
                 {children}
             </div>
             
@@ -291,7 +291,7 @@ const SimpleSection = ({ props, index, children }) => {
                 ) : interactiveToDraw[0].interactionType === 'MassiveMultiplayer' ? (
                     <MassiveMultiplayer />
                 ) : (
-                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel / 2)} className="absolute bottom-0 left-0 right-0 z-10">
+                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel / 2)} className="absolute bottom-0 left-0 right-0 z-30">
                         <svg
                             width="100%"
                             viewBox="0 0 1920 1080"
