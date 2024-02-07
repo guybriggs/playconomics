@@ -26,33 +26,50 @@ const AppleIsland = () => {
     const [frame, setFrame] = useState(0);
 
     useEffect(() => {
+        let animationFrameId;
+        let currentFrame = frame;
+    
         const handleScroll = () => {
             if (!ref.current) return;
-
+    
             const { top, bottom } = ref.current.getBoundingClientRect();
             const height = ref.current.clientHeight;
             const windowHeight = window.innerHeight;
-            const visible = windowHeight/2-top;
-            let percentage = (visible/height);
+            const visible = windowHeight*0.8 - top;
+            let percentage = visible / height;
             if (percentage < 0) percentage = 0;
             if (percentage > 0.99) percentage = 0.99;
-
+    
             const totalFrames = data.frames.nodes.length;
-            setFrame(Math.floor(totalFrames*percentage));
+            const targetFrame = Math.floor(totalFrames * percentage);
+    
+            // Animate frame transition
+            const animate = () => {
+                currentFrame += (targetFrame - currentFrame) * 0.2; // Adjust interpolation speed here
+                setFrame(Math.round(currentFrame));
+    
+                if (Math.abs(targetFrame - currentFrame) > 0.1) {
+                    animationFrameId = requestAnimationFrame(animate);
+                }
+            };
+    
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = requestAnimationFrame(animate);
         };
-
+    
         window.addEventListener('scroll', handleScroll);
-
+    
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(animationFrameId);
         };
-    }, [data]);
+    }, [data]);    
 
     const src = data.frames.nodes[frame]?.childImageSharp?.gatsbyImageData.images.fallback.src;
 
     return (
-        <div ref={ref} className='absolute bottom-0 left-0 right-0 h-full flex flex-row-reverse'>
-            <img src={src} alt="" width="720" height="720" />
+        <div ref={ref} className='absolute bottom-0 left-0 right-0 w-full h-full'>
+            <img src={src} alt="" width="720" height="720" className='absolute bottom-0 md:bottom-[50px] lg:bottom-[100px] right-0 md:right-[100px] lg:right-[300px]' />
         </div>
     );
 }

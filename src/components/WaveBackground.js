@@ -22,6 +22,11 @@ const WaveBackground = ({ index, main, secondary, translateX, translateY }) => {
         transform: index % 2 === 0 ? 'scaleX(-1)' : 'scaleX(1)',
     }
 
+    if (index === 0) {
+        translateX = ['0px', '0px'];
+        translateY = ['-25px', '-25px'];
+    }
+
     return (
         <div className="absolute bottom-0 left-0 w-full h-full z-[-1]" style={flipped}>
             <Parallax translateY={translateY} style={fill}>

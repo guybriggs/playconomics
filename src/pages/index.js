@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-//import { StaticImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import Layout from "../components/Layout"
 import SimpleSection from "../components/SimpleSection"
@@ -20,12 +20,12 @@ import Playconomics_Text from "/src/assets/Playconomics_Text.png"
 import playBtn from '/src/assets/play.png'
 //import { Parallax } from "react-scroll-parallax";
 
-const CoverImage = ({ onPlayClicked }) => {
+const CoverImage = ({ coverimage, onPlayClicked }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
   return (
     <div className="relative">
-      <img src={Website_Cover} alt="island2" width="1920" height="1080" className="w-full max-h-screen mb-8 md:mb-16 lg:mb-32 object-cover object-center" />
+      <GatsbyImage image={getImage(coverimage)} alt="island2" width="1920" height="1080" className="w-full max-h-screen object-cover object-center" />
       <div className="absolute top-0 left-0 w-full h-full object-center object-scale-down w-5/6 flex gap-0 md:gap-8 flex-col justify-center items-center cursor-pointer"
           onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} >
         <img src={Playconomics_Text} alt="Playconomics" width="1409" height="146" className="w-full md:w-1/2" />
@@ -39,7 +39,7 @@ const CoverImage = ({ onPlayClicked }) => {
 const CoverVideo = ({ onFinished }) => {
   return (
     <div className="relative" onClick={onFinished}>
-      <video autoPlay className="w-full max-h-screen mb-8 md:mb-16 lg:mb-32 object-cover">
+      <video autoPlay className="w-full max-h-screen object-cover mb-[25px] md:mb-[50px] lg:mb-[75px]">
         <source src={trailerVideo} type="video/mp4"></source>
       </video>
     </div>
@@ -65,21 +65,12 @@ const IndexPage = ({ data }) => {
     return (
     <Layout>
 
-        {!playVideo && <CoverImage onPlayClicked={onPlayClicked} />}
+        {!playVideo && <CoverImage coverimage={data.coverImage} onPlayClicked={onPlayClicked} />}
         {playVideo && <CoverVideo onFinished={onFinished} />}
 
-        {content.slice(0, content.length-2).map((link, index) => (
+        {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.assetsFolder}>
               <div className="w-full md:w-1/2 lg:w-1/3">
-                <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
-                <p className="text-xl md:text-2xl">{link.body}</p>
-              </div>
-          </SimpleSection>
-        ))}
-
-        {content.slice(content.length-2).map((link, index) => (
-          <SimpleSection key={index} index={4 + index} props={data.assetsFolder}>
-              <div className="w-full md:px-32 lg:px-64">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
               </div>
@@ -126,6 +117,15 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    coverImage: file(relativePath: { eq: "Website_Cover.png" }) {
+      childImageSharp {
+        gatsbyImageData(
+          layout: FULL_WIDTH
+          placeholder: BLURRED
+          quality: 100
+        )
       }
     }
     assetsFolder: allFile(filter: { sourceInstanceName: { eq: "assets" } }) {

@@ -14,6 +14,7 @@ import OneGameManySubjectsAnimLQ from '/src/assets/OneGameManySubjectsAnimLQ.mp4
 import ManySubjectsLonger from '/src/assets/ManySubjectsLonger.mp4'
 import SmallTallCropped from '/src/assets/sections/new-worlds/SmallTallCropped.mp4'
 import FullSizeTerraforming from '/src/assets/sections/new-worlds/FullSizeTerraforming3.mp4'
+import Terraforming_Background from '/src/assets/sections/new-worlds/Terraforming_Background.mp4'
 
 // Interactive
 
@@ -182,7 +183,8 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             static: [
-
+                { url: 'sections/new-worlds/worlds_BG2.png', zLevel: -1 },
+                { url: 'sections/new-worlds/worlds_BG.png', zLevel: -0.5 },
             ],
             interactive: [
                 {
@@ -234,8 +236,8 @@ const SimpleSection = ({ props, index, children }) => {
 
     //Parallax translations
 
-    const translateX = ['-100px', '100px'];
-    const translateY = ['-100px', '100px'];
+    let translateX = ['-50px', '50px'];
+    let translateY = ['-100px', '100px'];
 
     //Styles
 
@@ -271,14 +273,21 @@ const SimpleSection = ({ props, index, children }) => {
         <section className="relative flex flex-col justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
 
             {/* Content */}
-            <div className="w-full md:w-[1280px] flex p-8 md:p-0 z-[99]" style={orderStyle}>
+            <div className="w-full md:max-w-[1280px] flex p-8 z-40" style={orderStyle}>
                 {children}
             </div>
             
             {/* Interactive */}
             {interactiveToDraw.length > 0 ? (
                 interactiveToDraw[0].interactionType === 'SimpleTerraforming' ? (
-                    <AppleIsland />
+                    <>
+                        <div className="absolute bottom-[-100px] left-0 right-0 z-0">
+                            <video autoPlay loop muted className="w-full" width="1920" height="1080">
+                                <source src={Terraforming_Background} type="video/mp4" />
+                            </video>
+                        </div>
+                        <AppleIsland />
+                    </>
                 ) : interactiveToDraw[0].interactionType === 'MassiveMultiplayer' ? (
                     <MassiveMultiplayer />
                 ) : (
@@ -327,9 +336,9 @@ const SimpleSection = ({ props, index, children }) => {
             {imagesToDraw.map((link, ind) => (
                 <Parallax
                     key={ind}
-                    translateX={multiplyValues(translateX, ind-Math.floor(imagesToDraw.length/2))}
+                    translateX={multiplyValues(translateX, link.zLevel ? link.zLevel : ind-Math.floor(imagesToDraw.length/2))}
                     translateY={multiplyValues(translateY, ind / 2)}
-                    className="absolute bottom-0 left-0 right-0 z-[-1]"
+                    className="absolute bottom-0 left-0 right-0"
                 >
                     <GatsbyImage image={getImage(imageDataFromName(link.url))} alt={link.url} width="1920" height="1080" />
                 </Parallax>
