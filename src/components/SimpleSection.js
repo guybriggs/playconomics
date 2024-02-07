@@ -12,6 +12,8 @@ import play2024_trailer from "/src/assets/play2024_trailer.mp4"
 import Presence from '/src/assets/Presence.mp4'
 import OneGameManySubjectsAnimLQ from '/src/assets/OneGameManySubjectsAnimLQ.mp4'
 import ManySubjectsLonger from '/src/assets/ManySubjectsLonger.mp4'
+import SmallTallCropped from '/src/assets/sections/new-worlds/SmallTallCropped.mp4'
+import FullSizeTerraforming from '/src/assets/sections/new-worlds/FullSizeTerraforming3.mp4'
 
 // Interactive
 
@@ -56,7 +58,7 @@ const SimpleSection = ({ props, index, children }) => {
             secondary: '#d3f077',
         },
         {
-            main: '#35b3c2',
+            main: '#2BA8C4', // #35b3c2
             secondary: '#65bcc0',
         },
         {
@@ -179,17 +181,16 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             static: [
-                { url: 'speed_build_left.png' },
-                { url: 'speed_build_right.png' },
+
             ],
             interactive: [
                 {
                     interactionType: 'SimpleTerraforming',
-                    width: 1920,
+                    /*width: 1920,
                     height: 1080,
                     x: 0,
                     y: 0,
-                    zLevel: 1,
+                    zLevel: 1,*/
                 }
             ]
         },
@@ -232,7 +233,7 @@ const SimpleSection = ({ props, index, children }) => {
 
     //Parallax translations
 
-    const translateX = ['100px', '-100px'];
+    const translateX = ['-100px', '100px'];
     const translateY = ['-100px', '100px'];
 
     //Styles
@@ -269,14 +270,18 @@ const SimpleSection = ({ props, index, children }) => {
         <section className="relative flex flex-col justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
 
             {/* Content */}
-            <div className="w-full md:w-[1280px] flex p-8 md:p-0" style={orderStyle}>
+            <div className="w-full md:w-[1280px] flex p-8 md:p-0 z-[99]" style={orderStyle}>
                 {children}
             </div>
             
             {/* Interactive */}
             {interactiveToDraw.length > 0 ? (
                 interactiveToDraw[0].interactionType === 'SimpleTerraforming' ? (
-                    <SimpleTerraforming />
+                    <div className="absolute bottom-[-100px] left-0 right-0">
+                        <video autoPlay loop muted className="w-full" width="1920" height="1080">
+                            <source src={FullSizeTerraforming} type="video/mp4" />
+                        </video>
+                    </div>
                 ) : interactiveToDraw[0].interactionType === 'MassiveMultiplayer' ? (
                     <MassiveMultiplayer />
                 ) : (
@@ -325,11 +330,11 @@ const SimpleSection = ({ props, index, children }) => {
             {imagesToDraw.map((link, ind) => (
                 <Parallax
                     key={ind}
-                    translateX={multiplyValues(translateY, ind-Math.floor(imagesToDraw.length/2))}
+                    translateX={multiplyValues(translateX, ind-Math.floor(imagesToDraw.length/2))}
                     translateY={multiplyValues(translateY, ind / 2)}
                     className="absolute bottom-0 left-0 right-0 z-[-1]"
                 >
-                    <GatsbyImage image={getImage(imageDataFromName(link.url))} alt="" />
+                    <GatsbyImage image={getImage(imageDataFromName(link.url))} alt={link.url} width="1920" height="1080" />
                 </Parallax>
             ))}
 
