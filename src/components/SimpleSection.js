@@ -23,6 +23,7 @@ import HoverChangeImage from "./interactive/HoverChangeImage"
 import HoverSpeechBubble from "./interactive/HoverSpeechBubble"
 import SimpleTerraforming from "./interactive/SimpleTerraforming"
 import MassiveMultiplayer from "./interactive/MassiveMultiplayer"
+import AppleIsland from "./interactive/AppleIsland"
 
 // Images
 
@@ -58,7 +59,7 @@ const SimpleSection = ({ props, index, children }) => {
             secondary: '#d3f077',
         },
         {
-            main: '#2BA8C4', // #35b3c2
+            main: '#35b3c2', // #2BA8C4
             secondary: '#65bcc0',
         },
         {
@@ -277,11 +278,7 @@ const SimpleSection = ({ props, index, children }) => {
             {/* Interactive */}
             {interactiveToDraw.length > 0 ? (
                 interactiveToDraw[0].interactionType === 'SimpleTerraforming' ? (
-                    <div className="absolute bottom-[-100px] left-0 right-0">
-                        <video autoPlay loop muted className="w-full" width="1920" height="1080">
-                            <source src={FullSizeTerraforming} type="video/mp4" />
-                        </video>
-                    </div>
+                    <AppleIsland />
                 ) : interactiveToDraw[0].interactionType === 'MassiveMultiplayer' ? (
                     <MassiveMultiplayer />
                 ) : (
