@@ -28,7 +28,7 @@ import AppleIsland from "./interactive/AppleIsland"
 
 // Images
 
-import forest_MG_static_2 from '/src/assets/sections/presence/forest_MG_static_2.png'
+//import forest_MG_static_2 from '/src/assets/sections/presence/forest_MG_static_2.png'
 import fire_anim from '/src/assets/fire_anim.gif'
 import forest_speechBubble from '/src/assets/forest_speechBubble.png'
 /*import trees_BG from '/src/assets/sections/presence/trees_BG.gif'
