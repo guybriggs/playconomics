@@ -14,7 +14,7 @@ import OneGameManySubjectsAnimLQ from '/src/assets/OneGameManySubjectsAnimLQ.mp4
 import ManySubjectsLonger from '/src/assets/ManySubjectsLonger.mp4'
 import SmallTallCropped from '/src/assets/sections/new-worlds/SmallTallCropped.mp4'
 import FullSizeTerraforming from '/src/assets/sections/new-worlds/FullSizeTerraforming3.mp4'
-import Terraforming_Background from '/src/assets/sections/new-worlds/Terraforming_Background.mp4'
+import Terraforming_Background from '/src/assets/sections/new-worlds/FullSizeTerraforming_Lower.mp4'
 
 // Interactive
 
@@ -108,7 +108,7 @@ const SimpleSection = ({ props, index, children }) => {
             static: [
                 { url: 'sections/presence/forest_BG_static.png' },
                 { url: 'sections/presence/forest_MG_static.png' },
-                { url: 'sections/presence/forest_FG_static.png' },
+                { url: 'sections/presence/forest_FG_static_wider.png', isWider: true },
             ],
             interactive: [
                 {
@@ -149,7 +149,7 @@ const SimpleSection = ({ props, index, children }) => {
             static: [
                 { url: 'sections/many-subjects/Window_static.png' },
                 { url: 'sections/many-subjects/inside_MG_static.png' },
-                { url: 'sections/many-subjects/Smog_static.png' },
+                { url: 'sections/many-subjects/Smog_static_wider.png', isWider: true },
             ],
             interactive: [
                 {
@@ -187,14 +187,7 @@ const SimpleSection = ({ props, index, children }) => {
                 { url: 'sections/new-worlds/worlds_BG.png', zLevel: -0.5 },
             ],
             interactive: [
-                {
-                    interactionType: 'SimpleTerraforming',
-                    /*width: 1920,
-                    height: 1080,
-                    x: 0,
-                    y: 0,
-                    zLevel: 1,*/
-                }
+
             ]
         },
         {
@@ -202,14 +195,7 @@ const SimpleSection = ({ props, index, children }) => {
                 { url: 'sections/massive-multiplayer/stars.png' },
             ],
             interactive: [
-                {
-                    interactionType: 'MassiveMultiplayer',
-                    width: 1920,
-                    height: 1080,
-                    x: 0,
-                    y: 0,
-                    zLevel: 0,
-                }
+
             ]
         },
     ];
@@ -239,6 +225,11 @@ const SimpleSection = ({ props, index, children }) => {
     let translateX = ['-50px', '50px'];
     let translateY = ['-100px', '100px'];
 
+    if (window.innerWidth <= 768) {
+        translateX = ['-10px', '10px'];
+        translateY = ['-20px', '20px'];
+    }
+
     //Styles
 
     const orderStyle = {
@@ -260,10 +251,6 @@ const SimpleSection = ({ props, index, children }) => {
                 return <HoverChangeImage key={index} src={link.src} width={link.width} x={link.x} y={link.y} altsrc={link.altsrc} />;
             case 'SpeechBubble':
                 return <HoverSpeechBubble key={index} src={link.src} bubble={link.bubble} hitbox={link.hitbox} x={link.x} y={link.y} />;
-            case 'SimpleTerraforming':
-                return <SimpleTerraforming key={index} width={link.width} height={link.height} x={link.x} y={link.y} />;
-            case 'MassiveMultiplayer':
-                return <MassiveMultiplayer key={index} width={link.width} height={link.height} x={link.x} y={link.y} />;
             default:
                 return null;
         }
@@ -277,32 +264,34 @@ const SimpleSection = ({ props, index, children }) => {
                 {children}
             </div>
             
+            {index === 2 && (
+                <>
+                    <div className="absolute bottom-5 md:bottom-0 left-0 right-0 z-0">
+                        <video autoPlay loop muted className="w-full" width="1920" height="1080">
+                            <source src={Terraforming_Background} type="video/mp4" />
+                        </video>
+                    </div>
+                    <AppleIsland />
+                </>
+            )}
+
+            {index === 3 && (
+                <MassiveMultiplayer translateX={translateX} translateY={translateY} />
+            )}
+
             {/* Interactive */}
             {interactiveToDraw.length > 0 ? (
-                interactiveToDraw[0].interactionType === 'SimpleTerraforming' ? (
-                    <>
-                        <div className="absolute bottom-[-100px] left-0 right-0 z-0">
-                            <video autoPlay loop muted className="w-full" width="1920" height="1080">
-                                <source src={Terraforming_Background} type="video/mp4" />
-                            </video>
-                        </div>
-                        <AppleIsland />
-                    </>
-                ) : interactiveToDraw[0].interactionType === 'MassiveMultiplayer' ? (
-                    <MassiveMultiplayer />
-                ) : (
-                    <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel / 2)} className="absolute bottom-0 left-0 right-0 z-30">
-                        <svg
-                            width="100%"
-                            viewBox="0 0 1920 1080"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            {interactiveToDraw.map((link, index) => (
-                                createInteractiveElement(link, index)
-                            ))}
-                        </svg>
-                    </Parallax>
-                )
+                <Parallax translateY={multiplyValues(translateY, interactiveToDraw[0].zLevel / 2)} className="absolute bottom-0 left-0 right-0 z-30">
+                    <svg
+                        width="100%"
+                        viewBox="0 0 1920 1080"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        {interactiveToDraw.map((link, index) => (
+                            createInteractiveElement(link, index)
+                        ))}
+                    </svg>
+                </Parallax>
             ) : null}
 
             {/*
@@ -334,14 +323,27 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <Parallax
-                    key={ind}
-                    translateX={multiplyValues(translateX, link.zLevel ? link.zLevel : ind-Math.floor(imagesToDraw.length/2))}
-                    translateY={multiplyValues(translateY, ind / 2)}
-                    className="absolute bottom-0 left-0 right-0"
-                >
-                    <GatsbyImage image={getImage(imageDataFromName(link.url))} alt={link.url} width="1920" height="1080" />
-                </Parallax>
+                <>
+                    {link.isWider ? (
+                        <Parallax
+                            key={ind}
+                            translateX={multiplyValues(translateX, link.zLevel ? link.zLevel : ind-Math.floor(imagesToDraw.length/2))}
+                            translateY={multiplyValues(translateY, ind / 2)}
+                            className="absolute bottom-0 left-[-100px] right-[-100px]"
+                        >
+                            <GatsbyImage image={getImage(imageDataFromName(link.url))} alt={link.url} width="2020" height="1080" />
+                        </Parallax>
+                    ) : (
+                        <Parallax
+                            key={ind}
+                            translateX={multiplyValues(translateX, link.zLevel ? link.zLevel : ind-Math.floor(imagesToDraw.length/2))}
+                            translateY={multiplyValues(translateY, ind / 2)}
+                            className="absolute bottom-0 left-0 right-0"
+                        >
+                            <GatsbyImage image={getImage(imageDataFromName(link.url))} alt={link.url} width="1920" height="1080" />
+                        </Parallax>
+                    )}
+                </>
             ))}
 
             {/* Video 

@@ -68,8 +68,20 @@ const AppleIsland = () => {
     const src = data.frames.nodes[frame]?.childImageSharp?.gatsbyImageData.images.fallback.src;
 
     return (
-        <div ref={ref} className='absolute bottom-0 left-0 right-0 w-full h-full'>
-            <img src={src} alt="" width="720" height="720" className='absolute bottom-0 md:bottom-[50px] lg:bottom-[100px] right-0 md:right-[100px] lg:right-[300px]' />
+        <div ref={ref} className='absolute bottom-5 md:bottom-0 left-0 right-0'>
+            <svg
+                width="100%"
+                viewBox="0 0 1920 1080"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <image
+                    href={src}
+                    x={1920-720-300}
+                    y={300}
+                    width={720}
+                    height={720}
+                ></image>
+            </svg>
         </div>
     );
 }

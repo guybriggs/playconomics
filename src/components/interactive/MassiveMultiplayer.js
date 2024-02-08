@@ -5,8 +5,9 @@ import HoverSpeechBubble from "../interactive/HoverSpeechBubble"
 
 import planets from "/src/assets/sections/massive-multiplayer/planets.png"
 import mmo_mouse from "/src/assets/mmo_mouse.png"
+import { Parallax } from 'react-scroll-parallax'
 
-const MassiveMultiplayer = ({ x, y, width, height }) => {
+const MassiveMultiplayer = ({ translateX, translateY }) => {
 
     const data = useStaticQuery(graphql`
         query {
@@ -40,14 +41,29 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                     }
                 }
             }
+            cloudFiles: allFile(
+                filter: { sourceInstanceName: { eq: "assets" }, relativeDirectory: { eq: "sections/massive-multiplayer/clouds" } }
+            ) {
+                nodes {
+                    name
+                    relativePath
+                    childImageSharp {
+                        gatsbyImageData(
+                            layout: FULL_WIDTH,
+                            placeholder: BLURRED,
+                            quality: 90
+                        )
+                    }
+                }
+            }
         }
     `);
 
     const [imageVisibility, setImageVisibility] = useState({
-        agents: true,
+        agents: false,
         coordinates: false,
         players: false,
-        spacetrade: false,
+        spacetrade: true,
         trade: false,
         weather: false,
     });
@@ -80,7 +96,7 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
 
     const targetRef = useRef(null);
 
-    useEffect(() => {
+    /*useEffect(() => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -118,18 +134,19 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
         setTimeout(() => { handleCheckboxChange('trade'); }, 4000);
         setTimeout(() => { handleCheckboxChange('weather'); }, 5000);
         setTimeout(() => { setCutscenePlayed(true); }, 6000);
-    }
+    }*/
 
     const getSrcForSpeechBubble = (num) => {
         return data.hoverFiles.nodes[num].childImageSharp.gatsbyImageData.images.fallback.src;
     }
 
     return (
-        <div ref={targetRef} className="absolute bottom-0 left-0 right-0">
+        <div ref={targetRef} className="absolute bottom-0 left-0 right-0 z-30">
             <svg
                 width="100%"
                 viewBox="0 0 1920 1080"
                 xmlns="http://www.w3.org/2000/svg"
+                className="absolute bottom-0 left-0 right-0 z-0"
             >
                 <image
                     href={planets}
@@ -142,14 +159,14 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                     <image
                         key={i}
                         href={file.childImageSharp.gatsbyImageData.images.fallback.src}
-                        x={x}
-                        y={y}
-                        width={width}
-                        height={height}
+                        x={0}
+                        y={0}
+                        width={1920}
+                        height={1080}
                         style={{ display: imageVisibility[file.name] ? 'block' : 'none' }}
                     ></image>
                 ))}
-                {!hasCutscenePlayed && (
+                {/*{!hasCutscenePlayed && (
                     <image
                         href={mmo_mouse}
                         x={250}
@@ -166,8 +183,74 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                             fill="freeze"
                         />
                     </image>
-                )}
-                <HoverSpeechBubble
+                )}*/}
+            </svg>
+            <Parallax
+                translateX={multiplyValues(translateX, 3)}
+                translateY={multiplyValues(translateY, 0.5)}
+                className="absolute bottom-0 left-0 right-0"
+            >
+                <svg
+                    width="100%"
+                    viewBox="0 0 1920 1080"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                        <image
+                            href={data.cloudFiles.nodes[0].childImageSharp.gatsbyImageData.images.fallback.src}
+                            x={550}
+                            y={100}
+                            width={512}
+                            height={512}
+                        ></image>
+                </svg>
+            </Parallax>
+            <Parallax
+                translateX={multiplyValues(translateX, 1)}
+                translateY={multiplyValues(translateY, 0.5)}
+                className="absolute bottom-0 left-0 right-0"
+            >
+            <svg
+                width="100%"
+                viewBox="0 0 1920 1080"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <image
+                    href={data.cloudFiles.nodes[2].childImageSharp.gatsbyImageData.images.fallback.src}
+                    x={650}
+                    y={300}
+                    width={512}
+                    height={512}
+                ></image>
+            </svg>
+            </Parallax>
+            <Parallax
+                translateX={multiplyValues(translateX, -3)}
+                translateY={multiplyValues(translateY, 0.5)}
+                className="absolute bottom-0 left-0 right-0"
+            >
+            <svg
+                width="100%"
+                viewBox="0 0 1920 1080"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <image
+                    href={data.cloudFiles.nodes[1].childImageSharp.gatsbyImageData.images.fallback.src}
+                    x={450}
+                    y={400}
+                    width={1024}
+                    height={1024}
+                ></image>
+            </svg>
+            </Parallax>
+
+
+            <svg
+                width="100%"
+                viewBox="0 0 1920 1080"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute bottom-0 left-0 right-0"
+            >
+            <HoverSpeechBubble
                     src={getSrcForSpeechBubble(0)}
                     bubble={{
                         width: 256,
@@ -220,7 +303,8 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
                     y={750}
                 />
             </svg>
-            <div className="absolute bottom-1/4 left-0 text-lg p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md z-50">
+
+            <div className="absolute bottom-0 translate-y-[-100%] left-0 text-lg p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md z-50">
                 {imageVisibleArray.map(imageStringId => (
                     <label key={imageStringId} className="cursor-pointer">
                         <input
@@ -234,6 +318,24 @@ const MassiveMultiplayer = ({ x, y, width, height }) => {
             </div>
         </div>
     );
+
+    function multiplyValues(arr, num) {
+        const doubledArr = [];
+        for (const value of arr) {
+            // Extract the numeric part and convert it to an integer
+            const numericValue = parseInt(value);
+        
+            // Check if the numericValue is a valid number
+            if (!isNaN(numericValue)) {
+            // Double the numeric value and append 'px'
+            doubledArr.push((numericValue * num) + 'px');
+            } else {
+            // If the value couldn't be parsed as a number, add it as is
+            doubledArr.push(value);
+            }
+        }
+        return doubledArr;
+    }
 }
 
 export default MassiveMultiplayer

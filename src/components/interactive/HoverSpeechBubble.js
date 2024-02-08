@@ -18,12 +18,12 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
 
   const activeStyle = {
     opacity: 1,
-    transform: `translateY(-100px)`,
+    transform: `translateY(-75%)`,
   }
 
   const inactiveStyle = {
     opacity: 0,
-    transform: `translateY(0px)`,
+    transform: `translateY(-50%)`,
   }
 
   let hoverStyle = isHovered ? activeStyle : inactiveStyle;
@@ -55,7 +55,7 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
         className="transition-all ease-out duration-300 pointer-events-none"
       ></image>
       <rect
-        fill="rgba(0,0,0,0)"
+        fill="rgba(255,255,255,0)"
         x={x}
         y={y}
         width={hitbox.width}
