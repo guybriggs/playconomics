@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import HoverSpeechBubble from "../interactive/HoverSpeechBubble"
 
@@ -196,7 +197,7 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
                     xmlns="http://www.w3.org/2000/svg"
                 >
                         <image
-                            href={data.cloudFiles.nodes[0].childImageSharp.gatsbyImageData.images.fallback.src}
+                            href={returnImageData(data.cloudFiles.nodes, "0_cloud_BG.png").gatsbyImageData.images.fallback.src}
                             x={550}
                             y={100}
                             width={512}
@@ -209,48 +210,46 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
                 translateY={multiplyValues(translateY, 0.5)}
                 className="absolute bottom-0 left-0 right-0"
             >
-            <svg
-                width="100%"
-                viewBox="0 0 1920 1080"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <image
-                    href={data.cloudFiles.nodes[2].childImageSharp.gatsbyImageData.images.fallback.src}
-                    x={650}
-                    y={300}
-                    width={512}
-                    height={512}
-                ></image>
-            </svg>
+                <svg
+                    width="100%"
+                    viewBox="0 0 1920 1080"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <image
+                        href={returnImageData(data.cloudFiles.nodes, "1_cloud_MG.png").gatsbyImageData.images.fallback.src}
+                        x={650}
+                        y={300}
+                        width={512}
+                        height={512}
+                    ></image>
+                </svg>
             </Parallax>
             <Parallax
                 translateX={multiplyValues(translateX, -3)}
                 translateY={multiplyValues(translateY, 0.5)}
                 className="absolute bottom-0 left-0 right-0"
             >
-            <svg
-                width="100%"
-                viewBox="0 0 1920 1080"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <image
-                    href={data.cloudFiles.nodes[1].childImageSharp.gatsbyImageData.images.fallback.src}
-                    x={450}
-                    y={400}
-                    width={1024}
-                    height={1024}
-                ></image>
-            </svg>
+                <svg
+                    width="100%"
+                    viewBox="0 0 1920 1080"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <image
+                        href={returnImageData(data.cloudFiles.nodes, "2_cloud_FG.png").gatsbyImageData.images.fallback.src}
+                        x={450}
+                        y={400}
+                        width={1024}
+                        height={1024}
+                    ></image>
+                </svg>
             </Parallax>
-
-
             <svg
                 width="100%"
                 viewBox="0 0 1920 1080"
                 xmlns="http://www.w3.org/2000/svg"
                 className="absolute bottom-0 left-0 right-0"
             >
-            <HoverSpeechBubble
+                <HoverSpeechBubble
                     src={getSrcForSpeechBubble(0)}
                     bubble={{
                         width: 256,
@@ -304,7 +303,7 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
                 />
             </svg>
 
-            <div className="absolute bottom-0 translate-y-[-100%] left-0 text-lg p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md z-50">
+            <div className="absolute bottom-[10vh] left-0 text-lg p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md z-50">
                 {imageVisibleArray.map(imageStringId => (
                     <label key={imageStringId} className="cursor-pointer">
                         <input
@@ -319,6 +318,17 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
         </div>
     );
 
+    // Functions
+
+    function returnImageData(array, string) {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].relativePath.includes(string)) {
+                return array[i].childImageSharp;
+            }
+        }
+        return null;
+    }
+    
     function multiplyValues(arr, num) {
         const doubledArr = [];
         for (const value of arr) {

@@ -185,6 +185,7 @@ const SimpleSection = ({ props, index, children }) => {
             static: [
                 { url: 'sections/new-worlds/worlds_BG2.png', zLevel: -1 },
                 { url: 'sections/new-worlds/worlds_BG.png', zLevel: -0.5 },
+                { url: 'sections/new-worlds/FullSizeTerraforming_Lower_static.png', zLevel: 1, isWider: true },
             ],
             interactive: [
 
@@ -225,12 +226,6 @@ const SimpleSection = ({ props, index, children }) => {
     let translateX = ['-50px', '50px'];
     let translateY = ['-100px', '100px'];
 
-    // Build error if this is uncommented
-    /*if (window.innerWidth <= 768) {
-        translateX = ['-10px', '10px'];
-        translateY = ['-20px', '20px'];
-    }*/
-
     //Styles
 
     const orderStyle = {
@@ -257,6 +252,32 @@ const SimpleSection = ({ props, index, children }) => {
         }
     }
 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+            window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    if (windowWidth <= 768) {
+        translateX = multiplyValues(translateX, 1/5);
+        translateY = multiplyValues(translateY, 1/5);
+    }
+
+
+    
+    /*<div className="absolute bottom-5 md:bottom-0 left-0 right-0 z-0">
+        <video autoPlay loop muted className="w-full" width="1920" height="1080">
+            <source src={Terraforming_Background} type="video/mp4" />
+        </video>
+    </div>*/
+
     return (
         <section className="relative flex flex-col justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
 
@@ -264,21 +285,6 @@ const SimpleSection = ({ props, index, children }) => {
             <div className="w-full md:max-w-[1280px] flex p-8 z-20" style={orderStyle}>
                 {children}
             </div>
-            
-            {index === 2 && (
-                <>
-                    <div className="absolute bottom-5 md:bottom-0 left-0 right-0 z-0">
-                        <video autoPlay loop muted className="w-full" width="1920" height="1080">
-                            <source src={Terraforming_Background} type="video/mp4" />
-                        </video>
-                    </div>
-                    <AppleIsland />
-                </>
-            )}
-
-            {index === 3 && (
-                <MassiveMultiplayer translateX={translateX} translateY={translateY} />
-            )}
 
             {/* Interactive */}
             {interactiveToDraw.length > 0 ? (
@@ -346,6 +352,14 @@ const SimpleSection = ({ props, index, children }) => {
                     )}
                 </>
             ))}
+            
+            {index === 2 && (
+                <AppleIsland />
+            )}
+
+            {index === 3 && (
+                <MassiveMultiplayer translateX={translateX} translateY={translateY} />
+            )}
 
             {/* Video 
             {videoToDraw && (

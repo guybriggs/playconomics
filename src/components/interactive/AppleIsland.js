@@ -76,8 +76,8 @@ const AppleIsland = () => {
             >
                 <image
                     href={src}
-                    x={1920-720-300}
-                    y={300}
+                    x={1920/2.5}
+                    y={200}
                     width={720}
                     height={720}
                 ></image>
