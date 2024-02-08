@@ -32,7 +32,7 @@ const AppleIsland = () => {
         const handleScroll = () => {
             if (!ref.current) return;
     
-            const { top, bottom } = ref.current.getBoundingClientRect();
+            const { top } = ref.current.getBoundingClientRect();
             const height = ref.current.clientHeight;
             const windowHeight = window.innerHeight;
             const visible = windowHeight*0.8 - top;
@@ -63,7 +63,7 @@ const AppleIsland = () => {
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
         };
-    }, [data]);    
+    }, [data, frame]);    
 
     const src = data.frames.nodes[frame]?.childImageSharp?.gatsbyImageData.images.fallback.src;
 

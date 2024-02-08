@@ -9,7 +9,7 @@ import shark2 from "/src/assets/sections/new-worlds/shark2.gif"
 import shark3 from "/src/assets/sections/new-worlds/shark3.gif"
 
 import splash from "/src/assets/sections/new-worlds/splash.gif"
-import splash_once from "/src/assets/sections/new-worlds/splash_once.gif"
+//import splash_once from "/src/assets/sections/new-worlds/splash_once.gif"
 import mouse_shovel_wobble from "/src/assets/sections/new-worlds/mouse_shovel_wobble.gif"
 
 const CounterComponent = ({ x, y, width, height }) => {

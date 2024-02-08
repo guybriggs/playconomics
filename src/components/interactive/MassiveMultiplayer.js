@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+//import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import HoverSpeechBubble from "../interactive/HoverSpeechBubble"
 
 import planets from "/src/assets/sections/massive-multiplayer/planets.png"
-import mmo_mouse from "/src/assets/mmo_mouse.png"
+//import mmo_mouse from "/src/assets/mmo_mouse.png"
 import { Parallax } from 'react-scroll-parallax'
 
 const MassiveMultiplayer = ({ translateX, translateY }) => {
@@ -142,7 +142,7 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
     }
 
     return (
-        <div ref={targetRef} className="absolute bottom-0 left-0 right-0 z-30">
+        <div ref={targetRef} className="absolute bottom-0 left-0 right-0">
             <svg
                 width="100%"
                 viewBox="0 0 1920 1080"
@@ -303,7 +303,7 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
                 />
             </svg>
 
-            <div className="absolute bottom-[10vh] left-0 text-lg p-8 m-8 flex flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md z-50">
+            <div className="absolute bottom-0 translate-y-[-80%] left-0 text-md p-8 m-8 grid grid-cols-2 md:flex md:flex-col text-left uppercase bg-[rgba(0,0,0,0.1)] rounded-md z-50">
                 {imageVisibleArray.map(imageStringId => (
                     <label key={imageStringId} className="cursor-pointer">
                         <input

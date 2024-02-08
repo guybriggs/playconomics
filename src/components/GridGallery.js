@@ -73,7 +73,7 @@ const GridGallery = () => {
 
 
 
-    return (
+    /*return (
         <div>
         {images.map((link, index) => (
             <div>
@@ -81,7 +81,7 @@ const GridGallery = () => {
             </div>
         ))}
         </div>
-    );
+    );*/
 };
 
 export default GridGallery;

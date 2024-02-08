@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Parallax } from 'react-scroll-parallax'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import WaveBackground from "./WaveBackground"
 
-import ScrollVideo from "../components/ScrollVideo"
+//import ScrollVideo from "../components/ScrollVideo"
 
 // Video
 
-import play2024_trailer from "/src/assets/play2024_trailer.mp4"
+/*import play2024_trailer from "/src/assets/play2024_trailer.mp4"
 import Presence from '/src/assets/Presence.mp4'
 import OneGameManySubjectsAnimLQ from '/src/assets/OneGameManySubjectsAnimLQ.mp4'
 import ManySubjectsLonger from '/src/assets/ManySubjectsLonger.mp4'
 import SmallTallCropped from '/src/assets/sections/new-worlds/SmallTallCropped.mp4'
 import FullSizeTerraforming from '/src/assets/sections/new-worlds/FullSizeTerraforming3.mp4'
-import Terraforming_Background from '/src/assets/sections/new-worlds/FullSizeTerraforming_Lower.mp4'
+import Terraforming_Background from '/src/assets/sections/new-worlds/FullSizeTerraforming_Lower.mp4'*/
 
 // Interactive
 
@@ -22,7 +22,7 @@ import StaticImage from "./interactive/StaticImage"
 import HoverSquashStretch from "./interactive/HoverSquashStretch"
 import HoverChangeImage from "./interactive/HoverChangeImage"
 import HoverSpeechBubble from "./interactive/HoverSpeechBubble"
-import SimpleTerraforming from "./interactive/SimpleTerraforming"
+//import SimpleTerraforming from "./interactive/SimpleTerraforming"
 import MassiveMultiplayer from "./interactive/MassiveMultiplayer"
 import AppleIsland from "./interactive/AppleIsland"
 
@@ -31,20 +31,20 @@ import AppleIsland from "./interactive/AppleIsland"
 import forest_MG_static_2 from '/src/assets/sections/presence/forest_MG_static_2.png'
 import fire_anim from '/src/assets/fire_anim.gif'
 import forest_speechBubble from '/src/assets/forest_speechBubble.png'
-import trees_BG from '/src/assets/sections/presence/trees_BG.gif'
+/*import trees_BG from '/src/assets/sections/presence/trees_BG.gif'
 import trees_MG from '/src/assets/sections/presence/trees_MG.gif'
-import trees_FG from '/src/assets/sections/presence/trees_FG.gif'
+import trees_FG from '/src/assets/sections/presence/trees_FG.gif'*/
 
-import furnace from '/src/assets/sections/many-subjects/furnace.gif'
 import worker_whistling from '/src/assets/sections/many-subjects/worker_whistling.gif'
-import barrel1 from '/src/assets/sections/many-subjects/barrel1.gif'
-import barrel2 from '/src/assets/sections/many-subjects/barrel2.gif'
 import doctor_idle from '/src/assets/sections/many-subjects/doctor_idle.gif'
 import doctor_needle from '/src/assets/sections/many-subjects/doctor_needle.gif'
 import worker_sick_idle from '/src/assets/sections/many-subjects/worker_sick_idle.gif'
 import worker_sick_cough from '/src/assets/sections/many-subjects/worker_sick_cough.gif'
+/*import furnace from '/src/assets/sections/many-subjects/furnace.gif'
+import barrel1 from '/src/assets/sections/many-subjects/barrel1.gif'
+import barrel2 from '/src/assets/sections/many-subjects/barrel2.gif'
 import barrel_FG from '/src/assets/sections/many-subjects/barrel_FG.gif'
-import Smog from '/src/assets/sections/many-subjects/Smog.gif'
+import Smog from '/src/assets/sections/many-subjects/Smog.gif'*/
 
 const SimpleSection = ({ props, index, children }) => {
 
@@ -107,19 +107,10 @@ const SimpleSection = ({ props, index, children }) => {
         {
             static: [
                 { url: 'sections/presence/forest_BG_static.png' },
-                { url: 'sections/presence/forest_MG_static.png' },
+                { url: 'sections/presence/forest_MG_combined_static.png' },
                 { url: 'sections/presence/forest_FG_static_wider.png', isWider: true },
             ],
             interactive: [
-                {
-                    interactionType: 'StaticImage',
-                    src: forest_MG_static_2,
-                    width: 1920,
-                    height: 1080,
-                    x: 0,
-                    y: 0,
-                    zLevel: 2,
-                },
                 {
                     interactionType: 'SquashStretch',
                     src: fire_anim,
@@ -204,12 +195,12 @@ const SimpleSection = ({ props, index, children }) => {
     const imageIndex = index % imageArray.length;
     let imagesToDraw = imageArray[imageIndex].static;
     let interactiveToDraw = imageArray[imageIndex].interactive;
-    let videoToDraw = imageArray[imageIndex].video ? imageArray[imageIndex].video : null;
+    //let videoToDraw = imageArray[imageIndex].video ? imageArray[imageIndex].video : null;
 
     if (index >= 4) {
         imagesToDraw = [];
         interactiveToDraw = [];
-        videoToDraw = null;
+        //videoToDraw = null;
     }
 
     let main = '#FFF';
@@ -225,6 +216,13 @@ const SimpleSection = ({ props, index, children }) => {
 
     let translateX = ['-50px', '50px'];
     let translateY = ['-100px', '100px'];
+
+    if (typeof window !== 'undefined') {
+        if (window.innerWidth <= 768) {
+            translateX = multiplyValues(translateX, 0.25);
+            translateY = multiplyValues(translateY, 0.25);
+        }
+    }
 
     //Styles
 
@@ -251,29 +249,6 @@ const SimpleSection = ({ props, index, children }) => {
                 return null;
         }
     }
-
-    if (typeof window !== 'undefined') {
-        const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-        useEffect(() => {
-            const handleResize = () => {
-                setWindowWidth(window.innerWidth);
-            };
-    
-                window.addEventListener('resize', handleResize);
-    
-            return () => {
-                window.removeEventListener('resize', handleResize);
-            };
-        }, []);
-        
-        if (windowWidth <= 768) {
-            translateX = multiplyValues(translateX, 1/5);
-            translateY = multiplyValues(translateY, 1/5);
-        }
-    }
-
-
     
     /*<div className="absolute bottom-5 md:bottom-0 left-0 right-0 z-0">
         <video autoPlay loop muted className="w-full" width="1920" height="1080">
@@ -297,8 +272,10 @@ const SimpleSection = ({ props, index, children }) => {
                         viewBox="0 0 1920 1080"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        {interactiveToDraw.map((link, index) => (
-                            createInteractiveElement(link, index)
+                        {interactiveToDraw.map((link, ind) => (
+                            <React.Fragment key={ind}>
+                                {createInteractiveElement(link, ind)}
+                            </React.Fragment>
                         ))}
                     </svg>
                 </Parallax>
@@ -333,10 +310,9 @@ const SimpleSection = ({ props, index, children }) => {
 
             {/* Images */}
             {imagesToDraw.map((link, ind) => (
-                <>
+                <React.Fragment key={ind}>
                     {link.isWider ? (
                         <Parallax
-                            key={ind}
                             translateX={multiplyValues(translateX, link.zLevel ? link.zLevel : ind-Math.floor(imagesToDraw.length/2))}
                             translateY={multiplyValues(translateY, ind / 2)}
                             className="absolute bottom-0 left-[-100px] right-[-100px]"
@@ -345,7 +321,6 @@ const SimpleSection = ({ props, index, children }) => {
                         </Parallax>
                     ) : (
                         <Parallax
-                            key={ind}
                             translateX={multiplyValues(translateX, link.zLevel ? link.zLevel : ind-Math.floor(imagesToDraw.length/2))}
                             translateY={multiplyValues(translateY, ind / 2)}
                             className="absolute bottom-0 left-0 right-0"
@@ -353,7 +328,7 @@ const SimpleSection = ({ props, index, children }) => {
                             <GatsbyImage image={getImage(imageDataFromName(link.url))} alt={link.url} width="1920" height="1080" />
                         </Parallax>
                     )}
-                </>
+                </React.Fragment>
             ))}
             
             {index === 2 && (

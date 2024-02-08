@@ -13,21 +13,21 @@ import GridGallery from "../components/GridGallery";
 //import Contact from "../components/Contact"
 
 import Footer from "../components/Footer"
-// import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
+//import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
 import trailerVideo from '/src/assets/play2024_trailer.mp4'
-import Website_Cover from "/src/assets/Website_Cover.png"
+//import Website_Cover from "/src/assets/Website_Cover.png"
 import Playconomics_Text from "/src/assets/Playconomics_Text.png"
 import playBtn from '/src/assets/play.png'
 //import { Parallax } from "react-scroll-parallax";
 
-const CoverImage = ({ coverimage, onPlayClicked }) => {
+const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
   return (
     <div className="relative">
       <GatsbyImage image={getImage(coverimage)} alt="island2" width="1920" height="1080" className="w-full max-h-screen object-cover object-center" />
-      <div className="absolute top-0 left-0 w-full h-full object-center object-scale-down w-5/6 flex gap-0 md:gap-8 flex-col justify-center items-center cursor-pointer"
-          onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} >
+      <div aria-label="Play video" className="absolute top-0 left-0 w-full h-full object-center object-scale-down w-5/6 flex gap-0 md:gap-8 flex-col justify-center items-center cursor-pointer"
+          onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} onKeyDown={handleKeyDown} role="button" tabIndex={0}>
         <img src={Playconomics_Text} alt="Playconomics" width="1409" height="146" className="w-full md:w-1/2" />
         <div className="largePagename hidden md:block text-3xl text-white font-black drop-shadow-lg">"An intimate massive multiplayer online world...<br></br>...where you can build your own aspirations.</div>
         <img src={playBtn} alt="Play video" width="190" height="190" className={`w-1/6 md:w-[100px] object-center transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
@@ -36,11 +36,12 @@ const CoverImage = ({ coverimage, onPlayClicked }) => {
   );
 };
 
-const CoverVideo = ({ onFinished }) => {
+const CoverVideo = ({ onFinished, handleKeyDown }) => {
   return (
-    <div className="relative" onClick={onFinished}>
+    <div aria-label="Close video" className="relative" onClick={onFinished} onKeyDown={handleKeyDown} role="button" tabIndex={0}>
       <video autoPlay className="w-full max-h-screen object-cover mb-[25px] md:mb-[50px] lg:mb-[75px]">
         <source src={trailerVideo} type="video/mp4"></source>
+        <track kind="captions" />
       </video>
     </div>
   );
@@ -54,6 +55,13 @@ const IndexPage = ({ data }) => {
     const siteData = data.siteData;
     const content = siteData.frontmatter.content;
 
+    const handleKeyDown = (e) => {
+      var key_code = e.which || e.keyCode;
+      if (key_code === 13) {
+        onPlayClicked();
+      }
+    };
+
     const onPlayClicked = () => {
       setPlayVideo(true);
     };
@@ -65,8 +73,8 @@ const IndexPage = ({ data }) => {
     return (
     <Layout>
 
-        {!playVideo && <CoverImage coverimage={data.coverImage} onPlayClicked={onPlayClicked} />}
-        {playVideo && <CoverVideo onFinished={onFinished} />}
+        {!playVideo && <CoverImage coverimage={data.coverImage} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
+        {playVideo && <CoverVideo onFinished={onFinished} handleKeyDown={handleKeyDown} />}
 
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.assetsFolder}>
@@ -128,7 +136,12 @@ export const pageQuery = graphql`
         )
       }
     }
-    assetsFolder: allFile(filter: { sourceInstanceName: { eq: "assets" } }) {
+    assetsFolder: allFile(
+      filter: { 
+        sourceInstanceName: { eq: "assets" }
+        extension: { eq: "png" }
+      }
+    ) {
       nodes {
         relativePath
         childImageSharp {
