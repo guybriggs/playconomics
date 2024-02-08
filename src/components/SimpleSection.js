@@ -225,10 +225,11 @@ const SimpleSection = ({ props, index, children }) => {
     let translateX = ['-50px', '50px'];
     let translateY = ['-100px', '100px'];
 
-    if (window.innerWidth <= 768) {
+    // Build error if this is uncommented
+    /*if (window.innerWidth <= 768) {
         translateX = ['-10px', '10px'];
         translateY = ['-20px', '20px'];
-    }
+    }*/
 
     //Styles
 
