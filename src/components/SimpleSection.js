@@ -252,22 +252,25 @@ const SimpleSection = ({ props, index, children }) => {
         }
     }
 
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    if (typeof window !== 'undefined') {
+        const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
-            window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-    if (windowWidth <= 768) {
-        translateX = multiplyValues(translateX, 1/5);
-        translateY = multiplyValues(translateY, 1/5);
+        useEffect(() => {
+            const handleResize = () => {
+                setWindowWidth(window.innerWidth);
+            };
+    
+                window.addEventListener('resize', handleResize);
+    
+            return () => {
+                window.removeEventListener('resize', handleResize);
+            };
+        }, []);
+        
+        if (windowWidth <= 768) {
+            translateX = multiplyValues(translateX, 1/5);
+            translateY = multiplyValues(translateY, 1/5);
+        }
     }
 
 
