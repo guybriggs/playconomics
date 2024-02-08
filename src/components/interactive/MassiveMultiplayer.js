@@ -65,7 +65,7 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
         agents: false,
         coordinates: false,
         players: false,
-        spacetrade: true,
+        spacetrade: false,
         trade: false,
         weather: false,
     });
