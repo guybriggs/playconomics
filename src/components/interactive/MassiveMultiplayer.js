@@ -5,6 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import HoverSpeechBubble from "../interactive/HoverSpeechBubble"
 
 import planets from "/src/assets/sections/massive-multiplayer/planets.png"
+import click_gif from "/src/assets/sections/massive-multiplayer/click_gif.gif"
 //import mmo_mouse from "/src/assets/mmo_mouse.png"
 import { Parallax } from 'react-scroll-parallax'
 
@@ -91,7 +92,12 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
             updatedVisibility[selectedImageName] = true;
             return updatedVisibility;
         });
+        setShowClickGif(false);
     };
+
+    // Hide click_gif
+
+    const [showClickGif, setShowClickGif] = useState(true);
 
     // Cutscene!
 
@@ -314,6 +320,9 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
                         {imageStringId}
                     </label>
                 ))}
+                {showClickGif && (
+                    <img src={click_gif} alt="click_gif" width="50" className="absolute top-0 left-[15px] pointer-events-none"></img>
+                )}
             </div>
         </div>
     );

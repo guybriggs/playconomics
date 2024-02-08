@@ -32,7 +32,7 @@ const Partners = () => {
     ];
 
     return (
-    <ul className='grid grid-cols-3 md:grid-cols-6 gap-5 flex items-center'>
+    <ul className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5 flex items-center'>
     {logosArray.map((img, i) => (
         <li key={i} className='w-full h-full flex justify-center items-center'>
             <img src={img} alt={img} height="150" width="150"></img>
