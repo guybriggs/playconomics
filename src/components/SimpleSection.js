@@ -189,7 +189,7 @@ const SimpleSection = ({ props, index, children }) => {
             interactive: [
 
             ]
-        },
+        }
     ];
     
     const imageIndex = index % imageArray.length;
@@ -220,7 +220,7 @@ const SimpleSection = ({ props, index, children }) => {
     if (typeof window !== 'undefined') {
         if (window.innerWidth <= 768) {
             translateX = multiplyValues(translateX, 0.25);
-            translateY = multiplyValues(translateY, 0.25);
+            translateY = multiplyValues(translateY, 0.1);
         }
     }
 

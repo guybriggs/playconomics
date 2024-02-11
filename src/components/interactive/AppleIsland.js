@@ -24,6 +24,21 @@ const AppleIsland = () => {
 
     const ref = useRef(null);
     const [frame, setFrame] = useState(0);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 768); // Change 768 to your desired breakpoint
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        handleResize(); // Initial check
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         let animationFrameId;
@@ -31,12 +46,13 @@ const AppleIsland = () => {
     
         const handleScroll = () => {
             if (!ref.current) return;
-    
-            const { top } = ref.current.getBoundingClientRect();
-            const height = ref.current.clientHeight;
+
+            const top = ref.current.parentNode.getBoundingClientRect().top;
+            const height = ref.current.parentNode.clientHeight;
             const windowHeight = window.innerHeight;
-            const visible = windowHeight*0.8 - top;
+            const visible = windowHeight*1.5 - top;
             let percentage = visible / height;
+            percentage = percentage - 1;
             if (percentage < 0) percentage = 0;
             if (percentage > 0.99) percentage = 0.99;
     
@@ -63,9 +79,12 @@ const AppleIsland = () => {
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
         };
-    }, [data, frame]);    
+    }, [data, frame]);
 
     const src = data.frames.nodes[frame]?.childImageSharp?.gatsbyImageData.images.fallback.src;
+
+    const y = isSmallScreen ? 0 : 200;
+    const imageSize = isSmallScreen ? 1440 : 720; // Double the size for small screens
 
     return (
         <div ref={ref} className='absolute bottom-5 md:bottom-0 left-0 right-0'>
@@ -76,10 +95,10 @@ const AppleIsland = () => {
             >
                 <image
                     href={src}
-                    x={1920/2.5}
-                    y={200}
-                    width={720}
-                    height={720}
+                    x={768} // (1920/2.5)
+                    y={y}
+                    width={imageSize}
+                    height={imageSize}
                 ></image>
             </svg>
         </div>
