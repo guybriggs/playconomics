@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
-
   const [isHovered, setIsHovered] = useState(false);
-  const handleMouseOver = () => {
-        setIsHovered(true);
-        if (timeout) {
-            clearTimeout(timeout);
-        }
-        timeout = setTimeout(() => {
-            setIsHovered(false);
-        }, 1500);
-  };
-  //const handleMouseOut = () => { setIsHovered(false); };
+  const timeoutRef = useRef(null); // Ref for storing the timeout
 
-  let timeout = null;
+  useEffect(() => {
+    let timeout;
+    if (isHovered) {
+      timeout = setTimeout(() => {
+        setIsHovered(false);
+      }, 1500);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isHovered]);
+
+  const handleMouseOver = () => {
+    setIsHovered(true);
+  };
 
   const activeStyle = {
     opacity: 1,
     transform: `translateY(-75%)`,
-  }
+  };
 
   const inactiveStyle = {
     opacity: 0,
     transform: `translateY(-50%)`,
-  }
+  };
 
   let hoverStyle = isHovered ? activeStyle : inactiveStyle;
 
@@ -32,22 +36,22 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
 
   // TODO remove this obnoxious hack
   // There's nothing more permanent than a working temporary solution
-  if (src.slice(src.length-21, src.length) === 'terraform_speech1.png') hoverStyle = activeStyle;
+  if (src.slice(src.length - 21, src.length) === 'terraform_speech1.png') hoverStyle = activeStyle;
 
   return (
     <>
       <rect
         fill="rgba(0,0,0,0)"
-        x={x - bubble.width/2 + hitbox.width/2}
-        y={y - bubble.height/2 + hitbox.height/2}
+        x={x - bubble.width / 2 + hitbox.width / 2}
+        y={y - bubble.height / 2 + hitbox.height / 2}
         width={bubble.width}
         height={bubble.height}
         className="pointer-events-none"
       >
       </rect>
       <image
-        x={x - bubble.width/2 + hitbox.width/2}
-        y={y - bubble.height/2 + hitbox.height/2}
+        x={x - bubble.width / 2 + hitbox.width / 2}
+        y={y - bubble.height / 2 + hitbox.height / 2}
         width={bubble.width}
         height={bubble.height}
         href={src}
@@ -65,7 +69,6 @@ const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
       </rect>
     </>
   );
-
-}
+};
 
 export default HoverSpeechBubble;

@@ -50,7 +50,7 @@ const AppleIsland = () => {
             const top = ref.current.parentNode.getBoundingClientRect().top;
             const height = ref.current.parentNode.clientHeight;
             const windowHeight = window.innerHeight;
-            const visible = windowHeight*1.5 - top;
+            const visible = windowHeight - top + height/1.5;
             let percentage = visible / height;
             percentage = percentage - 1;
             if (percentage < 0) percentage = 0;
@@ -84,7 +84,7 @@ const AppleIsland = () => {
     const src = data.frames.nodes[frame]?.childImageSharp?.gatsbyImageData.images.fallback.src;
 
     const x = isSmallScreen ? 768/2 : 768;
-    const y = isSmallScreen ? 0 : 200;
+    const y = isSmallScreen ? 0 : 250;
     const imageSize = isSmallScreen ? 1440 : 720; // Double the size for small screens
 
     return (

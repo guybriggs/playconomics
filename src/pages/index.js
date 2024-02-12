@@ -24,7 +24,7 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
   return (
-    <div className="relative flex flex-col min-h-[50vh] overflow-hidden">
+    <div className="relative flex-1 flex flex-col min-h-[50vh] overflow-hidden">
 
       <GatsbyImage image={getImage(coverimage)} alt="island2" width="1920" height="1080" className="flex-1" />
       
@@ -54,10 +54,10 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
 const CoverVideo = ({ onFinished, handleKeyDown }) => {
   return (
     <div
-      aria-label="Close video"
-      className="relative flex flex-col"
+      className="relative flex-1 flex flex-col"
       onClick={onFinished}
       onKeyDown={handleKeyDown}
+      aria-label="Close video"
       role="button"
       tabIndex={0}
     >
@@ -92,14 +92,43 @@ const IndexPage = ({ data }) => {
       setPlayVideo(false);
     };
 
+    const [imageHeight, setImageHeight] = React.useState(0);
+    const [videoHeight, setVideoHeight] = React.useState(0);
+
+    React.useEffect(() => {
+      const handleResize = () => {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        console.log(windowWidth);
+        let adjustedHeight = windowWidth * 9 / 16;
+        setVideoHeight(adjustedHeight);
+        if (adjustedHeight < windowHeight/2) adjustedHeight = windowHeight/2;
+        setImageHeight(adjustedHeight);
+      };
+    
+      window.addEventListener('resize', handleResize);
+    
+      handleResize(); // Initial check
+    
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+
+    const headerStyle = {
+      height: playVideo ? `${videoHeight}px` : `${imageHeight}px`
+    };    
+
     return (
     <Layout>
-        {!playVideo && <CoverImage coverimage={data.coverImage} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
-        {playVideo && <CoverVideo onFinished={onFinished} handleKeyDown={handleKeyDown} />}
+        <div className="transition-all flex flex-col" style={headerStyle}>
+          {!playVideo && <CoverImage coverimage={data.coverImage} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
+          {playVideo && <CoverVideo onFinished={onFinished} handleKeyDown={handleKeyDown} />}
+        </div>
 
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.assetsFolder}>
-              <div className="w-full md:w-1/2 lg:w-1/3">
+              <div className="w-full md:w-1/2 lg:max-w-[500px]">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
               </div>
@@ -123,13 +152,12 @@ const IndexPage = ({ data }) => {
         </SimpleSection>
 
         <SimpleSection index={9}>
-          <div className="w-full">
+          <div className="w-full pb-16">
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">Awards</h1>
             <div className="w-full my-8 p-8">
               <Awards data={featuresData} />
             </div>
           </div>
-        
           <Footer />
         </SimpleSection>
 

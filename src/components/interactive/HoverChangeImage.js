@@ -1,26 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HoverChangeImage = ({ src, width, x, y, altsrc }) => {
 
   const [isHovered, setIsHovered] = useState(false);
-  let timeout;
+
+  useEffect(() => {
+    let timeout;
+    if (isHovered) {
+      timeout = setTimeout(() => {
+        setIsHovered(false);
+      }, 1500);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isHovered]);
+
   const handleMouseOver = () => {
-        setIsHovered(true);
-        if (timeout) {
-            clearTimeout(timeout);
-        }
-        timeout = setTimeout(() => {
-            setIsHovered(false);
-        }, 1500);
+    setIsHovered(true);
   };
-  //const handleMouseOut = () => { setIsHovered(false); };
 
-  if (isHovered) {
-    return <image x={x} y={y} width={width} height={width} href={altsrc} onMouseOver={handleMouseOver}></image>;
-  } else {
-    return <image x={x} y={y} width={width} height={width} href={src} onMouseOver={handleMouseOver}></image>;
-  }
-
+  return (
+    <image
+      x={x}
+      y={y}
+      width={width}
+      height={width}
+      href={isHovered ? altsrc : src}
+      onMouseOver={handleMouseOver}
+    />
+  );
 }
 
 export default HoverChangeImage;
