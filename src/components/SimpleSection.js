@@ -256,32 +256,12 @@ const SimpleSection = ({ props, index, children }) => {
         relative
         flex
         flex-col
-        justify-center
+        justify-start
         items-center
         text-center
+        h-screen
         z-10
-
-        pt-[5vw]
-        md:pt-[10vw]
-        lg:pt-[7vw]
-        pb-[60vw]
-        md:pb-[30vw]
-        lg:pb-[20vw]
     `;
-    if (index >= 4) {
-        sectionClass = `
-        relative
-        flex
-        flex-col
-        justify-center
-        items-center
-        text-center
-        z-10
-
-        pt-[3vw]
-        pb-[15vw]
-    `;
-    }
     
     return (
         <section className={sectionClass}>
