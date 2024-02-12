@@ -252,7 +252,7 @@ const SimpleSection = ({ props, index, children }) => {
         </video>
     </div>*/
 
-    let sectionClass = "relative flex flex-col pt-0 md:pt-[10vw] lg:pt-[7vw] pb-[48vw] md:pb-[30vw] lg:pb-[20vw] justify-center items-center text-center z-10";
+    let sectionClass = "relative flex flex-col pt-[5vw] md:pt-[10vw] lg:pt-[7vw] pb-[60vw] md:pb-[30vw] lg:pb-[20vw] justify-center items-center text-center z-10";
     if (index >= 4) {
         sectionClass = "relative flex flex-col pt-[2vw] pb-[15vw] justify-center items-center text-center z-10";
     }

@@ -24,7 +24,7 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
   return (
-    <div className="relative min-h-[50vh] flex flex-col overflow-hidden">
+    <div className="relative flex flex-col min-h-[50vh] overflow-hidden">
 
       <GatsbyImage image={getImage(coverimage)} alt="island2" width="1920" height="1080" className="flex-1" />
       
