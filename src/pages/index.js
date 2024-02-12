@@ -24,9 +24,9 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
   return (
-    <div className="relative flex-1 flex flex-col min-h-[50vh] overflow-hidden">
+    <div className="relative flex flex-col min-h-[50vh] overflow-hidden">
 
-      <img src={coverimage} alt="island2" width="1920" height="1080" className="flex-1" />
+      <img src={coverimage} alt="island2" width="1920" height="1080" className="flex-1 object-cover" />
       
       <div
         aria-label="Play video"
@@ -38,10 +38,10 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
         role="button"
         tabIndex={0}
       >
-        <div className="customTitleText text-center text-5xl text-white font-black drop-shadow-lg">
+        <div className="customTitleText text-center text-5xl md:text-7xl lg:text-9xl text-white font-black drop-shadow-lg">
           PLAYCONOMICS
         </div>
-        <div className="customTitleText text-center text-md text-white font-black drop-shadow-lg">
+        <div className="customTitleText text-center text-lg md:text-xl lg:text-2xl text-white font-black drop-shadow-lg">
           An intimate massive multiplayer online world...<br></br>...where you can build your own aspirations.
         </div>
         <img src={playBtn} alt="Play video" width="100" height="100" className={`transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
@@ -54,7 +54,7 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
 const CoverVideo = ({ onFinished, handleKeyDown }) => {
   return (
     <div
-      className="relative flex-1 flex flex-col"
+      className="relative flex flex-col"
       onClick={onFinished}
       onKeyDown={handleKeyDown}
       aria-label="Close video"
@@ -92,7 +92,7 @@ const IndexPage = ({ data }) => {
       setPlayVideo(false);
     };
 
-    const [imageHeight, setImageHeight] = React.useState(0);
+    /*const [imageHeight, setImageHeight] = React.useState(0);
     const [videoHeight, setVideoHeight] = React.useState(0);
 
     React.useEffect(() => {
@@ -117,14 +117,12 @@ const IndexPage = ({ data }) => {
 
     const headerStyle = {
       height: playVideo ? `${videoHeight}px` : `${imageHeight}px`
-    };    
+    };*/
 
     return (
     <Layout>
-        <div className="transition-all flex flex-col" style={headerStyle}>
-          {!playVideo && <CoverImage coverimage={Website_Cover} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
-          {playVideo && <CoverVideo onFinished={onFinished} handleKeyDown={handleKeyDown} />}
-        </div>
+        {!playVideo && <CoverImage coverimage={Website_Cover} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
+        {playVideo && <CoverVideo onFinished={onFinished} handleKeyDown={handleKeyDown} />}
 
         {content.map((link, index) => (
           <SimpleSection key={index} index={index} props={data.assetsFolder}>
@@ -138,15 +136,21 @@ const IndexPage = ({ data }) => {
         <SimpleSection index={7}>
           <div className="w-full">
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">Gallery</h1>
-            <GridGallery />
+            <div className="flex justify-center">
+              <div className="w-full md:w-3/4">
+                <GridGallery />
+              </div>
+            </div>
           </div>
         </SimpleSection>
 
         <SimpleSection index={8}>
           <div className="w-full">
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">Our Collaborators</h1>
-            <div className="w-full my-8 p-8 rounded-lg bg-[rgba(255,255,255,0.85)]">
-              <Partners />
+            <div className="flex justify-center">
+              <div className="w-full md:w-3/4 my-8 p-8 rounded-lg bg-[rgba(255,255,255,0.85)]">
+                <Partners />
+              </div>
             </div>
           </div>
         </SimpleSection>
@@ -154,8 +158,10 @@ const IndexPage = ({ data }) => {
         <SimpleSection index={9}>
           <div className="w-full pb-16">
             <h1 className="text-3xl md:text-4xl mb-8 uppercase">Awards</h1>
-            <div className="w-full my-8 p-8">
-              <Awards data={featuresData} />
+            <div className="flex justify-center">
+              <div className="w-full md:w-3/4 my-8 p-8">
+                <Awards data={featuresData} />
+              </div>
             </div>
           </div>
           <Footer />

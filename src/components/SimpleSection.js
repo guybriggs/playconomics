@@ -251,20 +251,13 @@ const SimpleSection = ({ props, index, children }) => {
             <source src={Terraforming_Background} type="video/mp4" />
         </video>
     </div>*/
-
-    let sectionClass = `
-        relative
-        flex
-        flex-col
-        justify-start
-        items-center
-        text-center
-        h-screen
-        z-10
-    `;
     
+    const fullHeightStyle = {
+        minHeight: index >= 4 ? '75vh' : '100vh',
+    }
+
     return (
-        <section className={sectionClass}>
+        <section className="relative flex flex-col justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
 
             {/* Content */}
             <div className="w-full flex justify-around p-8 z-20" style={orderStyle}>
