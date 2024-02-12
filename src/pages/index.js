@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+//import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import Layout from "../components/Layout"
 import SimpleSection from "../components/SimpleSection"
@@ -24,9 +24,9 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full flex flex-col overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-full flex flex-col">
 
-      <img src={coverimage} alt="island2" width="1920" height="1080" className="flex-1 object-cover" />
+      <img src={coverimage} alt="island2" width="1920" height="1080" className="flex-1 w-full h-full object-cover" />
       
       <div
         aria-label="Play video"
@@ -128,7 +128,7 @@ const IndexPage = ({ data }) => {
           width="100%"
           viewBox="0 0 1920 1080"
           xmlns="http://www.w3.org/2000/svg"
-          className={`transition-all ${playVideo ? 'min-h-[56.25vw]' : 'min-h-[50vh]'}`}
+          className={`transition-all ${playVideo ? 'min-h-[55vw]' : 'min-h-[50vh]'}`}
         ></svg>
       </div>
 
