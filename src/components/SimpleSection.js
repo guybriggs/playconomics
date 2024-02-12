@@ -252,12 +252,38 @@ const SimpleSection = ({ props, index, children }) => {
         </video>
     </div>*/
     
-    const fullHeightStyle = {
-        minHeight: index >= 4 ? '75vh' : '100vh',
-    }
+    let sectionClass = `
+        relative
+        flex
+        flex-col
+        justify-center
+        items-center
+        text-center
+        z-10
 
+        pt-[5vw]
+        md:pt-[10vw]
+        pb-[60vw]
+        md:pb-[30vw]
+        lg:pb-[20vw]
+    `;
+    if (index >= 4) {
+        sectionClass = `
+        relative
+        flex
+        flex-col
+        justify-center
+        items-center
+        text-center
+        z-10
+
+        pt-[3vw]
+        pb-[15vw]
+        `;
+    }
+    
     return (
-        <section className="relative flex flex-col justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
+        <section className={sectionClass}>
 
             {/* Content */}
             <div className="w-full flex justify-around p-8 z-20" style={orderStyle}>
