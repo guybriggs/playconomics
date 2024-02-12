@@ -24,22 +24,44 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
   return (
-    <div className="relative">
-      <GatsbyImage image={getImage(coverimage)} alt="island2" width="1920" height="1080" className="w-full max-h-screen object-cover object-center" />
-      <div aria-label="Play video" className="absolute top-0 left-0 w-full h-full object-center object-scale-down w-5/6 flex gap-0 md:gap-8 flex-col justify-center items-center cursor-pointer"
-          onMouseEnter={() => setPlayHover(true)} onMouseLeave={() => setPlayHover(false)} onClick={onPlayClicked} onKeyDown={handleKeyDown} role="button" tabIndex={0}>
-        <img src={Playconomics_Text} alt="Playconomics" width="1409" height="146" className="w-full md:w-1/2" />
-        <div className="largePagename hidden md:block text-3xl text-white font-black drop-shadow-lg">"An intimate massive multiplayer online world...<br></br>...where you can build your own aspirations.</div>
-        <img src={playBtn} alt="Play video" width="190" height="190" className={`w-1/6 md:w-[100px] object-center transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
+    <div className="relative min-h-[50vh] flex flex-col overflow-hidden">
+
+      <GatsbyImage image={getImage(coverimage)} alt="island2" width="1920" height="1080" className="flex-1" />
+      
+      <div
+        aria-label="Play video"
+        className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center gap-4"
+        onMouseEnter={() => setPlayHover(true)}
+        onMouseLeave={() => setPlayHover(false)}
+        onClick={onPlayClicked}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex={0}
+      >
+        <div className="customTitleText text-center text-5xl md:text-8xl lg:text-[10rem] text-white font-black drop-shadow-lg">
+          PLAYCONOMICS
+        </div>
+        <div className="customTitleText text-center text-md md:text-xl lg:text-3xl text-white font-black drop-shadow-lg">
+          An intimate massive multiplayer online world...<br></br>...where you can build your own aspirations.
+        </div>
+        <img src={playBtn} alt="Play video" width="100" height="100" className={`transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
       </div>
+
     </div>
   );
 };
 
 const CoverVideo = ({ onFinished, handleKeyDown }) => {
   return (
-    <div aria-label="Close video" className="relative" onClick={onFinished} onKeyDown={handleKeyDown} role="button" tabIndex={0}>
-      <video autoPlay className="w-full max-h-screen object-cover mb-[25px] md:mb-[50px] lg:mb-[75px]">
+    <div
+      aria-label="Close video"
+      className="relative flex flex-col"
+      onClick={onFinished}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+    >
+      <video autoPlay className="flex-1">
         <source src={trailerVideo} type="video/mp4"></source>
         <track kind="captions" />
       </video>
@@ -72,7 +94,6 @@ const IndexPage = ({ data }) => {
 
     return (
     <Layout>
-
         {!playVideo && <CoverImage coverimage={data.coverImage} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
         {playVideo && <CoverVideo onFinished={onFinished} handleKeyDown={handleKeyDown} />}
 

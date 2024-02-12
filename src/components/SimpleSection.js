@@ -257,7 +257,7 @@ const SimpleSection = ({ props, index, children }) => {
     </div>*/
 
     return (
-        <section className="relative flex flex-col justify-center items-center pb-64 text-center z-10" style={fullHeightStyle}>
+        <section className="relative flex flex-col justify-center pt-[8vw] pb-[48vw] md:pb-[22vw] items-center text-center z-10">
 
             {/* Content */}
             <div className="w-full md:max-w-[1280px] flex p-8 z-20" style={orderStyle}>
