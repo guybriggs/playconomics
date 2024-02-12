@@ -265,7 +265,7 @@ const SimpleSection = ({ props, index, children }) => {
                 {children}
             </div>
 
-            {index === 3 && (
+            {(index === 3 || index === 2) && (
                 <div className="m-16 md:m-0"></div>
             )}
 

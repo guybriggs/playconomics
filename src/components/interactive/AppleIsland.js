@@ -83,11 +83,12 @@ const AppleIsland = () => {
 
     const src = data.frames.nodes[frame]?.childImageSharp?.gatsbyImageData.images.fallback.src;
 
+    const x = isSmallScreen ? 768/2 : 768;
     const y = isSmallScreen ? 0 : 200;
     const imageSize = isSmallScreen ? 1440 : 720; // Double the size for small screens
 
     return (
-        <div ref={ref} className='absolute bottom-5 md:bottom-0 left-0 right-0'>
+        <div ref={ref} className='absolute bottom-16 md:bottom-0 left-0 right-0'>
             <svg
                 width="100%"
                 viewBox="0 0 1920 1080"
@@ -95,7 +96,7 @@ const AppleIsland = () => {
             >
                 <image
                     href={src}
-                    x={768} // (1920/2.5)
+                    x={x} // (1920/2.5)
                     y={y}
                     width={imageSize}
                     height={imageSize}
