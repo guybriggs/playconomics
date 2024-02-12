@@ -230,10 +230,6 @@ const SimpleSection = ({ props, index, children }) => {
         color: text,
         flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
     }
-    
-    const fullHeightStyle = {
-        minHeight: index >= 4 ? '75vh' : '100vh',
-    }
 
     const createInteractiveElement = (link, index) => {
         switch (link.interactionType) {
@@ -256,13 +252,22 @@ const SimpleSection = ({ props, index, children }) => {
         </video>
     </div>*/
 
+    let sectionClass = "relative flex flex-col pt-0 md:pt-[10vw] lg:pt-[7vw] pb-[48vw] md:pb-[30vw] lg:pb-[20vw] justify-center items-center text-center z-10";
+    if (index >= 4) {
+        sectionClass = "relative flex flex-col pt-[2vw] pb-[15vw] justify-center items-center text-center z-10";
+    }
+    
     return (
-        <section className="relative flex flex-col justify-center pt-[8vw] pb-[48vw] md:pb-[22vw] items-center text-center z-10">
+        <section className={sectionClass}>
 
             {/* Content */}
             <div className="w-full md:max-w-[1280px] flex p-8 z-20" style={orderStyle}>
                 {children}
             </div>
+
+            {index === 3 && (
+                <div className="m-16 md:m-0"></div>
+            )}
 
             {/* Interactive */}
             {interactiveToDraw.length > 0 ? (

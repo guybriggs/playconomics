@@ -16,7 +16,7 @@ import Footer from "../components/Footer"
 //import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
 import trailerVideo from '/src/assets/play2024_trailer.mp4'
 //import Website_Cover from "/src/assets/Website_Cover.png"
-import Playconomics_Text from "/src/assets/Playconomics_Text.png"
+//import Playconomics_Text from "/src/assets/Playconomics_Text.png"
 import playBtn from '/src/assets/play.png'
 //import { Parallax } from "react-scroll-parallax";
 
