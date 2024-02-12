@@ -15,7 +15,7 @@ import GridGallery from "../components/GridGallery";
 import Footer from "../components/Footer"
 //import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
 import trailerVideo from '/src/assets/play2024_trailer.mp4'
-//import Website_Cover from "/src/assets/Website_Cover.png"
+import Website_Cover from "/src/assets/Website_Cover.png"
 //import Playconomics_Text from "/src/assets/Playconomics_Text.png"
 import playBtn from '/src/assets/play.png'
 //import { Parallax } from "react-scroll-parallax";
@@ -26,7 +26,7 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   return (
     <div className="relative flex-1 flex flex-col min-h-[50vh] overflow-hidden">
 
-      <GatsbyImage image={getImage(coverimage)} alt="island2" width="1920" height="1080" className="flex-1" />
+      <img src={coverimage} alt="island2" width="1920" height="1080" className="flex-1" />
       
       <div
         aria-label="Play video"
@@ -122,7 +122,7 @@ const IndexPage = ({ data }) => {
     return (
     <Layout>
         <div className="transition-all flex flex-col" style={headerStyle}>
-          {!playVideo && <CoverImage coverimage={data.coverImage} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
+          {!playVideo && <CoverImage coverimage={Website_Cover} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
           {playVideo && <CoverVideo onFinished={onFinished} handleKeyDown={handleKeyDown} />}
         </div>
 
