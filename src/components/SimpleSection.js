@@ -226,9 +226,13 @@ const SimpleSection = ({ props, index, children }) => {
 
     //Styles
 
-    const orderStyle = {
+    let orderStyle = {
         color: text,
         flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
+    }
+
+    if (index >= 4) {
+        orderStyle.justifyContent = 'center';
     }
 
     const createInteractiveElement = (link, index) => {

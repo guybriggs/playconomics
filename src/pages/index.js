@@ -15,7 +15,7 @@ import GridGallery from "../components/GridGallery";
 import Footer from "../components/Footer"
 //import coldVideo from "/src/assets/seasons_cold_temperate.mp4"
 import trailerVideo from '/src/assets/play2024_trailer.mp4'
-import Website_Cover from "/src/assets/Website_Cover.png"
+import Website_Cover from "/src/assets/Website_Cover_1920x1080.png"
 //import Playconomics_Text from "/src/assets/Playconomics_Text.png"
 import playBtn from '/src/assets/play.png'
 //import { Parallax } from "react-scroll-parallax";
@@ -24,7 +24,7 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   const [playHover, setPlayHover] = React.useState(false);
 
   return (
-    <div className="relative flex flex-col min-h-[50vh] overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-full flex flex-col overflow-hidden">
 
       <img src={coverimage} alt="island2" width="1920" height="1080" className="flex-1 object-cover" />
       
@@ -41,7 +41,7 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
         <div className="customTitleText text-center text-5xl md:text-7xl lg:text-9xl text-white font-black drop-shadow-lg">
           PLAYCONOMICS
         </div>
-        <div className="customTitleText text-center text-lg md:text-xl lg:text-2xl text-white font-black drop-shadow-lg">
+        <div className="customTitleText text-center text-md md:text-xl lg:text-3xl text-white font-black drop-shadow-lg">
           An intimate massive multiplayer online world...<br></br>...where you can build your own aspirations.
         </div>
         <img src={playBtn} alt="Play video" width="100" height="100" className={`transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
@@ -54,14 +54,14 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
 const CoverVideo = ({ onFinished, handleKeyDown }) => {
   return (
     <div
-      className="relative flex flex-col"
+      className="absolute top-0 left-0 w-full h-full flex flex-col"
       onClick={onFinished}
       onKeyDown={handleKeyDown}
       aria-label="Close video"
       role="button"
       tabIndex={0}
     >
-      <video autoPlay className="flex-1">
+      <video autoPlay playsInline className="flex-1">
         <source src={trailerVideo} type="video/mp4"></source>
         <track kind="captions" />
       </video>
@@ -121,11 +121,28 @@ const IndexPage = ({ data }) => {
 
     return (
     <Layout>
+      <div className="relative">
         {!playVideo && <CoverImage coverimage={Website_Cover} onPlayClicked={onPlayClicked} handleKeyDown={handleKeyDown} />}
         {playVideo && <CoverVideo onFinished={onFinished} handleKeyDown={handleKeyDown} />}
+        <svg
+          width="100%"
+          viewBox="0 0 1920 1080"
+          xmlns="http://www.w3.org/2000/svg"
+          className={`transition-all ${playVideo ? 'min-h-[56.25vw]' : 'min-h-[50vh]'}`}
+        ></svg>
+      </div>
 
-        {content.map((link, index) => (
+        {content.slice(0, 4).map((link, index) => (
           <SimpleSection key={index} index={index} props={data.assetsFolder}>
+              <div className="w-full md:w-1/2 lg:max-w-[500px]">
+                <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
+                <p className="text-xl md:text-2xl">{link.body}</p>
+              </div>
+          </SimpleSection>
+        ))}
+
+        {content.slice(4).map((link, index) => (
+          <SimpleSection key={index+4} index={index+4} props={data.assetsFolder}>
               <div className="w-full md:w-1/2 lg:max-w-[500px]">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
