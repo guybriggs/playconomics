@@ -316,7 +316,7 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
             </svg>
 
             <div className="absolute bottom-32 md:bottom-0 left-0 right-0 flex justify-center md:justify-start md:pl-8 z-50">
-                <div className="relative min-w-[300px] translate-y-[-50%] md:translate-y-[-100%] lg:translate-y-[-175%] h-auto grid grid-cols-2 p-8 text-left uppercase bg-[rgba(0,0,0,0.15)] rounded-md">
+                <div className="relative min-w-[300px] translate-y-[-50%] md:translate-y-[-100%] lg:translate-y-[-175%] h-auto grid grid-cols-2 gap-2 p-8 text-left uppercase bg-[rgba(0,0,0,0.15)] rounded-md">
                     {imageVisibleArray.map(imageStringId => (
                         <label key={imageStringId} className="cursor-pointer">
                             <input

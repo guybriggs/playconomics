@@ -55,7 +55,6 @@ const AppleIsland = () => {
             percentage = percentage * 2;
             if (percentage < 0) percentage = 0;
             if (percentage > 0.99) percentage = 0.99;
-            console.log(percentage);
     
             const totalFrames = data.frames.nodes.length;
             const targetFrame = Math.floor(totalFrames * percentage);
