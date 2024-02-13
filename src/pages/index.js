@@ -61,7 +61,7 @@ const CoverVideo = ({ onFinished, handleKeyDown }) => {
       role="button"
       tabIndex={0}
     >
-      <video autoPlay playsInline className="flex-1">
+      <video autoPlay playsInline className="flex-1" poster={Website_Cover}>
         <source src={trailerVideo} type="video/mp4"></source>
         <track kind="captions" />
       </video>
