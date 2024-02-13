@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HoverSpeechBubble = ({ src, bubble, hitbox, x, y }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const timeoutRef = useRef(null); // Ref for storing the timeout
+  //const timeoutRef = useRef(null); // Ref for storing the timeout
 
   useEffect(() => {
     let timeout;
