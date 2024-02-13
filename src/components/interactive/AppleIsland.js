@@ -50,11 +50,12 @@ const AppleIsland = () => {
             const top = ref.current.parentNode.getBoundingClientRect().top;
             const height = ref.current.parentNode.clientHeight;
             const windowHeight = window.innerHeight;
-            const visible = windowHeight - top + height/1.5;
+            const visible = windowHeight - top - height/2;
             let percentage = visible / height;
-            percentage = percentage - 1;
+            percentage = percentage * 2;
             if (percentage < 0) percentage = 0;
             if (percentage > 0.99) percentage = 0.99;
+            console.log(percentage);
     
             const totalFrames = data.frames.nodes.length;
             const targetFrame = Math.floor(totalFrames * percentage);
@@ -83,12 +84,12 @@ const AppleIsland = () => {
 
     const src = data.frames.nodes[frame]?.childImageSharp?.gatsbyImageData.images.fallback.src;
 
-    const x = isSmallScreen ? 768/2 : 768;
+    const imageSize = isSmallScreen ? 1080 : 720; // Double the size for small screens
+    const x = isSmallScreen ? 1920/2-imageSize/2 : 1920-imageSize*1.6;
     const y = isSmallScreen ? 0 : 250;
-    const imageSize = isSmallScreen ? 1440 : 720; // Double the size for small screens
 
     return (
-        <div ref={ref} className='absolute bottom-16 md:bottom-0 left-0 right-0'>
+        <div ref={ref} className='absolute bottom-32 md:bottom-0 left-0 right-0'>
             <svg
                 width="100%"
                 viewBox="0 0 1920 1080"

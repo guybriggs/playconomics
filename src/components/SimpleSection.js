@@ -138,7 +138,7 @@ const SimpleSection = ({ props, index, children }) => {
         },
         {
             static: [
-                { url: 'sections/many-subjects/Window_static.png' },
+                { url: 'sections/many-subjects/Window_static.png', zLevel: -0.5 },
                 { url: 'sections/many-subjects/inside_MG_static.png' },
                 { url: 'sections/many-subjects/Smog_static_wider.png', isWider: true },
             ],
@@ -290,7 +290,7 @@ const SimpleSection = ({ props, index, children }) => {
         <section className={sectionClass}>
 
             {/* Content */}
-            <div className="w-full flex justify-around p-8 z-20" style={orderStyle}>
+            <div className="w-full flex justify-center md:justify-between lg:justify-around p-8 z-20" style={orderStyle}>
                 {children}
                 <div className="hidden md:block"></div>
                 <div className="hidden md:block"></div>
