@@ -19,6 +19,7 @@ import Website_Cover from "/src/assets/Website_Cover_1920x1080.png"
 //import Playconomics_Text from "/src/assets/Playconomics_Text.png"
 import playBtn from '/src/assets/play.png'
 //import { Parallax } from "react-scroll-parallax";
+import play2024_trailer_static from "/src/assets/play2024_trailer_static.png";
 
 const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
   const [playHover, setPlayHover] = React.useState(false);
@@ -61,7 +62,7 @@ const CoverVideo = ({ onFinished, handleKeyDown }) => {
       role="button"
       tabIndex={0}
     >
-      <video autoPlay playsInline className="flex-1" poster={Website_Cover}>
+      <video autoPlay playsInline className="flex-1" poster={play2024_trailer_static}>
         <source src={trailerVideo} type="video/mp4"></source>
         <track kind="captions" />
       </video>
