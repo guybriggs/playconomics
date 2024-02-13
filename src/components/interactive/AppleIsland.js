@@ -81,7 +81,18 @@ const AppleIsland = () => {
         };
     }, [data, frame]);
 
-    const src = data.frames.nodes[frame]?.childImageSharp?.gatsbyImageData.images.fallback.src;
+    function returnSrcFromFrame(array, frame) {
+        for (let i = 0; i < array.length; i++) {
+            const string = "SmallTallCropped" + frame.toString().padStart(4, '0');
+            console.log(string);
+            if (array[i].relativePath.includes(string)) {
+                return array[i]?.childImageSharp?.gatsbyImageData.images.fallback.src;
+            }
+        }
+        return null;
+    }
+
+    const src = returnSrcFromFrame(data.frames.nodes, frame);
 
     const imageSize = isSmallScreen ? 1080 : 720; // Double the size for small screens
     const x = isSmallScreen ? 1920/2-imageSize/2 : 1920-imageSize*1.6;
