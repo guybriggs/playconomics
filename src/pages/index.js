@@ -38,10 +38,10 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
         role="button"
         tabIndex={0}
       >
-        <div className="customTitleText text-center text-5xl md:text-7xl lg:text-9xl text-white font-black drop-shadow-lg">
+        <div className="customTitleText text-center text-5xl md:text-7xl lg:text-9xl text-white">
           PLAYCONOMICS
         </div>
-        <div className="customTitleText text-center text-md md:text-xl lg:text-3xl text-white font-black drop-shadow-lg">
+        <div className="customTitleText text-center text-md md:text-xl lg:text-3xl text-white">
           An intimate massive multiplayer online world...<br></br>...where you can build your own aspirations.
         </div>
         <img src={playBtn} alt="Play video" width="100" height="100" className={`transition-opacity duration-500 ${playHover ? 'opacity-80' : 'opacity-30'}`} />
