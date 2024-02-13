@@ -5,7 +5,8 @@ import { useStaticQuery, graphql } from 'gatsby'
 import HoverSpeechBubble from "../interactive/HoverSpeechBubble"
 
 import planets from "/src/assets/sections/massive-multiplayer/planets.png"
-import click_gif from "/src/assets/sections/massive-multiplayer/click_gif.gif"
+import ClickGif2 from "/src/assets/sections/massive-multiplayer/ClickGif2.gif"
+import TapGif from "/src/assets/sections/massive-multiplayer/TapGif.gif"
 //import mmo_mouse from "/src/assets/mmo_mouse.png"
 import { Parallax } from 'react-scroll-parallax'
 
@@ -327,7 +328,10 @@ const MassiveMultiplayer = ({ translateX, translateY }) => {
                         </label>
                     ))}
                     {showClickGif && (
-                        <img src={click_gif} alt="click_gif" width="50" className="absolute top-[1px] left-[15px] pointer-events-none"></img>
+                        <>
+                            <img src={ClickGif2} alt="click_gif" width="50" className="hidden md:block absolute top-[12px] left-[14px] pointer-events-none"></img>
+                            <img src={TapGif} alt="click_gif" width="50" className="block md:hidden absolute top-[12px] left-[14px] pointer-events-none"></img>
+                        </>
                     )}
                 </div>
             </div>
