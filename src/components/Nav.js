@@ -24,7 +24,7 @@ const Nav = () => {
     ];*/
 
     return (
-    <nav className='bg-slate-900 text-white flex flex-col md:flex-row justify-between items-center static top-0 left-0 right-0 z-10 shadow'>
+    <nav className='bg-slate-900 text-white flex flex-row justify-between items-center static top-0 left-0 right-0 z-10 shadow'>
         {/*<h1 className='basis-1/4 text-4xl p-4'>Playconomics</h1>
         <ul className='basis-1/2 flex flex-wrap gap-8 p-4 justify-center'>
             {navLinks.map((item, i) => (
@@ -37,7 +37,7 @@ const Nav = () => {
                 </li>
             ))}
         </ul>*/}
-        <div className='hidden md:block p-4'><UnderlineLink><a href="/">Home</a></UnderlineLink></div>
+        <div className='p-4'><UnderlineLink><a href="/">Home</a></UnderlineLink></div>
         {/* <h1 className='text-3xl p-4'>Playconomics</h1> */}
         <ul className='flex flex-row-reverse gap-8 whitespace-nowrap p-4'>
             <li><UnderlineLink><a href={registerUrl}>Sign Up</a></UnderlineLink></li>
