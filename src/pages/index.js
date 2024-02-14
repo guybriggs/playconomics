@@ -135,7 +135,7 @@ const IndexPage = ({ data }) => {
 
         {content.slice(0, 4).map((link, index) => (
           <SimpleSection key={index} index={index} props={data.assetsFolder}>
-              <div className="w-full md:w-1/2 lg:max-w-[500px]">
+              <div className="w-full md:max-w-1/2 lg:max-w-[500px]">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
               </div>
@@ -144,7 +144,7 @@ const IndexPage = ({ data }) => {
 
         {content.slice(4).map((link, index) => (
           <SimpleSection key={index+4} index={index+4} props={data.assetsFolder}>
-              <div className="w-full md:w-1/2 lg:max-w-[500px]">
+          <div className="w-full md:max-w-1/2 lg:max-w-[500px]">
                 <h1 className="text-3xl md:text-4xl mb-8 uppercase">{link.title}</h1>
                 <p className="text-xl md:text-2xl">{link.body}</p>
               </div>

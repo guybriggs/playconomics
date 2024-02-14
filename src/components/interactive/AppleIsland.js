@@ -84,7 +84,6 @@ const AppleIsland = () => {
     function returnSrcFromFrame(array, frame) {
         for (let i = 0; i < array.length; i++) {
             const string = "SmallTallCropped" + frame.toString().padStart(4, '0');
-            console.log(string);
             if (array[i].relativePath.includes(string)) {
                 return array[i]?.childImageSharp?.gatsbyImageData.images.fallback.src;
             }

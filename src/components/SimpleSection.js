@@ -267,9 +267,10 @@ const SimpleSection = ({ props, index, children }) => {
 
         pt-[5vw]
         md:pt-[10vw]
+        md:pt-[8vw]
         pb-[60vw]
         md:pb-[30vw]
-        lg:pb-[20vw]
+        lg:pb-[25vw]
     `;
     if (index >= 4) {
         sectionClass = `
@@ -292,8 +293,9 @@ const SimpleSection = ({ props, index, children }) => {
             {/* Content */}
             <div className="w-full flex justify-center md:justify-between lg:justify-around p-8 z-20" style={orderStyle}>
                 {children}
-                <div className="hidden md:block"></div>
-                <div className="hidden md:block"></div>
+                {index < 4 && (
+                    <div className="hidden md:block w-full md:max-w-1/2 lg:max-w-[500px]"></div>
+                )}
             </div>
 
             {(index === 3 || index === 2) && (
