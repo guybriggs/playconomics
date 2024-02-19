@@ -53,6 +53,30 @@ const CoverImage = ({ coverimage, onPlayClicked, handleKeyDown }) => {
 };
 
 const CoverVideo = ({ onFinished, handleKeyDown }) => {
+  const [progress, setProgress] = React.useState(0);
+  const videoRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const updateProgress = () => {
+      if (videoRef.current) {
+        const { currentTime, duration } = videoRef.current;
+        const progressPercent = (currentTime / duration) * 100;
+        setProgress(progressPercent);
+      }
+    };
+
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      videoElement.addEventListener('timeupdate', updateProgress);
+    }
+
+    return () => {
+      if (videoElement) {
+        videoElement.removeEventListener('timeupdate', updateProgress);
+      }
+    };
+  }, []);
+
   return (
     <div
       className="absolute top-0 left-0 w-full h-full flex flex-col"
@@ -62,10 +86,13 @@ const CoverVideo = ({ onFinished, handleKeyDown }) => {
       role="button"
       tabIndex={0}
     >
-      <video autoPlay playsInline className="flex-1" poster={play2024_trailer_static}>
+      <video autoPlay playsInline className="flex-1" ref={videoRef} poster={play2024_trailer_static}>
         <source src={trailerVideo} type="video/mp4"></source>
         <track kind="captions" />
       </video>
+      <div className="absolute h-8 top-0 left-0 right-0 bg-[rgba(0,0,0,0.3)] overflow-hidden flex items-end">
+        <div className="h-2 bg-[rgba(255,255,255,0.7)] rounded-sm transition-all" style={{width: `${progress}%`}}></div>
+      </div>
     </div>
   );
 }
